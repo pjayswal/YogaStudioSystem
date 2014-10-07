@@ -10,6 +10,9 @@ public class Section {
 	private long Id;
 	
 	private String sectionName;
+	
+	private Course course;
+	private Semester semester;
 
 	public Section(long id, String sectionName) {
 		this.Id = id;
