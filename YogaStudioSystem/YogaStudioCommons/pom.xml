@@ -7,9 +7,8 @@
     <artifactId>YogaStudioSystem</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>YogaStudioSystem</groupId>
+
   <artifactId>YogaStudioCommons</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>YogaStudioCommons</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -21,6 +20,11 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-core</artifactId>
+    	<version>4.3.6.Final</version>
     </dependency>
   </dependencies>
 </project>
