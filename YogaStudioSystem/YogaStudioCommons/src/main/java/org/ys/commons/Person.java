@@ -1,12 +1,22 @@
 package org.ys.commons;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
+@Entity
 public class Person {
+	@Id @GeneratedValue
+	private long id;
+	
 	private String name;
 	private String email;
 	private String phone;
 	private Address address;
 	private User user;
 
+	
 	public Person(String name, String email, String phone, Address address,
 			User user) {
 		super();
