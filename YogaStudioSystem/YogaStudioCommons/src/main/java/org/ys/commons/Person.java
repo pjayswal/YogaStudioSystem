@@ -15,6 +15,10 @@ public class Person {
 	private String phone;
 	private Address address;
 	private User user;
+	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
 
 	
 	public Person(String name, String email, String phone, Address address,
