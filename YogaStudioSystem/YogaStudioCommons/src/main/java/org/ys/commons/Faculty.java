@@ -1,5 +1,11 @@
 package org.ys.commons;
 
-public class Faculty {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Faculty extends Person {
+	@Id @GeneratedValue
+	private long id;
 }

@@ -1,5 +1,12 @@
 package org.ys.commons;
 
-public class Admin {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Admin extends Person{
+	@Id @GeneratedValue
+	private long id;
+	
 }
