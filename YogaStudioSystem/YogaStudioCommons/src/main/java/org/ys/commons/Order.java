@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Entity
 public class Order {
 	@Id @GeneratedValue
-	private long Id;
+	private long id;
 	
 	private Date orderDate;
 	private Date shipDate;
@@ -26,7 +26,7 @@ public class Order {
 	public Order(long id, Date orderDate, Date shipDate, Address shipTo,
 			String status, double sum) {
 		super();
-		Id = id;
+		id = id;
 		this.orderDate = orderDate;
 		this.shipDate = shipDate;
 		this.shipTo = shipTo;
@@ -35,11 +35,11 @@ public class Order {
 	}
 	
 	public long getId() {
-		return Id;
+		return id;
 	}
 	
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 	
 	public Date getOrderDate() {
