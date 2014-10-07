@@ -1,6 +1,5 @@
 package org.ys.commons;
 
-public class User {
-	
+public class Customer {
 
 }
