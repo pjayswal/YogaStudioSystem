@@ -6,6 +6,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Semester {
+	
+	
 	@Id @GeneratedValue
 	private long Id;
 	
