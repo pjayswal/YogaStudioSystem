@@ -42,5 +42,10 @@
     	<artifactId>spring-tx</artifactId>
     	<version>4.1.1.RELEASE</version>
     </dependency>
+    <dependency>
+    	<groupId>YogaStudioSystem</groupId>
+    	<artifactId>YogaStudioCommons</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 </project>
