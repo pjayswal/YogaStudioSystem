@@ -13,8 +13,9 @@ public class Person {
 	private String name;
 	private String email;
 	private String phone;
+	
 	private Address address;
-	private User user;
+	private UserCredential user;
 	
 	public Person() {
 		// TODO Auto-generated constructor stub
@@ -22,7 +23,7 @@ public class Person {
 
 	
 	public Person(String name, String email, String phone, Address address,
-			User user) {
+			UserCredential user) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -63,11 +64,11 @@ public class Person {
 		this.address = address;
 	}
 
-	public User getUser() {
+	public UserCredential getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserCredential user) {
 		this.user = user;
 	}
 
