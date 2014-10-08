@@ -15,9 +15,8 @@ public class Admin extends Person{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(long id, String type) {
+	public Admin(String type) {
 		super();
-		this.id = id;
 		this.type = type;
 	}
 

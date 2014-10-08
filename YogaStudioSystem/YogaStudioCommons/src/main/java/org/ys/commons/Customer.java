@@ -25,9 +25,8 @@ public class Customer extends Person {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(long id, Date dob, Faculty advisor) {
+	public Customer(Date dob, Faculty advisor) {
 		super();
-		this.id = id;
 		this.dob = dob;
 		this.advisor = advisor;
 	}

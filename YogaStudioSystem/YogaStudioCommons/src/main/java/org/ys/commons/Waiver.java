@@ -17,9 +17,8 @@ public class Waiver {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Waiver(long id, Faculty faculty, Course course, Customer customer) {
+	public Waiver(Faculty faculty, Course course, Customer customer) {
 		super();
-		this.id = id;
 		this.faculty = faculty;
 		this.course = course;
 		this.customer = customer;

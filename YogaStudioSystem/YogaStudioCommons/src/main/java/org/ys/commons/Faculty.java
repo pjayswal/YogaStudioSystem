@@ -21,9 +21,8 @@ public class Faculty extends Person {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Faculty(long id, String profile) {
+	public Faculty(String profile) {
 		super();
-		this.id = id;
 		this.profile = profile;
 	}
 
