@@ -11,20 +11,17 @@ import javax.persistence.Id;
 public class Category {
 	@Id @GeneratedValue
 	private long id;
-	
-	private long parentCat;
-	private String catName;
+
+	private String name;
 	private List<Product> products = new ArrayList<Product>();
 	
 	public Category() {
 		
 	}
 	
-	public Category(long id, long parentCat, String catName) {
+	public Category(String name) {
 		super();
-		this.id = id;
-		this.parentCat = parentCat;
-		this.catName = catName;
+		this.name = name;
 	}
 
 	public void addProduct(Product product) {
@@ -39,23 +36,11 @@ public class Category {
 		return id;
 	}
 	
-	public void setId(long id) {
-		this.id = id;
+	public String getName() {
+		return name;
 	}
 	
-	public long getParentCat() {
-		return parentCat;
-	}
-	
-	public void setParentCat(long parentCat) {
-		this.parentCat = parentCat;
-	}
-	
-	public String getCatName() {
-		return catName;
-	}
-	
-	public void setCatName(String catName) {
-		this.catName = catName;
+	public void setName(String name) {
+		this.name = name;
 	}		
 }

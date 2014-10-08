@@ -9,27 +9,24 @@ public class Waiver {
 	@Id @GeneratedValue
 	private long id;
 	
-	private Faculty faculty;
 	private Course course;
 	private Customer customer;
+	private boolean status=false;
 	
 	public Waiver() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Waiver(Faculty faculty, Course course, Customer customer) {
+	public Waiver( Course course, Customer customer) {
 		super();
-		this.faculty = faculty;
+		Faculty  advisor = customer.getAdvisor();
+		advisor.addWaiverRequest(this);
 		this.course = course;
 		this.customer = customer;
+		
 	}
 
-	public Faculty getFaculty() {
-		return faculty;
-	}
-	public void setFaculty(Faculty faculty) {
-		this.faculty = faculty;
-	}
+
 	public Course getCourse() {
 		return course;
 	}
@@ -41,6 +38,18 @@ public class Waiver {
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public long getId() {
+		return id;
 	}
 	
 	

@@ -1,6 +1,7 @@
 package org.ys.commons;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,49 +13,71 @@ public class Faculty extends Person {
 	@Id @GeneratedValue
 	private long id;
 	
-	private String profile;
+	private String bio;
 	private List<Customer> advisees=new ArrayList<Customer>();
 	private List<Section> takingSections=new ArrayList<Section>();
-	private List<Waiver> waiverRequest=new ArrayList<Waiver>();
+	private List<Waiver> waiverRequests=new ArrayList<Waiver>();
 	
 	public Faculty() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Faculty(String profile) {
-		super();
-		this.profile = profile;
+	public Faculty(String bio,String name, String email, String phone, Date dob,
+			UserCredential user) {
+		super(name, email, phone,dob, user);
+		this.bio = bio;
 	}
 
-	private void addAdvisees(Customer advisee) {
-		this.advisees.add(advisee);
+
+	public void addAdvisee(Customer advisee) {
+		advisees.add(advisee);
 	}
 	
-	private void addTakingSection(Section takingSection) {
-		this.takingSections.add(takingSection);
+
+	public void addTakingSection(Section takingSection) {
+		takingSections.add(takingSection);
 	}
 	
-	private void addWaiverRequest(Waiver waiver) {
-		this.waiverRequest.add(waiver);
+
+	public void addWaiverRequest(Waiver waiver) {
+		waiverRequests.add(waiver);
 	}
 
-	public String getProfile() {
-		return profile;
+	public long getId() {
+		return id;
 	}
 
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
 	}
 
 	public List<Customer> getAdvisees() {
 		return advisees;
 	}
 
+	public void setAdvisees(List<Customer> advisees) {
+		this.advisees = advisees;
+	}
+
 	public List<Section> getTakingSections() {
 		return takingSections;
 	}
 
-	public List<Waiver> getWaiverRequest() {
-		return waiverRequest;
+	public void setTakingSections(List<Section> takingSections) {
+		this.takingSections = takingSections;
 	}
+
+	public List<Waiver> getWaiverRequests() {
+		return waiverRequests;
+	}
+
+	public void setWaiverRequests(List<Waiver> waiverRequests) {
+		this.waiverRequests = waiverRequests;
+	}
+
+
 }

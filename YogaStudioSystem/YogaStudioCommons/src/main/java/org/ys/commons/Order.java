@@ -15,10 +15,10 @@ public class Order {
 	private long id;
 	
 	private Date orderDate;
-	private Date shipDate;
-	private Address shipTo;
+	private Date shippingDate;
+	private Address shippingAddress;
 	private String status;
-	private double sum;
+	private double totalAmount;
 	private Payment payment;
 	private Customer customer;
 	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
@@ -28,34 +28,71 @@ public class Order {
 		
 	}
 	
-	public Order(long id, Date orderDate, Date shipDate, Address shipTo,
-			String status, double sum, Customer customer) {
+	public Order(Date orderDate, Date shippingDate, Address shippingAddress,
+			String status, Customer customer, ShoppingCart shoppingCart) {
 		super();
-		id = id;
 		this.orderDate = orderDate;
-		this.shipDate = shipDate;
-		this.shipTo = shipTo;
+		this.shippingDate = shippingDate;
+		this.shippingAddress = shippingAddress;
 		this.status = status;
-		this.sum = sum;
 		this.customer = customer;
+		this.orderlines = shoppingCart.getOrderlines();
+		this.totalAmount = computeTotalAmount(shoppingCart);
+		this.status = status;
+		
+		
+		customer.addOrder(this);
 	}
 
-	public void addOrderLine(OrderLine orderline) {
-		this.orderlines.add(orderline);
-	}
-
-	public List<OrderLine> getOrderlines() {
-		return orderlines;
-	}
 	
-	public Customer getCustomer() {
-		return customer;
+	public double computeTotalAmount(ShoppingCart shoppingCart){
+		double totalAmount=0;
+		for(OrderLine ol:shoppingCart.getOrderlines()){
+			totalAmount += ol.getAmount();
+		}
+		return totalAmount;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public Date getOrderDate() {
+		return orderDate;
 	}
-	
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public Date getShippingDate() {
+		return shippingDate;
+	}
+
+	public void setShippingDate(Date shippingDate) {
+		this.shippingDate = shippingDate;
+	}
+
+	public Address getShippingAddress() {
+		return shippingAddress;
+	}
+
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
 	public Payment getPayment() {
 		return payment;
 	}
@@ -64,54 +101,24 @@ public class Order {
 		this.payment = payment;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public List<OrderLine> getOrderlines() {
+		return orderlines;
+	}
+
+	public void setOrderlines(List<OrderLine> orderlines) {
+		this.orderlines = orderlines;
+	}
+
 	public long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public Date getOrderDate() {
-		return orderDate;
-	}
-	
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-	
-	public Date getShipDate() {
-		return shipDate;
-	}
-	
-	public void setShipDate(Date shipDate) {
-		this.shipDate = shipDate;
-	}
-	
-	public Address getShipTo() {
-		return shipTo;
-	}
-	
-	public void setShipTo(Address shipTo) {
-		this.shipTo = shipTo;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
-	public double getSum() {
-		return sum;
-	}
-	
-	public void setSum(double sum) {
-		this.sum = sum;
-	}
-	
-	
 	
 }

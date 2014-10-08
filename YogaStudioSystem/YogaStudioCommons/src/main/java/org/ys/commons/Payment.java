@@ -20,9 +20,8 @@ public class Payment {
 
 	}	
 	
-	public Payment(long id, Date paidDate, double total, String details, Order order) {
+	public Payment( Date paidDate, double total, String details, Order order) {
 		super();
-		this.id = id;
 		this.paidDate = paidDate;
 		this.total = total;
 		this.details = details;
@@ -42,11 +41,7 @@ public class Payment {
 	public long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
+
 	public Date getPaidDate() {
 		return paidDate;
 	}

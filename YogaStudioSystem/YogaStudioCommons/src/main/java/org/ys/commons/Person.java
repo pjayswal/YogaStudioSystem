@@ -1,5 +1,9 @@
 package org.ys.commons;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,8 +17,8 @@ public class Person {
 	private String name;
 	private String email;
 	private String phone;
-	
-	private Address address;
+	private Date dob;
+	private List<Address> addressList= new ArrayList<Address>();
 	private UserCredential user;
 	
 	public Person() {
@@ -22,16 +26,19 @@ public class Person {
 	}
 
 	
-	public Person(String name, String email, String phone, Address address,
+	public Person(String name, String email, String phone,Date dob, 
 			UserCredential user) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
-		this.address = address;
+		
 		this.user = user;
 	}
 
+	public void addAddress(Address address){
+		addressList.add(address);
+	}
 	public String getName() {
 		return name;
 	}
@@ -56,13 +63,6 @@ public class Person {
 		this.phone = phone;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
 	public UserCredential getUser() {
 		return user;
@@ -72,4 +72,25 @@ public class Person {
 		this.user = user;
 	}
 
+
+	public Date getDob() {
+		return dob;
+	}
+
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+
+
+	public void setAddressList(List<Address> addressList) {
+		this.addressList = addressList;
+	}
+	
+	
 }
