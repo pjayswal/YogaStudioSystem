@@ -10,24 +10,62 @@ public class OrderLine {
 	private long id;
 	
 	private long orderid;
-	private long produdtd;
+	private long productid;
 	private int quantity;
 	private double price;
 	private double amount;
+	private Product product;
+	private Order order;
+	private ShoppingCart shoppingcart;
 	
 	public OrderLine() {
 		
 	}	
 	
-	public OrderLine(long id, long orderid, long produdtd, int quantity,
-			double price, double amount) {
+	public OrderLine(long id, long orderid, long productid, int quantity,
+			double price, double amount, Product product, Order order, ShoppingCart shoppingcart) {
 		super();
 		this.id = id;
 		this.orderid = orderid;
-		this.produdtd = produdtd;
+		this.productid = productid;
 		this.quantity = quantity;
 		this.price = price;
 		this.amount = amount;
+		this.product = product;
+		this.order = order;
+		this.shoppingcart = shoppingcart;
+	}
+
+	public ShoppingCart getShoppingcart() {
+		return shoppingcart;
+	}
+
+	public void setShoppingcart(ShoppingCart shoppingcart) {
+		this.shoppingcart = shoppingcart;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public long getProductid() {
+		return productid;
+	}
+
+	public void setProductid(long productid) {
+		this.productid = productid;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public long getId() {
@@ -47,11 +85,11 @@ public class OrderLine {
 	}
 	
 	public long getProdudtd() {
-		return produdtd;
+		return productid;
 	}
 	
-	public void setProdudtd(long produdtd) {
-		this.produdtd = produdtd;
+	public void setProdudtd(long productid) {
+		this.productid = productid;
 	}
 	
 	public int getQuantity() {

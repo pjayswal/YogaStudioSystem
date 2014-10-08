@@ -1,6 +1,8 @@
 package org.ys.commons;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,9 @@ public class Order {
 	private Address shipTo;
 	private String status;
 	private double sum;
+	private Payment payment;
+	private Customer customer;
+	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
 	
 
 	public Order() {
@@ -24,7 +29,7 @@ public class Order {
 	}
 	
 	public Order(long id, Date orderDate, Date shipDate, Address shipTo,
-			String status, double sum) {
+			String status, double sum, Customer customer) {
 		super();
 		id = id;
 		this.orderDate = orderDate;
@@ -32,8 +37,33 @@ public class Order {
 		this.shipTo = shipTo;
 		this.status = status;
 		this.sum = sum;
+		this.customer = customer;
+	}
+
+	public void addOrderLine(OrderLine orderline) {
+		this.orderlines.add(orderline);
+	}
+
+	public List<OrderLine> getOrderlines() {
+		return orderlines;
 	}
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
 	public long getId() {
 		return id;
 	}

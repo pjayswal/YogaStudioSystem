@@ -12,18 +12,29 @@ public class Product {
 	private long catergoryid;
 	private String name;
 	private double price;
-	
+	private Category category;
 
 	public Product() {
 		
 	}
 	
-	public Product(long id, long catergoryid, String name, double price) {
+	public Product(long id, long catergoryid, String name, double price, Category category) {
 		super();
 		this.id = id;
 		this.catergoryid = catergoryid;
 		this.name = name;
 		this.price = price;
+		this.category = category;
+		
+		category.addProduct(this);
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public long getId() {

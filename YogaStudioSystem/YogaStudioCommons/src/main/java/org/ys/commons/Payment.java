@@ -14,17 +14,29 @@ public class Payment {
 	private Date paidDate;
 	private double total;
 	private String details;
+	private Order order;
 
 	public Payment() {
 
 	}	
 	
-	public Payment(long id, Date paidDate, double total, String details) {
+	public Payment(long id, Date paidDate, double total, String details, Order order) {
 		super();
 		this.id = id;
 		this.paidDate = paidDate;
 		this.total = total;
 		this.details = details;
+		this.order = order;
+		
+		order.setPayment(this);
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public long getId() {
