@@ -16,7 +16,8 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 	
 	private Class<T> persistentClass;
 	
-	
+
+
 	public Class<T> getPersistentClass() {
 		return persistentClass;
 	}
@@ -41,13 +42,25 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
         return entity;  
 	}
 
-	public T makePersistent(T entity) {
-		sessionFactory.getCurrentSession().saveOrUpdate(entity);  
-        return entity;  
+	public void create(T entity) {
+		sessionFactory.getCurrentSession().save(entity);  
 		
 	}
+	
+	public void update(T entity) {
+		sessionFactory.getCurrentSession().update(entity);  
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public T merge(T entity) {
+		T t=(T)sessionFactory.getCurrentSession().merge(entity); 
+		return t;
+		
+	}
+	
 
-	public void makeTransient(T entity) {
+	public void delete(T entity) {
 		sessionFactory.getCurrentSession().delete(entity);  
 		
 	}
@@ -55,7 +68,7 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 	@SuppressWarnings("unchecked")
 	public void deleteById(ID id) {
 		T entity =(T)sessionFactory.getCurrentSession().load(getPersistentClass(), id);
-		makeTransient(entity);
+		delete(entity);
 		
 	}
 	 @SuppressWarnings("unchecked")  

@@ -11,9 +11,13 @@ public interface IGenericDAO<T, ID extends Serializable> {
 
 	public List<T> getAll();
 
-	public T makePersistent(T entity);
+	public void create(T entity);
+	
+	public void update(T entity);
+	
+	public T merge(T entity);
 
-	public void makeTransient(T entity);
+	public void delete(T entity);
 
 	void deleteById(final ID entityId);
 

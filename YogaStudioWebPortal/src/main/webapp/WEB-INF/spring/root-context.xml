@@ -11,7 +11,29 @@
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="annotatedClasses">
 			<list>
+			
+				<value>org.ys.Role</value>
+				<value>org.ys.UserCredential</value>
 				<value>org.ys.Person</value>
+				
+				<value>org.ys.Admin</value>
+				<value>org.ys.Customer</value>
+				<value>org.ys.Faculty</value>
+				<value>org.ys.Waiver</value>
+				
+				<value>org.ys.Course</value>
+				<value>org.ys.Section</value>
+				<value>org.ys.Semester</value>
+				
+				
+				
+				<value>org.ys.Order</value>
+				<value>org.ys.OrderLine</value>
+				<value>org.ys.ShoppingCart</value>
+				<value>org.ys.Product</value>
+				<value>org.ys.Payment</value>
+				
+				<value>org.ys.UserCredential</value>
 
 			</list>
 		</property>
