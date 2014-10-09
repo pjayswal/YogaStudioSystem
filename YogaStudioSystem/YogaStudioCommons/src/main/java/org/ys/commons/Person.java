@@ -7,9 +7,16 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Person {
 	@Id @GeneratedValue
 	private long id;
@@ -17,8 +24,11 @@ public class Person {
 	private String name;
 	private String email;
 	private String phone;
+	@Temporal(TemporalType.DATE)
 	private Date dob;
 	private List<Address> addressList= new ArrayList<Address>();
+	@OneToOne
+	@JoinColumn
 	private UserCredential user;
 	
 	public Person() {
