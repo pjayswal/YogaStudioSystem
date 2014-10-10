@@ -6,17 +6,23 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Course {
-	@Id @GeneratedValue
-	private long Id;
-	
+	@Id
+	@GeneratedValue
+	private long id;
+
 	private String code;
-	private String name;	
+	private String name;
 	private String description;
-	
-	private List<Course> prerequisites= new ArrayList<Course>();
+	@OneToMany
+	@JoinTable(name = "prerequisite", joinColumns = { @JoinColumn(name = "course_id") }, inverseJoinColumns = { @JoinColumn(name = "prerequisite_id") })
+	private List<Course> prerequisites = new ArrayList<Course>();
+	@OneToMany(mappedBy = "course")
 	private List<Section> sections = new ArrayList<Section>();
 
 	public String getCode() {
@@ -26,11 +32,11 @@ public class Course {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
 	public Course() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Course(String code, String name, String description) {
 		super();
 		this.code = code;
@@ -38,19 +44,18 @@ public class Course {
 		this.description = description;
 	}
 
-	public void addPrerequisites(Course prerequisite){
+	public void addPrerequisites(Course prerequisite) {
 		this.prerequisites.add(prerequisite);
 	}
-	
-	public void addSection(Section section){
+
+	public void addSection(Section section) {
 		sections.add(section);
-		
-	}
-	
-	public long getId() {
-		return Id;
+
 	}
 
+	public long getId() {
+		return id;
+	}
 
 	public String getName() {
 		return name;
@@ -83,7 +88,5 @@ public class Course {
 	public void setSections(List<Section> sections) {
 		this.sections = sections;
 	}
-	
-	
-	
+
 }

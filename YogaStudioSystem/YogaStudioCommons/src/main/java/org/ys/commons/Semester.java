@@ -7,18 +7,24 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Semester {
 	
 	
 	@Id @GeneratedValue
-	private long Id;
+	private long id;
 	
 	private String name;
 	private String description;
+	@OneToMany(mappedBy="semester")
 	private List<Section> sections = new ArrayList<Section>();
+	@Temporal(TemporalType.DATE)
 	private Date dateFrom;
+	@Temporal(TemporalType.DATE)
 	private Date dateTo;
 	
 	public Semester() {
@@ -65,6 +71,6 @@ public class Semester {
 		this.sections.add(section);
 	}
 	public long getId() {
-		return Id;
+		return id;
 	}	
 }

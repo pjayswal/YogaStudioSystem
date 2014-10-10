@@ -5,23 +5,19 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Faculty extends Person {
-
 	
 	private String bio;
-	@OneToMany
+	@OneToMany(mappedBy="advisor")
 	private List<Customer> advisees=new ArrayList<Customer>();
-	@Transient
+	@OneToMany(mappedBy="faculty")
 	private List<Section> takingSections=new ArrayList<Section>();
-	@Transient
+	@OneToMany
+	@JoinColumn(name="faculty_id")
 	private List<Waiver> waiverRequests=new ArrayList<Waiver>();
 	
 	public Faculty() {

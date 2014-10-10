@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -15,11 +18,20 @@ public class Customer extends Person {
 
 	@ManyToOne
 	private Faculty advisor;
-	@Transient
+	@OneToMany(mappedBy="customer")
 	private List<Waiver> waivers = new ArrayList<Waiver>();
-	@Transient
+	@ManyToMany
+	@JoinTable(name="enrollment",
+			joinColumns={@JoinColumn(name="customer_id")},
+			inverseJoinColumns={@JoinColumn(name="section_id")})
 	private List<Section> enrolledSections = new ArrayList<Section>();
-	@Transient
+	@ManyToMany
+	@JoinTable(name="waitinglist",
+			joinColumns={@JoinColumn(name="customer_id")},
+			inverseJoinColumns={@JoinColumn(name="section_id")})
+	private List<Section> waitListSections = new ArrayList<Section>();
+	@OneToOne
+	@JoinColumn(name="cart_id")
 	private ShoppingCart shoppingCart;
 	@Transient
 	private List<Order> orders = new ArrayList<Order>();
@@ -90,6 +102,14 @@ public class Customer extends Person {
 		this.orders = orders;
 	}
 
+	public List<Section> getWaitListSections() {
+		return waitListSections;
+	}
 
+	public void addWaitListSections(Section waitListSection) {
+		this.waitListSections.add(waitListSection);
+	}
+
+	
 	
 }

@@ -3,6 +3,7 @@ package org.ys.commons;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class OrderLine {
@@ -11,6 +12,7 @@ public class OrderLine {
 	
 	private int quantity;
 	private double amount;
+	@Transient
 	private Product product;
 	
 	public OrderLine() {

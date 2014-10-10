@@ -6,18 +6,26 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Section {
 	
 	@Id @GeneratedValue
-	private long Id;
-	
+	private long id;
+	@ManyToOne
+	@JoinColumn(name="course_id")
 	private Course course;
+	@ManyToOne
 	private Semester semester;
 	private int totalSeat;
+	@ManyToOne
 	private Faculty faculty;
+	@ManyToMany(mappedBy="enrolledSections")
 	private List<Customer> enrolledCustomers = new ArrayList<Customer>();
+	@ManyToMany(mappedBy="waitListSections")
 	private List<Customer> waitingListCustomers = new ArrayList<Customer>();
 	
 	public Section() {
@@ -89,6 +97,6 @@ public class Section {
 	}
 
 	public long getId() {
-		return Id;
+		return id;
 	}	
 }
