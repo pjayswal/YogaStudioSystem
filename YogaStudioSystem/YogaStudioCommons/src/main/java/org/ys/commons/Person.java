@@ -3,6 +3,7 @@ package org.ys.commons;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Person {
 	private String phone;
 	@Temporal(TemporalType.DATE)
 	private Date dob;
+	@Embedded
 	private Address address;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="username")

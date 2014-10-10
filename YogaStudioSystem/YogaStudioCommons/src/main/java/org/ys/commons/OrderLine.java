@@ -3,6 +3,9 @@ package org.ys.commons;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -12,7 +15,8 @@ public class OrderLine {
 	
 	private int quantity;
 	private double amount;
-	@Transient
+	@ManyToOne
+	@JoinColumn
 	private Product product;
 	
 	public OrderLine() {

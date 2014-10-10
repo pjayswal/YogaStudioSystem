@@ -5,15 +5,20 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Payment {
 	@Id @GeneratedValue
 	private long id;
-	
+	@Temporal(TemporalType.DATE)
 	private Date paidDate;
 	private double total;
 	private String details;
+	@OneToOne
 	private Order order;
 
 	public Payment() {

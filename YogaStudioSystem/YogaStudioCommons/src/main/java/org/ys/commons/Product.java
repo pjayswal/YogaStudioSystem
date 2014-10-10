@@ -3,6 +3,7 @@ package org.ys.commons;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -14,7 +15,7 @@ public class Product {
 	private String description;
 	private byte[] picture;
 	private double price;
-	@Transient
+	@ManyToOne
 	private Category category;
 
 	public Product() {

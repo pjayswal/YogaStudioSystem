@@ -4,23 +4,39 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 @Entity
+@Table(name="orders")
 public class Order {
 	@Id @GeneratedValue
 	private long id;
-	
+	@Temporal(TemporalType.DATE)
 	private Date orderDate;
+	@Temporal(TemporalType.DATE)
 	private Date shippingDate;
+	@Embedded
 	private Address shippingAddress;
 	private String status;
 	private double totalAmount;
+	@OneToOne(mappedBy="order")
 	private Payment payment;
+	@ManyToOne
 	private Customer customer;
+	@OneToMany
+	@JoinColumn(name="order_id")
 	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
 	
 

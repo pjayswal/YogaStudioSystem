@@ -33,7 +33,7 @@ public class Customer extends Person {
 	@OneToOne
 	@JoinColumn(name="cart_id")
 	private ShoppingCart shoppingCart;
-	@Transient
+	@OneToMany(mappedBy="customer")
 	private List<Order> orders = new ArrayList<Order>();
 	
 	public Customer() {

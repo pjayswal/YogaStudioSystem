@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -15,7 +16,9 @@ public class ShoppingCart {
 	@Id @GeneratedValue
 	private long id;		
 	@OneToMany
-	@JoinColumn(name="cart_id")
+	@JoinTable(name="cart_orderline",
+			joinColumns={@JoinColumn(name="cart_id")},
+			inverseJoinColumns={@JoinColumn(name="orderline_id")})
 	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
 	
 	public List<OrderLine> getOrderlines() {
