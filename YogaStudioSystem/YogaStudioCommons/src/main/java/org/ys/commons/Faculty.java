@@ -7,15 +7,21 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Faculty extends Person {
-	@Id @GeneratedValue
-	private long id;
+
 	
 	private String bio;
+	@OneToMany
 	private List<Customer> advisees=new ArrayList<Customer>();
+	@Transient
 	private List<Section> takingSections=new ArrayList<Section>();
+	@Transient
 	private List<Waiver> waiverRequests=new ArrayList<Waiver>();
 	
 	public Faculty() {
@@ -43,9 +49,6 @@ public class Faculty extends Person {
 		waiverRequests.add(waiver);
 	}
 
-	public long getId() {
-		return id;
-	}
 
 	public String getBio() {
 		return bio;

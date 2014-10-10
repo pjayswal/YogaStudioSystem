@@ -5,10 +5,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table(name="User")
+@Table(name="user")
 public class UserCredential {
 	
 	@Id
@@ -18,6 +19,7 @@ public class UserCredential {
 	private boolean enabled=false;
 	
 	@OneToMany
+	@JoinTable(name="user_role")
 	private List<Role> roles= new ArrayList<Role>();
 	
 	

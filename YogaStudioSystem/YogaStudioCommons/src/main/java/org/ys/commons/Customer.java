@@ -5,18 +5,23 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Customer extends Person {
-	@Id @GeneratedValue
-	private long id;
 
+	@ManyToOne
 	private Faculty advisor;
+	@Transient
 	private List<Waiver> waivers = new ArrayList<Waiver>();
+	@Transient
 	private List<Section> enrolledSections = new ArrayList<Section>();
+	@Transient
 	private ShoppingCart shoppingCart;
+	@Transient
 	private List<Order> orders = new ArrayList<Order>();
 	
 	public Customer() {
@@ -85,8 +90,6 @@ public class Customer extends Person {
 		this.orders = orders;
 	}
 
-	public long getId() {
-		return id;
-	}
+
 	
 }

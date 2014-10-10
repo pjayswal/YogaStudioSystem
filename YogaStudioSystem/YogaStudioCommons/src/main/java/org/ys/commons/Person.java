@@ -1,11 +1,11 @@
 package org.ys.commons;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Person {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
 	
 	private String name;
@@ -26,9 +26,9 @@ public class Person {
 	private String phone;
 	@Temporal(TemporalType.DATE)
 	private Date dob;
-	private List<Address> addressList= new ArrayList<Address>();
-	@OneToOne
-	@JoinColumn
+	private Address address;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="username")
 	private UserCredential user;
 	
 	public Person() {
@@ -46,9 +46,7 @@ public class Person {
 		this.user = user;
 	}
 
-	public void addAddress(Address address){
-		addressList.add(address);
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -93,14 +91,22 @@ public class Person {
 	}
 
 
-	public List<Address> getAddressList() {
-		return addressList;
+	public Address getAddress() {
+		return address;
 	}
 
 
-	public void setAddressList(List<Address> addressList) {
-		this.addressList = addressList;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	
 	
 	
 }

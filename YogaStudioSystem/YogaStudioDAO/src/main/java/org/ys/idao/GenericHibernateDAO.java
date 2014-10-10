@@ -8,7 +8,8 @@ import org.hibernate.LockOptions;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public abstract class GenericHibernateDAO<T,ID extends Serializable> implements IGenericDAO<T,ID> {
 
 	@Autowired

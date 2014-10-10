@@ -3,6 +3,7 @@ package org.ys.commons;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Product {
@@ -13,6 +14,7 @@ public class Product {
 	private String description;
 	private byte[] picture;
 	private double price;
+	@Transient
 	private Category category;
 
 	public Product() {
