@@ -7,7 +7,7 @@
 	<table>
 		<tr>
 			<td>Customer Name :</td>
-			<td>${customer1.name}</td>
+			<td>${customer1.name}</RegistrationForm.htmltd>
 		</tr>
 		<tr>
 			<td>Email :</td>

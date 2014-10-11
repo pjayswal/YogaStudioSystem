@@ -12,7 +12,7 @@ import org.ys.commons.Person;
 @Controller
 public class CustomerController {
 
-	@RequestMapping(value = "/registration.html", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getRegistrationForm() {
 
 		ModelAndView model = new ModelAndView("RegistrationForm");
@@ -20,9 +20,10 @@ public class CustomerController {
 		return model;
 	}
 
-	@RequestMapping(value = "/submitRegistrationForm.html", method = RequestMethod.POST)
+	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public ModelAndView submitRegistrationForm(@ModelAttribute("customer1") Customer customer, BindingResult result) {
 		if (result.hasErrors()) {
+			
 			ModelAndView model = new ModelAndView("RegistrationForm");
 			return model;
 		}

@@ -11,7 +11,7 @@
 	</h1>
 	<form:errors path="customer1.*"/>
 	
-	<form action="/YogaStudioWebPortal/submitRegistrationForm.html"
+	<form action="/YogaStudioWebPortal/submit"
 		method="post">
 		<p>
 			Customer's Name : <input type="text" name="name" />

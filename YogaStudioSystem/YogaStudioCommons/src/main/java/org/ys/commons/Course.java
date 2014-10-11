@@ -25,13 +25,7 @@ public class Course {
 	@OneToMany(mappedBy = "course")
 	private List<Section> sections = new ArrayList<Section>();
 
-	public String getCode() {
-		return code;
-	}
 
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	public Course() {
 		// TODO Auto-generated constructor stub
@@ -43,7 +37,13 @@ public class Course {
 		this.name = name;
 		this.description = description;
 	}
+	public String getCode() {
+		return code;
+	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public void addPrerequisites(Course prerequisite) {
 		this.prerequisites.add(prerequisite);
 	}

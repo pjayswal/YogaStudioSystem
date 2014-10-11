@@ -23,7 +23,9 @@ public class UserCredential {
 	@JoinTable(name="user_role")
 	private List<Role> roles= new ArrayList<Role>();
 	
-	
+	public UserCredential() {
+		// TODO Auto-generated constructor stub
+	}
 	public UserCredential(String username, String password) {
 		super();
 		this.username = username;

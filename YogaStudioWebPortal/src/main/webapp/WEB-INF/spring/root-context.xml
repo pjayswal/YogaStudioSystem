@@ -20,21 +20,22 @@
 				<value>org.ys.commons.Customer</value>
 				<value>org.ys.commons.Faculty</value>
 				
-<!-- 				<value>org.ys.commons.Waiver</value> -->
+				<value>org.ys.commons.Waiver</value>
 				
-<!-- 				<value>org.ys.commons.Course</value> -->
-<!-- 				<value>org.ys.commons.Section</value> -->
-<!-- 				<value>org.ys.commons.Semester</value> -->
+				<value>org.ys.commons.Course</value>
+				<value>org.ys.commons.Section</value>
+				<value>org.ys.commons.Semester</value>
 				
 				
 				
-<!-- 				<value>org.ys.commons.Order</value> -->
-<!-- 				<value>org.ys.commons.OrderLine</value> -->
-<!-- 				<value>org.ys.commons.ShoppingCart</value> -->
-<!-- 				<value>org.ys.commons.Product</value> -->
-<!-- 				<value>org.ys.commons.Payment</value> -->
+				<value>org.ys.commons.Order</value>
+				<value>org.ys.commons.OrderLine</value>
+				<value>org.ys.commons.ShoppingCart</value>
+				<value>org.ys.commons.Product</value>
+				<value>org.ys.commons.Payment</value>
+					<value>org.ys.commons.Category</value>
 				
-<!-- 				<value>org.ys.commons.UserCredential</value> -->
+				<value>org.ys.commons.UserCredential</value>
 
 			</list>
 		</property>
