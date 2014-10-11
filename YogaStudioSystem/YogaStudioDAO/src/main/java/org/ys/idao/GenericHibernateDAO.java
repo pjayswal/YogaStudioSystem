@@ -1,10 +1,14 @@
 package org.ys.idao;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.LockOptions;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -18,7 +22,10 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 	
 	private Class<T> persistentClass;
 	
-
+	@SuppressWarnings("unchecked")
+	public GenericHibernateDAO() {
+		persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
 
 	public Class<T> getPersistentClass() {
 		return persistentClass;
@@ -26,7 +33,13 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 
 	@SuppressWarnings("unchecked")
 	public T get(ID id) {
-		return (T)sessionFactory.getCurrentSession().get(getPersistentClass(), id);
+		Session session=sessionFactory.openSession();
+		Transaction rx = session.beginTransaction();
+		T t =(T)sessionFactory.getCurrentSession().get(getPersistentClass(), id);
+		rx.commit();	
+		session.close();
+		return t;
+		
 	}
 
 	public List<T> getAll() {
@@ -45,10 +58,11 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 	}
 
 	public void create(T entity) {
-		Transaction rx = sessionFactory.openSession().beginTransaction();
+		Session session=sessionFactory.openSession();
+		Transaction rx = session.beginTransaction();
 		sessionFactory.getCurrentSession().save(entity);  
-		//sessionFactory.getCurrentSession().flush();
 		rx.commit();
+		session.close();
 		
 	}
 	
