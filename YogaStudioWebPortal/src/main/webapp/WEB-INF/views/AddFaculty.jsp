@@ -2,19 +2,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration Form</title>
+<title>Add Faculty</title>
 </head>
 <body>
 
 	<h1 align="center">
-		<b>REGISTRATION FORM</b>
+		<b>Add Faculty</b>
 	</h1>
-	<form:errors path="customer1.*"/>
-	
-	<form action="/YogaStudioWebPortal/submit"
-		method="post">
+	<form:errors path="faculty1.*" />
+
+	<form action="/YogaStudioWebPortal/addFacultySubmit" method="post">
 		<p>
-			Customer's Name : <input type="text" name="name" />
+			Faculty's Name : <input type="text" name="name" />
 		</p>
 		<p>
 			Email : <input type="text" name="email" />
@@ -32,7 +31,12 @@
 			Password : <input type="password" name="user.password" />
 		</p>
 
-		<input type="submit" value="Register" />
+		<p>
+			Faculty's Description :
+			<textarea name="bio" ROWS="3" COLS="25"></textarea>
+		</p>
+
+		<input type="submit" value="Add" />
 	</form>
 </body>
 </html>
