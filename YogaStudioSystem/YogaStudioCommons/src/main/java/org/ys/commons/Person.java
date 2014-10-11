@@ -21,7 +21,6 @@ import javax.persistence.TemporalType;
 public class Person {
 	@Id @GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
-	
 	private String name;
 	private String email;
 	private String phone;
