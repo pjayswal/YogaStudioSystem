@@ -21,7 +21,7 @@
 				<value>org.ys.commons.Person</value>
 				
 					<value>org.ys.commons.Address</value>
-				
+				<value>org.ys.commons.Order</value>
 				<value>org.ys.commons.Admin</value>
 				<value>org.ys.commons.Customer</value>
  				<value>org.ys.commons.Faculty</value>
@@ -33,12 +33,12 @@
 				
 				
 				
-<!-- 				<value>org.ys.commons.Order</value> -->
+				
 				<value>org.ys.commons.OrderLine</value>
 				<value>org.ys.commons.ShoppingCart</value>
-<!-- 				<value>org.ys.commons.Product</value> -->
-<!-- 				<value>org.ys.commons.Payment</value> -->
-<!-- 				<value>org.ys.commons.Category</value> -->
+				<value>org.ys.commons.Product</value>
+				<value>org.ys.commons.Payment</value>
+				<value>org.ys.commons.Category</value>
 				
 			
 
@@ -52,7 +52,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">5</prop>
 				<prop key="hibernate.show_sql">true</prop>

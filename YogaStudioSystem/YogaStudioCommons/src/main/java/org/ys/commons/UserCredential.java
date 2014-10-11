@@ -3,6 +3,7 @@ package org.ys.commons;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -18,7 +19,7 @@ public class UserCredential {
 	private String password;
 	private boolean enabled=false;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="user_role")
 	private List<Role> roles= new ArrayList<Role>();
 	
