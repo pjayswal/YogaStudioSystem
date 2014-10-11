@@ -7,7 +7,7 @@ import org.ys.idao.GenericHibernateDAO;
 import org.ys.idao.IUserCredentialDAO;
 
 @Repository
-@Transactional
-public class UserCredentialDAO extends GenericHibernateDAO<UserCredential, Long> implements IUserCredentialDAO {
+
+public class UserCredentialDAO extends GenericHibernateDAO<UserCredential, String> implements IUserCredentialDAO {
 
 }
