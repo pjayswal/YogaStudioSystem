@@ -7,7 +7,7 @@ import org.ys.idao.GenericHibernateDAO;
 import org.ys.idao.ICustomerDAO;
 
 @Repository
-@Transactional
+
 public class CustomerDAO extends GenericHibernateDAO<Customer, Long> implements ICustomerDAO {
 
 }
