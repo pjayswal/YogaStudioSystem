@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Criteria;
 import org.hibernate.LockOptions;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -20,16 +20,21 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	private String entityName;
+	Logger logger = LoggerFactory.getLogger(GenericHibernateDAO.class);
+	
 	private Class<T> persistentClass;
 	
 	@SuppressWarnings("unchecked")
 	public GenericHibernateDAO() {
 		persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-    }
+		entityName = persistentClass.getName();
+	}
 
 	public Class<T> getPersistentClass() {
 		return persistentClass;
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	public T get(ID id) {
@@ -38,6 +43,7 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 		T t =(T)sessionFactory.getCurrentSession().get(getPersistentClass(), id);
 		rx.commit();	
 		session.close();
+	
 		return t;
 		
 	}
@@ -60,7 +66,10 @@ public abstract class GenericHibernateDAO<T,ID extends Serializable> implements 
 	public void create(T entity) {
 		Session session=sessionFactory.openSession();
 		Transaction rx = session.beginTransaction();
-		sessionFactory.getCurrentSession().save(entity);  
+		sessionFactory.getCurrentSession().save(entity); 
+		 if (logger.isDebugEnabled()) {
+			 logger.debug(entityName+" saved successfully,"+ entityName+" Details=" + entity);
+		}
 		rx.commit();
 		session.close();
 		
