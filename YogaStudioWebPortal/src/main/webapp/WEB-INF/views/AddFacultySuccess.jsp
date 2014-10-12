@@ -6,30 +6,33 @@
 
 	<table>
 		<tr>
-			<td>Customer Name :</td>
-			<td>${customer1.name}</td>
+			<td>Faculty's Name :</td>
+			<td>${faculty1.name}</td>
 		</tr>
 		<tr>
 			<td>Email :</td>
-			<td>${customer1.email}</td>
+			<td>${faculty1.email}</td>
 		</tr>
 		<tr>
 			<td>Phone :</td>
-			<td>${customer1.phone}</td>
+			<td>${faculty1.phone}</td>
 		</tr>
 		<tr>
 			<td>Date of Birth :</td>
-			<td>${customer1.dob}</td>
+			<td>${faculty1.dob}</td>
 		</tr>
 		<tr>
 			<td>User Name :</td>
-			<td>${customer1.user.username}</td>
+			<td>${faculty1.user.username}</td>
 		</tr>
 		<tr>
 			<td>Password :</td>
-			<td>${customer1.user.password}</td>
+			<td>${faculty1.user.password}</td>
 		</tr>
-		
+		<tr>
+			<td>Description :</td>
+			<td>${faculty1.bio}</td>
+		</tr>
 	</table>
 </body>
 </html>
