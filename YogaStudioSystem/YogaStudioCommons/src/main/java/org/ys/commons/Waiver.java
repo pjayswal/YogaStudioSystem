@@ -1,5 +1,6 @@
 package org.ys.commons;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,7 +11,7 @@ import javax.persistence.OneToOne;
 public class Waiver {
 	@Id @GeneratedValue
 	private long id;
-	@OneToOne
+	@OneToOne(cascade= CascadeType.ALL)
 	private Course course;
 	@ManyToOne
 	private Customer customer;
@@ -20,13 +21,9 @@ public class Waiver {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Waiver( Course course, Customer customer) {
+	public Waiver( Course course) {
 		super();
-		Faculty  advisor = customer.getAdvisor();
-		advisor.addWaiverRequest(this);
 		this.course = course;
-		this.customer = customer;
-		
 	}
 
 

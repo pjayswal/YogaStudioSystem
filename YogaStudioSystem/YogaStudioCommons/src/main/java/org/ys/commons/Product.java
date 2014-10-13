@@ -28,7 +28,7 @@ public class Product {
 		this.price = price;
 		this.category = category;
 		
-		category.addProduct(this);
+		category.internalAddProduct(this);
 	}
 	
 	public String getDescription() {

@@ -26,7 +26,7 @@ public class Category {
 		this.name = name;
 	}
 
-	public void addProduct(Product product) {
+	public void internalAddProduct(Product product) {
 		this.products.add(product);
 	}
 

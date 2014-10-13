@@ -12,54 +12,57 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Customer extends Person {
 
 	@ManyToOne
+	@Cascade(value = { CascadeType.SAVE_UPDATE })
 	private Faculty advisor;
-	@OneToMany(mappedBy="customer")
-	private List<Waiver> waivers = new ArrayList<Waiver>();
-	@ManyToMany
-	@JoinTable(name="enrollment",
-			joinColumns={@JoinColumn(name="customer_id")},
-			inverseJoinColumns={@JoinColumn(name="section_id")})
-	private List<Section> enrolledSections = new ArrayList<Section>();
-	@ManyToMany
-	@JoinTable(name="waitinglist",
-			joinColumns={@JoinColumn(name="customer_id")},
-			inverseJoinColumns={@JoinColumn(name="section_id")})
-	private List<Section> waitListSections = new ArrayList<Section>();
-	@OneToOne
-	@JoinColumn(name="cart_id")
-	private ShoppingCart shoppingCart;
-	@OneToMany(mappedBy="customer")
-	private List<Order> orders = new ArrayList<Order>();
 	
+	@OneToMany(mappedBy = "customer")
+	@Cascade(value = { CascadeType.SAVE_UPDATE })
+	private List<Waiver> waivers = new ArrayList<Waiver>();
+	
+	@ManyToMany
+	@JoinTable(name = "enrollment", joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "section_id") })
+	private List<Section> enrolledSections = new ArrayList<Section>();
+	
+	@ManyToMany
+	@JoinTable(name = "waitinglist", joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "section_id") })
+	private List<Section> waitListSections = new ArrayList<Section>();
+	
+	@OneToOne
+	@JoinColumn(name = "cart_id")
+	private ShoppingCart shoppingCart;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Order> orders = new ArrayList<Order>();
+
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Customer(String name, String email, String phone, Date dob,
 			UserCredential user) {
-		super(name, email, phone, dob,user);
+		super(name, email, phone, dob, user);
 	}
 
-
-
 	public void addWaiver(Waiver waiver) {
+		waiver.setCustomer(this);
+		advisor.internalAddWaiverRequest(waiver);
 		this.waivers.add(waiver);
 	}
 
-
-	public void addEnrolledSection(Section section) {
+	public void internalAddEnrolledSection(Section section) {
 		this.enrolledSections.add(section);
 	}
 
-
-	public void addOrder(Order order) {
+	public void internalAddOrder(Order order) {
 		this.orders.add(order);
 	}
-
 
 	public Faculty getAdvisor() {
 		return advisor;
@@ -67,6 +70,7 @@ public class Customer extends Person {
 
 	public void setAdvisor(Faculty advisor) {
 		this.advisor = advisor;
+		advisor.internalAddAdvisee(this);
 	}
 
 	public List<Waiver> getWaivers() {
@@ -105,10 +109,8 @@ public class Customer extends Person {
 		return waitListSections;
 	}
 
-	public void addWaitListSections(Section waitListSection) {
+	public void internalAddWaitListSections(Section waitListSection) {
 		this.waitListSections.add(waitListSection);
 	}
 
-	
-	
 }

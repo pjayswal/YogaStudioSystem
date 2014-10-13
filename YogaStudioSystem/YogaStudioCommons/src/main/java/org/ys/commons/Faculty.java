@@ -31,17 +31,17 @@ public class Faculty extends Person {
 	}
 
 
-	public void addAdvisee(Customer advisee) {
+	public void internalAddAdvisee(Customer advisee) {
 		advisees.add(advisee);
 	}
 	
 
-	public void addTakingSection(Section takingSection) {
+	public void internalAddTakingSection(Section takingSection) {
 		takingSections.add(takingSection);
 	}
 	
 
-	public void addWaiverRequest(Waiver waiver) {
+	public void internalAddWaiverRequest(Waiver waiver) {
 		waiverRequests.add(waiver);
 	}
 

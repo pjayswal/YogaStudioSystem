@@ -67,7 +67,7 @@ public class Semester {
 	public List<Section> getSections() {
 		return sections;
 	}
-	public void addSection(Section section) {
+	public void internalAddSection(Section section) {
 		this.sections.add(section);
 	}
 	public long getId() {

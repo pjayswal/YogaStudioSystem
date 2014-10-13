@@ -55,9 +55,7 @@ public class Order {
 		this.orderlines = shoppingCart.getOrderlines();
 		this.totalAmount = computeTotalAmount(shoppingCart);
 		this.status = status;
-		
-		
-		customer.addOrder(this);
+		customer.internalAddOrder(this);
 	}
 
 	

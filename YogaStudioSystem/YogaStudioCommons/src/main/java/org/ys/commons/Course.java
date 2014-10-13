@@ -19,6 +19,7 @@ public class Course {
 	private String code;
 	private String name;
 	private String description;
+
 	@OneToMany
 	@JoinTable(name = "prerequisite", joinColumns = { @JoinColumn(name = "course_id") }, inverseJoinColumns = { @JoinColumn(name = "prerequisite_id") })
 	private List<Course> prerequisites = new ArrayList<Course>();
@@ -36,6 +37,7 @@ public class Course {
 		this.code = code;
 		this.name = name;
 		this.description = description;
+	
 	}
 	public String getCode() {
 		return code;
@@ -48,7 +50,7 @@ public class Course {
 		this.prerequisites.add(prerequisite);
 	}
 
-	public void addSection(Section section) {
+	public void internalAddSection(Section section) {
 		sections.add(section);
 
 	}
@@ -88,5 +90,8 @@ public class Course {
 	public void setSections(List<Section> sections) {
 		this.sections = sections;
 	}
+
+
+	
 
 }
