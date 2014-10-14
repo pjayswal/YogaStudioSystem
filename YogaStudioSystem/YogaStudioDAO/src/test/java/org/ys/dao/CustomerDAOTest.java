@@ -24,6 +24,7 @@ import org.ys.idao.ICustomerDAO;
 import org.ys.idao.IFacultyDAO;
 import org.ys.idao.IRoleDAO;
 import org.ys.idao.ISectionDAO;
+import org.ys.idao.ISemesterDAO;
 import org.ys.idao.IUserCredentialDAO;
 import org.ys.idao.IWaiverDAO;
 
@@ -46,6 +47,8 @@ public class CustomerDAOTest extends TestCase {
 	private ICourseDAO courseDAO;
 	@Autowired
 	private ISectionDAO sectionDAO;
+	@Autowired
+	private ISemesterDAO semesterDAO;
 	
 	@Test
     public void testContext() {
@@ -97,6 +100,7 @@ public class CustomerDAOTest extends TestCase {
 		
 		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
 				"099-12398657882", new Date(), unoman);
+		facultyDAO.create(advisor);
 		customer.setAdvisor(advisor);
 		customerDAO.update(customer);
 		
@@ -107,6 +111,7 @@ public class CustomerDAOTest extends TestCase {
 		
 		//updating with waiver
 		Course course = new Course("cs435", "databse", "DBMS");
+		courseDAO.create(course);
 		Waiver waiver = new Waiver(course);
 		customer.addWaiver(waiver);
 		customerDAO.update(customer);
@@ -115,9 +120,18 @@ public class CustomerDAOTest extends TestCase {
 		assertEquals(1, waiverDAO.getAll().size());
 		assertEquals(1, courseDAO.getAll().size());
 		
+		//update enrolled Section
+		Semester semester = new Semester();
+		semesterDAO.create(semester);
+		Section section = new Section(course, semester, 3, advisor);
+		sectionDAO.create(section);
+		section.addEnrolledCustomers(customer);
+		sectionDAO.update(section);
 		
 	}
-	
+	/**
+	 * Testing delete method of CustomerDAO
+	 */
 	@Test
 	public void testDelete() {
 		UserCredential upramod = new UserCredential("pramod", "jayswal");
@@ -133,11 +147,13 @@ public class CustomerDAOTest extends TestCase {
 		
 		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
 				"099-12398657882", new Date(), unoman);
+		facultyDAO.create(advisor);
 		customer.setAdvisor(advisor);
 		customerDAO.update(customer);
 		
 		//add waiver
 		Course course = new Course("cs435", "databse", "DBMS");
+		courseDAO.create(course);
 		Waiver waiver = new Waiver(course);
 		customer.addWaiver(waiver);
 		customerDAO.update(customer);
@@ -146,11 +162,32 @@ public class CustomerDAOTest extends TestCase {
 		assertEquals(1, waiverDAO.getAll().size());
 		assertEquals(1, courseDAO.getAll().size());
 		
+		//add enrolled Section
+		Semester semester = new Semester();
+		semesterDAO.create(semester);
+		Section section = new Section(course, semester, 3, advisor);
+		sectionDAO.create(section);
+		section.addEnrolledCustomers(customer);
+		sectionDAO.update(section);
+		
+		
 		customerDAO.delete(customer);
-		
-		
+		assertEquals(1, sectionDAO.getAll().size());
+		 try {
+			 Customer nullCus = customerDAO.get(customer.getId());
+			 assertNull(nullCus);
+			 } catch (Exception e) {
+			 assertEquals(org.hibernate.ObjectNotFoundException.class, e.getClass());
+			 System.out.println("Not found: customer " + customer.getId());
+			 }
 		assertEquals(1, facultyDAO.getAll().size());
-		assertNull(waiverDAO.getAll());
+		 try {
+			 Waiver nullWaiver = waiverDAO.get(waiver.getId());
+			 assertNull(nullWaiver);
+			 } catch (Exception e) {
+			 assertEquals(org.hibernate.ObjectNotFoundException.class, e.getClass());
+			 System.out.println("Not found: waiver " + waiver.getId());
+			 }
 		assertEquals(1, courseDAO.getAll().size());
 	
 

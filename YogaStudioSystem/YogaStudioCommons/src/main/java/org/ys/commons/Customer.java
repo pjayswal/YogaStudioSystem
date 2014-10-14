@@ -19,11 +19,10 @@ import org.hibernate.annotations.CascadeType;
 public class Customer extends Person {
 
 	@ManyToOne
-	@Cascade(value = { CascadeType.SAVE_UPDATE })
 	private Faculty advisor;
 	
 	@OneToMany(mappedBy = "customer")
-	@Cascade(value = { CascadeType.SAVE_UPDATE })
+	@Cascade(value = { CascadeType.ALL})
 	private List<Waiver> waivers = new ArrayList<Waiver>();
 	
 	@ManyToMany
