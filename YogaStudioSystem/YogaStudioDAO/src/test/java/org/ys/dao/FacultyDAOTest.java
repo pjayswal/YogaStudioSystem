@@ -165,6 +165,7 @@ public class FacultyDAOTest extends TestCase {
 
 		facultyDAO.delete(faculty);
 		
+		
 		assertEquals(1, waiverDAO.getAll().size());
 		assertEquals(1, customerDAO.getAll().size());
 		
