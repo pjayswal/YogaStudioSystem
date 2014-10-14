@@ -8,18 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 @Entity
 public class Faculty extends Person {
 	
 	private String bio;
 	@OneToMany(mappedBy="advisor")
-	@Cascade(value = { CascadeType.SAVE_UPDATE })
 	private List<Customer> advisees=new ArrayList<Customer>();
 	@OneToMany(mappedBy="faculty")
-	@Cascade(value = { CascadeType.SAVE_UPDATE })
 	private List<Section> takingSections=new ArrayList<Section>();
 	@OneToMany
 	@JoinColumn(name="faculty_id")

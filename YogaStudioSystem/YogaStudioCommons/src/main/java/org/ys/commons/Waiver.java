@@ -1,17 +1,19 @@
 package org.ys.commons;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
+
 @Entity
 public class Waiver {
 	@Id @GeneratedValue
 	private long id;
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne
 	private Course course;
 	@ManyToOne
 	private Customer customer;

@@ -10,9 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 @Entity
 public class Section {
 	
@@ -27,10 +24,8 @@ public class Section {
 	@ManyToOne
 	private Faculty faculty;
 	@ManyToMany(mappedBy="enrolledSections")
-	@Cascade(value={CascadeType.SAVE_UPDATE})
 	private List<Customer> enrolledCustomers = new ArrayList<Customer>();
 	@ManyToMany(mappedBy="waitListSections")
-	@Cascade(value={CascadeType.SAVE_UPDATE})
 	private List<Customer> waitingListCustomers = new ArrayList<Customer>();
 	
 	public Section() {
