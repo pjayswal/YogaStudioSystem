@@ -92,7 +92,7 @@ public class FacultyDAOTest extends TestCase {
 		facultyDAO.create(faculty);
 		
 		//updating with customer
-		UserCredential unoman = new UserCredential("Noman", "Mannan");
+		UserCredential unoman = new UserCredential("Noman", "Manan");
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
 		unoman.addRole(roleCustomer);
 		
@@ -139,7 +139,7 @@ public class FacultyDAOTest extends TestCase {
 		facultyDAO.create(faculty);
 		
 		//updating with customer
-		UserCredential unoman = new UserCredential("Noman", "Mannan");
+		UserCredential unoman = new UserCredential("Noman", "Manan");
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
 		unoman.addRole(roleCustomer);
 		
