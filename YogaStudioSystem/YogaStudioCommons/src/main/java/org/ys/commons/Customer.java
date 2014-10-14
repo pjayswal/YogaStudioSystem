@@ -36,9 +36,11 @@ public class Customer extends Person {
 	
 	@OneToOne
 	@JoinColumn(name = "cart_id")
+	@Cascade(value={CascadeType.ALL})
 	private ShoppingCart shoppingCart;
 	
 	@OneToMany(mappedBy = "customer")
+	@Cascade(value={CascadeType.ALL})
 	private List<Order> orders = new ArrayList<Order>();
 
 	public Customer() {

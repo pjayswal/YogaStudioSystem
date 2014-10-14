@@ -21,6 +21,10 @@ public class ShoppingCart {
 			inverseJoinColumns={@JoinColumn(name="orderline_id")})
 	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
 	
+	public ShoppingCart() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public List<OrderLine> getOrderlines() {
 		return orderlines;
 	}
