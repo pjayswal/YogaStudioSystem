@@ -51,7 +51,7 @@ public interface IAdminService {
 	public List<Customer> getCustomers();
 	public List<Course> getCourses();
 	public List<Section> getSections();
-	public List<Semester> getSemester();
+	public List<Semester> getSemesters();
 	public List<Faculty> getFaculties();
 	public List<Product> getProducts();
 	public List<Category> getCategories();
