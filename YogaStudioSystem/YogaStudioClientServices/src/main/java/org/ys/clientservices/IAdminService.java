@@ -1,8 +1,8 @@
 package org.ys.clientservices;
 
 import java.util.List;
-import java.util.Locale.Category;
 
+import org.ys.commons.Category;
 import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
