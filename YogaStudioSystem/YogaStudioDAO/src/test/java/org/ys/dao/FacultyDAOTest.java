@@ -8,6 +8,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,6 +87,7 @@ public class FacultyDAOTest extends TestCase {
 	public void testUpdate(){
 		UserCredential corozza = new UserCredential("Paul", "Corazza");
 		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
 		corozza.addRole(roleFaculty);
 		Faculty faculty = new Faculty("Professor of Computer Science and Mathematics, B.A., Maharishi International University, M.S., Ph.D., Auburn University", 
 									  "Paul Corazza", "pcorazza@mum.edu", "(641) 469-5039", new Date(), corozza);
@@ -94,6 +96,7 @@ public class FacultyDAOTest extends TestCase {
 		//updating with customer
 		UserCredential unoman = new UserCredential("Noman", "Manan");
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
 		unoman.addRole(roleCustomer);
 		
 		Customer customer = new Customer("Noman Manan", "noman@gmail.com", 
@@ -133,9 +136,12 @@ public class FacultyDAOTest extends TestCase {
 	
 	@Test
 	public void testDelete() {
-
-		UserCredential corozza = new UserCredential("Paul", "Corazza");
 		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
+		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
+		
+		UserCredential corozza = new UserCredential("Paul", "Corazza");
 		corozza.addRole(roleFaculty);
 		Faculty faculty = new Faculty("Professor of Computer Science and Mathematics, B.A., Maharishi International University, M.S., Ph.D., Auburn University", 
 									  "Paul Corazza", "pcorazza@mum.edu", "(641) 469-5039", new Date(), corozza);
@@ -143,9 +149,7 @@ public class FacultyDAOTest extends TestCase {
 		
 		//updating with customer
 		UserCredential unoman = new UserCredential("Noman", "Manan");
-		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
 		unoman.addRole(roleCustomer);
-		
 		Customer customer = new Customer("Noman Manan", "noman@gmail.com", 
 				"099-12398657882", new Date(), unoman);
 		customer.setAdvisor(faculty);
@@ -156,8 +160,11 @@ public class FacultyDAOTest extends TestCase {
 		upramod.addRole(roleCustomer);
 		Customer customer1 = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
 		customerDAO.create(customer1);
-		
-		assertEquals(1, customerDAO.getAll().size());
+		assertEquals("", "");
+		assertEquals(2, customerDAO.getAll().size());
+		assertEquals(faculty, customerDAO.getAll().get(0).getAdvisor());
+		/*
+		//assertEquals(2, customerDAO.getAll().size());
 		assertEquals(faculty, customerDAO.getAll().get(0).getAdvisor());
 		
 		//updating with waiver
@@ -185,7 +192,7 @@ public class FacultyDAOTest extends TestCase {
 		assertEquals(1, semesterDAO.getAll().size());
 		assertEquals(faculty, sectionDAO.getAll().get(0).getFaculty());
 
-		/*facultyDAO.delete(faculty);		
+		facultyDAO.delete(faculty);		
 
 				assertEquals(customer, customerDAO.get(customer.getId()));
 		 try {

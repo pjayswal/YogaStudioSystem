@@ -68,9 +68,11 @@ public class CustomerDAOTest extends TestCase {
 	@Test
 	public void testCreate() {
 		System.out.println("Create Customer");
+		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
 		//instantiating a customer
 		UserCredential upramod = new UserCredential("pramod", "jayswal");
-		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+
 		upramod.addRole(roleCustomer);
 		Customer customer = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
 		customerDAO.create(customer);
@@ -87,15 +89,19 @@ public class CustomerDAOTest extends TestCase {
 	 */
 	@Test
 	public void testUpdate(){
-		UserCredential upramod = new UserCredential("pramod", "jayswal");
+		
+		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
+		
+		UserCredential upramod = new UserCredential("pramod", "jayswal");
 		upramod.addRole(roleCustomer);
 		Customer customer = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
 		customerDAO.create(customer);
 		
 		//updating with advisor
 		UserCredential unoman = new UserCredential("noman", "mannan");
-		Role roleFaculty = new Role(Role.ROLE_FACULTY);
 		unoman.addRole(roleFaculty);
 		
 		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
@@ -134,15 +140,18 @@ public class CustomerDAOTest extends TestCase {
 	 */
 	@Test
 	public void testDelete() {
-		UserCredential upramod = new UserCredential("pramod", "jayswal");
+		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
+		
+		UserCredential upramod = new UserCredential("pramod", "jayswal");
 		upramod.addRole(roleCustomer);
 		Customer customer = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
 		customerDAO.create(customer);
 		
 		//add advisor
 		UserCredential unoman = new UserCredential("noman", "mannan");
-		Role roleFaculty = new Role(Role.ROLE_FACULTY);
 		unoman.addRole(roleFaculty);
 		
 		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
