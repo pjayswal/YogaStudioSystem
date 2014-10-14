@@ -50,6 +50,8 @@ public class Section {
 
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
+		faculty.internalAddTakingSection(this);
+		
 	}
 
 	public String getName() {

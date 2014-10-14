@@ -1,13 +1,13 @@
 package org.ys.dao;
 
 import java.util.Date;
-import java.util.List;
 
 import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,24 +68,28 @@ public class SectionDAOTest extends TestCase {
 	@Test
 	public void testCreate() {
 		System.out.println("Create Section");
-		//instantiating a Section
-		UserCredential upramod = new UserCredential("pramod", "jayswal");
+		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
-		upramod.addRole(roleCustomer);
-		Customer customer = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
-		customerDAO.create(customer);
+		roleDAO.create(roleCustomer);
+		//instantiating a Section
+		UserCredential unoman = new UserCredential("noman", "mannan");
+		unoman.addRole(roleFaculty);
+		
+		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
+				"099-12398657882", new Date(), unoman);
+		facultyDAO.create(advisor);
 		
 		Course course = new Course("CS425", "SE", "Software Engineering");
+		courseDAO.create(course);
+		
 		Semester semester = new Semester("Fall", "Fall Semester", new Date(), new Date());
-		Faculty faculty = new Faculty("Bio", "Nolle", "nolle@gmail.com", "977-987-9876", new Date(), upramod);
+		semesterDAO.create(semester);
 
-		Section section = new Section(course, semester, 111, faculty);
+		Section section = new Section(course, semester, 111, advisor);
 		sectionDAO.create(section);
 		
-		assertNotNull(customer.getId());
-		assertEquals(1,customerDAO.getAll().size());
-		assertEquals(1,userDAO.getAll().size());
-		assertEquals(1, roleDAO.getAll().size());
+		assertNotNull(section.getId());
 		
 	}
 	
@@ -94,88 +98,128 @@ public class SectionDAOTest extends TestCase {
 	 */
 	@Test
 	public void testUpdate(){
-		UserCredential upramod = new UserCredential("pramod", "jayswal");
+		
+		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
+		
+		UserCredential unoman = new UserCredential("noman", "mannan");
+		unoman.addRole(roleFaculty);
+		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
+				"099-12398657882", new Date(), unoman);
+		facultyDAO.create(advisor);
+		
+		Course course = new Course("CS425", "SE", "Software Engineering");
+		courseDAO.create(course);
+		
+		Semester semester = new Semester("Fall", "Fall Semester", new Date(), new Date());
+		semesterDAO.create(semester);
+
+		Section section = new Section(course, semester, 111, advisor);
+		sectionDAO.create(section);
+		
+		UserCredential upramod = new UserCredential("pramod", "jayswal");
 		upramod.addRole(roleCustomer);
 		Customer customer = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
 		customerDAO.create(customer);
 		
-		//updating with advisor
-		UserCredential unoman = new UserCredential("noman", "mannan");
-		Role roleFaculty = new Role(Role.ROLE_FACULTY);
-		unoman.addRole(roleFaculty);
-		
-		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
-				"099-12398657882", new Date(), unoman);
-		customer.setAdvisor(advisor);
-		customerDAO.update(customer);
-		
-		List<Faculty> faculties = facultyDAO.getAll();
-		assertEquals(1, faculties.size());
-		assertEquals(1, faculties.get(0).getAdvisees().size());
-		assertEquals(customer, faculties.get(0).getAdvisees().get(0));
-		
-		//updating with waiver
-		Course course = new Course("cs435", "databse", "DBMS");
-		Waiver waiver = new Waiver(course);
-		customer.addWaiver(waiver);
-		customerDAO.update(customer);
-		
-		Semester semester = new Semester("Summer", "Summer Semester", new Date(), new Date());
-		Faculty faculty = new Faculty("Bio", "Steve", "steve@gmail.com", "977-987-9876", new Date(), upramod);
-
-		Section section = new Section(course, semester, 111, faculty);
+		//update with enrolled customer
+		section.addEnrolledCustomers(customer);
 		sectionDAO.update(section);
+		assertEquals(1,sectionDAO.getAll().get(0).getEnrolledCustomers().size());
 		
-		assertNotNull(course.getId());
-		assertNotNull(waiver.getId());
-		assertEquals(1, waiverDAO.getAll().size());
-		assertEquals(1, courseDAO.getAll().size());
+		UserCredential urahman = new UserCredential("mehbub", "rahman");
+		upramod.addRole(roleCustomer);
+		Customer new_customer = new Customer("Mehbub", "mehbub@gmail.com", "977-8779876457", new Date(), urahman);
+		customerDAO.create(new_customer);
 		
+		//update with waiting list customer
+		section.addWaitingListCustomers(new_customer);
+		sectionDAO.update(section);
+		assertEquals(1,sectionDAO.getAll().get(0).getWaitingListCustomers().size());
 		
+		UserCredential urehman = new UserCredential("rehman", "mehbub");
+		urehman.addRole(roleFaculty);
+		Faculty faculty = new Faculty("Rehman bio", "Rehman Manan", "rehamn@gmail.com", 
+				"099-12398657882", new Date(), urehman);
+		facultyDAO.create(faculty);
+		
+		//update with faculty
+		advisor.getTakingSections().remove(0);
+		sectionDAO.update(section);
+		section.setFaculty(faculty);
+		facultyDAO.update(faculty);
+		//section.setFaculty(faculty);
+		//sectionDAO.update(section);
+		//assertEquals(faculty.getId(), sectionDAO.getAll().get(0).getFaculty().getId());
+		assertEquals(0,facultyDAO.getAll().get(0).getTakingSections().size());
 	}
 	
 	/**
 	 * Test of delete method of SectionDAO
 	 */
 	@Test
+	@Rollback(false)
 	public void testDelete() {
-		UserCredential upramod = new UserCredential("pramod", "jayswal");
+		Role roleFaculty = new Role(Role.ROLE_FACULTY);
+		roleDAO.create(roleFaculty);
 		Role roleCustomer = new Role(Role.ROLE_CUSTOMER);
+		roleDAO.create(roleCustomer);
+		
+		UserCredential unoman = new UserCredential("noman", "mannan");
+		unoman.addRole(roleFaculty);
+		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
+				"099-12398657882", new Date(), unoman);
+		facultyDAO.create(advisor);
+		
+		Course course = new Course("CS425", "SE", "Software Engineering");
+		courseDAO.create(course);
+		
+		Semester semester = new Semester("Fall", "Fall Semester", new Date(), new Date());
+		semesterDAO.create(semester);
+
+		Section section = new Section(course, semester, 111, advisor);
+		sectionDAO.create(section);
+		
+		UserCredential upramod = new UserCredential("pramod", "jayswal");
 		upramod.addRole(roleCustomer);
 		Customer customer = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
 		customerDAO.create(customer);
 		
-		//add advisor
-		UserCredential unoman = new UserCredential("noman", "mannan");
-		Role roleFaculty = new Role(Role.ROLE_FACULTY);
-		unoman.addRole(roleFaculty);
+		//update with enrolled customer
+		section.addEnrolledCustomers(customer);
+		sectionDAO.update(section);
+		assertEquals(1,sectionDAO.getAll().get(0).getEnrolledCustomers().size());
 		
-		Faculty advisor = new Faculty("noman bio", "Noman Manan", "noman@gmail.com", 
-				"099-12398657882", new Date(), unoman);
-		customer.setAdvisor(advisor);
-		customerDAO.update(customer);
+		UserCredential urahman = new UserCredential("mehbub", "rahman");
+		upramod.addRole(roleCustomer);
+		Customer new_customer = new Customer("Mehbub", "mehbub@gmail.com", "977-8779876457", new Date(), urahman);
+		customerDAO.create(new_customer);
 		
-		//add waiver
-		Course course = new Course("cs435", "databse", "DBMS");
-		Waiver waiver = new Waiver(course);
-		customer.addWaiver(waiver);
-		customerDAO.update(customer);
-		assertNotNull(course.getId());
-		assertNotNull(waiver.getId());
-		assertEquals(1, waiverDAO.getAll().size());
-		assertEquals(1, courseDAO.getAll().size());
+		//update with waiting list customer
+		section.addWaitingListCustomers(new_customer);
+		sectionDAO.update(section);
+		assertEquals(1,sectionDAO.getAll().get(0).getWaitingListCustomers().size());
 		
-		customerDAO.delete(customer);
-		Semester semester = new Semester("Summer", "Summer Semester", new Date(), new Date());
-		Faculty faculty = new Faculty("Bio", "Steve", "steve@gmail.com", "977-987-9876", new Date(), upramod);
-
-		Section section = new Section(course, semester, 111, faculty);
+		UserCredential urehman = new UserCredential("rehman", "mehbub");
+		urehman.addRole(roleFaculty);
+		Faculty faculty = new Faculty("Rehman bio", "Rehman Manan", "rehamn@gmail.com", 
+				"099-12398657882", new Date(), urehman);
+		facultyDAO.create(faculty);
+		
+		//update with faculty
+		advisor.getTakingSections().remove(0);
+		sectionDAO.update(section);
+		section.setFaculty(faculty);
+		facultyDAO.update(faculty);
+		//section.setFaculty(faculty);
+		//sectionDAO.update(section);
+		//assertEquals(faculty.getId(), sectionDAO.getAll().get(0).getFaculty().getId());
+		assertEquals(0,facultyDAO.getAll().get(0).getTakingSections().size());
+		
 		sectionDAO.delete(section);
-		
-		assertEquals(1, facultyDAO.getAll().size());
-		assertNull(waiverDAO.getAll());
-		assertEquals(1, courseDAO.getAll().size());
+		assertEquals("","");
 	
 
 	}
