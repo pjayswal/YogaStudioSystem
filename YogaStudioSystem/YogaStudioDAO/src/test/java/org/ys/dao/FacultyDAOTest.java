@@ -99,32 +99,35 @@ public class FacultyDAOTest extends TestCase {
 		Customer customer = new Customer("Noman Manan", "noman@gmail.com", 
 				"099-12398657882", new Date(), unoman);
 		customer.setAdvisor(faculty);
+		customerDAO.create(customer);
+		
+		assertEquals(1, customerDAO.getAll().size());
+		assertEquals(faculty, customerDAO.getAll().get(0).getAdvisor());
 		
 		//updating with waiver
 		Course course = new Course("cs435", "databse", "DBMS");
+		courseDAO.create(course);
 		Waiver waiver = new Waiver(course);
 		customer.addWaiver(waiver);
+		assertNotNull(course.getId());
+		assertNotNull(waiver.getId());
+		assertEquals(1, waiverDAO.getAll().size());
+		assertEquals(1, courseDAO.getAll().size());
 		
 		//updating with section
-		//Semester semester = new Semester("December","December Block",new Date(), new Date());
-		//Section section = new Section(course, semester, 25, faculty);
+		Semester semester = new Semester("December","December Block",new Date(), new Date());
+		semesterDAO.create(semester);
+		Section section = new Section(course, semester, 25, faculty);
+		sectionDAO.create(section);
 		
 		facultyDAO.update(faculty);
 
-		assertNotNull(course.getId());
-		assertNotNull(waiver.getId());
+		assertNotNull(semester.getId());
+		assertNotNull(section.getId());
 
-		//assertNotNull(semester.getId());
-		//assertNotNull(section.getId());
-		
-		assertEquals(1, waiverDAO.getAll().size());
-		assertEquals(1, courseDAO.getAll().size());
-
-//		assertEquals(1, sectionDAO.getAll().size());
-//		assertEquals(1, semesterDAO.getAll().size());
-
-		assertEquals(1, customerDAO.getAll().size());
-		assertEquals(faculty, customerDAO.getAll().get(0).getAdvisor());
+		assertEquals(1, sectionDAO.getAll().size());
+		assertEquals(1, semesterDAO.getAll().size());
+		assertEquals(faculty, sectionDAO.getAll().get(0).getFaculty());
 	}
 
 	
@@ -146,28 +149,60 @@ public class FacultyDAOTest extends TestCase {
 		Customer customer = new Customer("Noman Manan", "noman@gmail.com", 
 				"099-12398657882", new Date(), unoman);
 		customer.setAdvisor(faculty);
+		customerDAO.create(customer);
+		
+		//Adding another customer
+		UserCredential upramod = new UserCredential("pramod", "jayswal");
+		upramod.addRole(roleCustomer);
+		Customer customer1 = new Customer("Pramod", "pramod@gmail.com", "977-9879876457", new Date(), upramod);
+		customerDAO.create(customer1);
+		
+		assertEquals(1, customerDAO.getAll().size());
+		assertEquals(faculty, customerDAO.getAll().get(0).getAdvisor());
 		
 		//updating with waiver
 		Course course = new Course("cs435", "databse", "DBMS");
+		courseDAO.create(course);
 		Waiver waiver = new Waiver(course);
 		customer.addWaiver(waiver);
-				
-		facultyDAO.update(faculty);
-
 		assertNotNull(course.getId());
 		assertNotNull(waiver.getId());
-
 		assertEquals(1, waiverDAO.getAll().size());
 		assertEquals(1, courseDAO.getAll().size());
-
-		assertEquals(1, customerDAO.getAll().size());
-		assertEquals(faculty, customerDAO.getAll().get(0).getAdvisor());
-
-		facultyDAO.delete(faculty);
 		
+		//updating with section
+		Semester semester = new Semester("December","December Block",new Date(), new Date());
+		semesterDAO.create(semester);
+		Section section = new Section(course, semester, 25, faculty);
+		sectionDAO.create(section);
 		
-		assertEquals(1, waiverDAO.getAll().size());
-		assertEquals(1, customerDAO.getAll().size());
+		facultyDAO.update(faculty);
+
+		assertNotNull(semester.getId());
+		assertNotNull(section.getId());
+
+		assertEquals(1, sectionDAO.getAll().size());
+		assertEquals(1, semesterDAO.getAll().size());
+		assertEquals(faculty, sectionDAO.getAll().get(0).getFaculty());
+
+		/*facultyDAO.delete(faculty);		
+
+				assertEquals(customer, customerDAO.get(customer.getId()));
+		 try {
+			 Customer nullCus = customerDAO.getAll().get(0);
+			 assertNull(nullCus);
+
+			 } catch (Exception e) {
+			 assertEquals(org.hibernate.ObjectNotFoundException.class, e.getClass());
+			 System.out.println("Not found: customer " + customer.getId());
+			 }
+		
+		assertNotNull(customer.getId());
+		assertNotNull(section.getId());
+		assertNotNull(semester.getId());
+		//assertEquals(1, customerDAO.getAll().size());
+		//assertEquals(1, waiverDAO.getAll().size());
+		assertEquals(1, sectionDAO.getAll().size());*/
 		
 	}
 
