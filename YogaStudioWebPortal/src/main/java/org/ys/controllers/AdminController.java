@@ -20,16 +20,44 @@ import org.ys.commons.Semester;
 public class AdminController {
 	@Autowired
 	private IAdminService adminService;
-
 	
-	
+	@RequestMapping(value="/")
+	public String home(){
+		return "admin/home";
+	}
+	/**
+	 * 
+	 * @param model
+	 * @return the list of semester in the system
+	 */
 	@RequestMapping(value = "/semester", method = RequestMethod.GET)
 	public String viewSemesters(Model model) {
 		List<Semester> semesters = adminService.getSemesters(); 
 		model.addAttribute("semesters",semesters);
 		return "admin/listsemester";
 	}
-	
+	/**
+	 * 
+	 * @param model
+	 * @return form for adding semester
+	 */
+	@RequestMapping(value = "/semester/add", method = RequestMethod.GET)
+	public String formSemester(Model model) {
+		model.addAttribute("semester", new Semester());
+		return "admin/addsemester";
+	}
+	/**
+	 * 
+	 * @param semester
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/semester/add", method = RequestMethod.POST)
+	public String createStudent(@ModelAttribute("semester") Semester semester,
+			BindingResult result) {
+		adminService.addSemester(semester);
+		return "redirect:./";
+	}
 
 	@RequestMapping(value = "/addCourseSubmit", method = RequestMethod.POST)
 	public ModelAndView submitCourseForm(

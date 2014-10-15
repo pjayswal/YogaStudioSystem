@@ -49,7 +49,7 @@
 
 				</c:forEach>
 			</table>
-			<a href="semester/add">
+			<a href="add">
 				<button type="button" class="btn btn-success">Add Semester</button>
 			</a>
 		</div>
