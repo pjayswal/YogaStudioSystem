@@ -95,7 +95,7 @@ public class SemesterDAOTest extends TestCase {
 		Customer customer = new Customer("Noman", "Noman@gmail.com",
 				"989877676", new Date(), user);
 		customerDAO.create(customer);
-
+		//asdasd
 		// delete the semester
 		semesterDAO.delete(semester);
 
