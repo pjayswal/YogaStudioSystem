@@ -3,6 +3,9 @@ package org.ys.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.ys.clientservices.IAdminService;
 import org.ys.commons.Category;
 import org.ys.commons.Course;
@@ -23,7 +26,8 @@ import org.ys.idao.ISectionDAO;
 import org.ys.idao.ISemesterDAO;
 import org.ys.idao.IUserCredentialDAO;
 import org.ys.idao.IWaiverDAO;
-
+@Service
+@Transactional(propagation=Propagation.REQUIRES_NEW)
 public class AdminService implements IAdminService{
 	
 	@Autowired
