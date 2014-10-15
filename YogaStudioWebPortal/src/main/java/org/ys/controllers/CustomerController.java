@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.ys.commons.Customer;
 
-@Controller
+
 public class CustomerController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)

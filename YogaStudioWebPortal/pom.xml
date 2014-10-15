@@ -11,6 +11,7 @@
 		<java-version>1.6</java-version>
 		<org.springframework-version>4.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.springsecurity-version>3.2.5.RELEASE</org.springsecurity-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
@@ -47,13 +48,14 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+			
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -137,7 +139,15 @@
 			<version>5.1.33</version>
 		</dependency>
 
-	<!-- Yoga Studio Subsystem -->
+	<!-- Yoga Studio Subsystem --><dependency>
+			<groupId>YogaStudioSystem</groupId>
+			<artifactId>YogaStudioDAO</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency><dependency>
+			<groupId>YogaStudioSystem</groupId>
+			<artifactId>YogaStudioServices</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>YogaStudioSystem</groupId>
@@ -149,6 +159,24 @@
 			<artifactId>YogaStudioClientServices</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<plugins>

@@ -21,19 +21,13 @@ public class AdminController {
 	@Autowired
 	private IAdminService adminService;
 
-	@RequestMapping(value = "/addcourse", method = RequestMethod.GET)
-	public ModelAndView getCourseForm() {
-
-		ModelAndView model = new ModelAndView("AddCourse");
-
-		return model;
-	}
+	
 	
 	@RequestMapping(value = "/semester", method = RequestMethod.GET)
 	public String viewSemesters(Model model) {
 		List<Semester> semesters = adminService.getSemesters(); 
 		model.addAttribute("semesters",semesters);
-		return "listsemesters";
+		return "admin/listsemester";
 	}
 	
 
