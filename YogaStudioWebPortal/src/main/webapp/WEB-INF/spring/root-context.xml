@@ -12,7 +12,7 @@
 		proxy-target-class="true" />
 
 	<context:annotation-config />
-	
+		
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>

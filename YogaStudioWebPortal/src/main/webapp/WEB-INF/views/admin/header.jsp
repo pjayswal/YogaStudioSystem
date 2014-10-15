@@ -21,7 +21,7 @@
 				<td><a class="navbar-brand" href="<c:url value="/home"/>">Home</a>
 				</td>
 				<td style="text-align: left"><label class="navbar-brand"><strong>Welcome
-							<sec:authentication property="principal.username" />
+<%-- 							<sec:authentication property="Admin" /> --%>
 					</strong></label></td>
 				<td><a class="navbar-brand"
 					href="<c:url value="/j_spring_security_logout"/>">Logout</a></td>
