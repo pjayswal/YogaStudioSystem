@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.ys.clientservices.IAdminService;
+import org.ys.commons.Admin;
 import org.ys.commons.Category;
 import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Order;
 import org.ys.commons.Product;
+import org.ys.commons.Role;
 import org.ys.commons.Section;
 import org.ys.commons.Semester;
+import org.ys.idao.IAdminDAO;
 import org.ys.idao.ICategoryDAO;
 import org.ys.idao.ICourseDAO;
 import org.ys.idao.ICustomerDAO;
@@ -52,6 +55,9 @@ public class AdminService implements IAdminService{
 	private ICategoryDAO categoryDAO;
 	@Autowired
 	private IOrderDAO orderDAO;
+	@Autowired
+	private IAdminDAO adminDAO;
+
 
 	public void addFaculty(Faculty faculty) {
 		facultyDAO.create(faculty);
@@ -216,6 +222,15 @@ public class AdminService implements IAdminService{
 	public List<Order> getOrders() {
 		return orderDAO.getAll();
 
+	}
+
+	public void addAdmin(Admin admin) {
+		adminDAO.create(admin);
+	}
+
+	public void addRole(Role role) {
+		roleDAO.create(role);
+		
 	}
 
 }

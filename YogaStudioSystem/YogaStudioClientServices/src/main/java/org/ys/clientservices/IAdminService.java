@@ -2,16 +2,20 @@ package org.ys.clientservices;
 
 import java.util.List;
 
+import org.ys.commons.Admin;
 import org.ys.commons.Category;
 import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Order;
 import org.ys.commons.Product;
+import org.ys.commons.Role;
 import org.ys.commons.Section;
 import org.ys.commons.Semester;
 
 public interface IAdminService {
+	public void addAdmin(Admin admin);
+	public void addRole(Role role);
 	
 	public void addFaculty(Faculty faculty);
 	public void updateFaculty(Faculty faculty);
