@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,17 +15,22 @@ import org.ys.clientservices.IAdminService;
 import org.ys.commons.Course;
 import org.ys.commons.Faculty;
 import org.ys.commons.Semester;
-
+/**
+ * to handle admin requests
+ * @author pramod
+ *
+ */
 @Controller
-@RequestMapping(value="/admin")
+@RequestMapping(value="/admin/")
 public class AdminController {
 	@Autowired
 	private IAdminService adminService;
 	
 	@RequestMapping(value="/")
 	public String home(){
-		return "admin/home";
+		return "admin/index";
 	}
+	
 	/**
 	 * 
 	 * @param model
@@ -34,7 +40,7 @@ public class AdminController {
 	public String viewSemesters(Model model) {
 		List<Semester> semesters = adminService.getSemesters(); 
 		model.addAttribute("semesters",semesters);
-		return "admin/listsemester";
+		return "admin/semesterlist";
 	}
 	/**
 	 * 
@@ -44,7 +50,7 @@ public class AdminController {
 	@RequestMapping(value = "/semester/add", method = RequestMethod.GET)
 	public String formSemester(Model model) {
 		model.addAttribute("semester", new Semester());
-		return "admin/addsemester";
+		return "admin/semesteradd";
 	}
 	/**
 	 * 
@@ -58,7 +64,26 @@ public class AdminController {
 		adminService.addSemester(semester);
 		return "redirect:./";
 	}
+	/**
+	 * semester details with section list
+	 * @param id
+	 * @param model
+	 * @return 
+	 */
 
+	@RequestMapping(value = "/semester/{id}", method = RequestMethod.GET)
+	public String getSemesterDetails(@PathVariable long id, Model model) {
+		Semester semester = adminService.getSemester(id);
+		model.addAttribute("semester", semester);
+		model.addAttribute("sections", semester.getSections());
+		return "admin/semesterdetails";
+	}
+	/**
+	 * Semester Update
+	 * @param course
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/addCourseSubmit", method = RequestMethod.POST)
 	public ModelAndView submitCourseForm(
 			@ModelAttribute("course1") Course course, BindingResult result) {
