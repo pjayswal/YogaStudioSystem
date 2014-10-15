@@ -30,7 +30,7 @@ public class AdminController {
 	 * @param model
 	 * @return the list of semester in the system
 	 */
-	@RequestMapping(value = "/semester", method = RequestMethod.GET)
+	@RequestMapping(value = "/semester/", method = RequestMethod.GET)
 	public String viewSemesters(Model model) {
 		List<Semester> semesters = adminService.getSemesters(); 
 		model.addAttribute("semesters",semesters);
