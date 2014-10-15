@@ -43,13 +43,13 @@
 							<td>${semester.description}</td>
 							<td>${semester.dateFrom}</td>
 							<td>${semester.dateTo}</td>
-							<td><a href="semester/${semester.id}">View Details</a></td>
+							<td><a href="./${semester.id}">View Details</a></td>
 						</tr>
 					</tbody>
 
 				</c:forEach>
 			</table>
-			<a href="add">
+			<a href="./add">
 				<button type="button" class="btn btn-success">Add Semester</button>
 			</a>
 		</div>
