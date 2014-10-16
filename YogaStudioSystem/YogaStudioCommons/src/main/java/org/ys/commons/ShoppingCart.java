@@ -18,22 +18,22 @@ public class ShoppingCart {
 	@JoinTable(name="cart_orderline",
 			joinColumns={@JoinColumn(name="cart_id")},
 			inverseJoinColumns={@JoinColumn(name="orderline_id")})
-	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
+	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 	
 	public ShoppingCart() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List<OrderLine> getOrderlines() {
-		return orderlines;
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
 	}
 
 	public void addOrderLine(OrderLine orderline) {
-		this.orderlines.add(orderline);
+		this.orderLines.add(orderline);
 	}
 
 	public void removeOrderLine(OrderLine orderline) {
-		this.orderlines.remove(orderline);
+		this.orderLines.remove(orderline);
 	}
 
 	public long getId() {
@@ -44,8 +44,8 @@ public class ShoppingCart {
 		this.id = id;
 	}
 
-	public void setOrderlines(List<OrderLine> orderlines) {
-		this.orderlines = orderlines;
+	public void setOrderLines(List<OrderLine> orderlines) {
+		this.orderLines = orderlines;
 	}
 	
 }

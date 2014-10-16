@@ -18,7 +18,7 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable>
 		implements IGenericDAO<T, ID> {
 
 	@Autowired
-	private SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 
 	private String entityName;
 	Logger logger = LoggerFactory.getLogger(GenericHibernateDAO.class);
