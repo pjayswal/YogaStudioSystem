@@ -19,16 +19,16 @@ import org.ys.commons.UserCredential;
 
 @Controller
 public class LoginController {
-//	@Autowired
-//	private IAdminService adminService;
-//	@PostConstruct
-//	private void init() {
-//		Role admin = new Role("ROLE_ADMIN");
-//		adminService.addRole(admin);
-//		UserCredential uadmin = new UserCredential("admin", "admin");
-//		Admin administrator = new Admin("admin", "admin@yogastudio.com", "01-8974567893", new Date(), uadmin);
-//		adminService.addAdmin(administrator);
-//	}
+	@Autowired
+	private IAdminService adminService;
+	@PostConstruct
+	private void init() {
+		Role admin = new Role("ROLE_ADMIN");
+		adminService.addRole(admin);
+		UserCredential uadmin = new UserCredential("admin", "admin");
+		Admin administrator = new Admin("admin", "admin@yogastudio.com", "01-8974567893", new Date(), uadmin);
+		adminService.addAdmin(administrator);
+	}
 	
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
