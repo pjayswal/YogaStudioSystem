@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
 import org.ys.commons.Customer;
 
@@ -16,7 +17,8 @@ public class CustomerController {
 
 	@Autowired
 	private ICustomerService customerService;
-
+	@Autowired
+	private IAdminService adminService;
 	/**
 	 * get Registration form
 	 * 
@@ -26,7 +28,7 @@ public class CustomerController {
 	@RequestMapping(value = "/register/", method = RequestMethod.GET)
 	public String getRegistrationForm(Model model) {
 		model.addAttribute("customer", new Customer());
-		return "customer/register";
+		return "customer/registration";
 	}
 
 	/**
@@ -36,9 +38,15 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/register/submit", method = RequestMethod.POST)
-	public String createorUpdateCustomer(
+	public String createorUpdateCustomer(Model model,
 			@ModelAttribute("customer") Customer customer, BindingResult result) {
 		customerService.addCustomer(customer);
-		return "customer/registersuccess";
+		return "redirect:../section/";
 	}
+	@RequestMapping(value="/section/")
+	public String getAvailableSections(Model model){
+		model.addAttribute("sections",adminService.getSections());
+		return "customer/sectionlist";
+	}
+	
 }

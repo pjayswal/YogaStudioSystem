@@ -16,7 +16,7 @@
 <br>
 <br>
 		<div class="panel panel-primary">
-		<div class="panel-heading">Sections in the semester: ${semester.name}</div>
+		<div class="panel-heading">Sections in the Current Semester</div>
 		<div class="panel-body">
 			<table data-toggle="table" class="table table-hover">
 				<thead>
@@ -24,9 +24,8 @@
 						<th>Section ID</th>
 						<th>Course</th>
 						<th>Faculty</th>
-						<th>Number of student enrolled</th>
 						<th>Available Seats</th>
-						<th>Details</th>
+						<th>Enroll</th>
 					</tr>
 				</thead>
 
@@ -36,9 +35,8 @@
 							<td>${section.id}</td>
 							<td>${section.course.name}</td>
 							<td>${section.faculty.name}</td>
-							<td>${fn:length(section.enrolledCustomers)}</td>
 							<td>${section.getAvailSeats()}</td>
-							<td><a href="../section/${section.id}">View Details</a></td>
+							<td><a href="../enroll/${section.id}">Enroll</a></td>
 						</tr>
 					</tbody>
 				</c:forEach>
@@ -46,9 +44,6 @@
 
 		</div>
 	</div>
-	<a href="../section/add?semester_id=${semester.id}">
-			<button type="button" class="btn btn-success">Add Section</button>
-	</a>
 	
 </body>
 </html>

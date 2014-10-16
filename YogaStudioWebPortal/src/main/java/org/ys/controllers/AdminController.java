@@ -347,6 +347,16 @@ public class AdminController {
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		
+		binder.registerCustomEditor(Integer.class, "totalSeat",
+				new PropertyEditorSupport() {
+
+					@Override
+					public void setAsText(String text) {
+						Integer totalSeat= Integer.parseInt(text);
+						setValue(totalSeat);
+					}
+				});
+		
 		binder.registerCustomEditor(Long.class, "id",
 				new PropertyEditorSupport() {
 
