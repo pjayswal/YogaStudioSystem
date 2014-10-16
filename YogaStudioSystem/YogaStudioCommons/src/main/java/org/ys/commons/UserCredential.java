@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -19,7 +20,9 @@ public class UserCredential {
 	private boolean enabled=false;
 	
 	@ManyToMany
-	@JoinTable(name="user_role")
+	@JoinTable(name="user_role",
+			joinColumns={@JoinColumn(name="username")},
+			inverseJoinColumns={@JoinColumn(name="role_id")})
 	private List<Role> roles= new ArrayList<Role>();
 	
 	public UserCredential() {
