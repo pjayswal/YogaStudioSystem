@@ -21,7 +21,7 @@ import org.ys.commons.UserCredential;
 public class LoginController {
 	@Autowired
 	private IAdminService adminService;
-	@PostConstruct
+	//@PostConstruct
 	private void init() {
 		Role admin = new Role("ROLE_ADMIN");
 		adminService.addRole(admin);
