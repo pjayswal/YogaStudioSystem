@@ -72,6 +72,7 @@ public abstract class GenericHibernateDAO<T, ID extends Serializable>
 
 	public void update(T entity) {
 		sessionFactory.getCurrentSession().update(entity);
+		sessionFactory.getCurrentSession().flush();
 	}
 
 	@SuppressWarnings("unchecked")
