@@ -49,6 +49,9 @@ public class Section {
 	}
 
 	public void setFaculty(Faculty faculty) {
+		if(this.faculty!=null){
+			this.faculty.getTakingSections().remove(this);
+		}
 		this.faculty = faculty;
 		faculty.internalAddTakingSection(this);
 		
@@ -63,7 +66,11 @@ public class Section {
 	}
 
 	public void setCourse(Course course) {
+		if(this.course!=null){
+			this.course.getSections().remove(this);
+		}
 		this.course = course;
+		course.internalAddSection(this);
 	}
 
 	public Semester getSemester() {
@@ -71,7 +78,10 @@ public class Section {
 	}
 
 	public void setSemester(Semester semester) {
+		if(this.semester!=null)
+			this.semester.getSections().remove(this);
 		this.semester = semester;
+		semester.internalAddSection(this);
 	}
 
 	public int getTotalSeat() {
@@ -103,4 +113,11 @@ public class Section {
 	public long getId() {
 		return id;
 	}	
+	public void setId(long id) {
+		this.id = id;
+	}
+	@Override
+	public String toString() {
+		return course.getName()+":"+faculty.getName();
+	}
 }

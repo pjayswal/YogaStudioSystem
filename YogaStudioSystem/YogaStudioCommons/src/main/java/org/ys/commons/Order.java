@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 
 @Entity
@@ -134,5 +133,7 @@ public class Order {
 	public long getId() {
 		return id;
 	}
-	
+	public void setId(long id) {
+		this.id = id;
+	}
 }

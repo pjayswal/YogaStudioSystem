@@ -91,7 +91,9 @@ public class Course {
 		this.sections = sections;
 	}
 
-
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 
 }

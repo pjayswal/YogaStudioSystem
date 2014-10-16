@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class ShoppingCart {
@@ -36,4 +35,17 @@ public class ShoppingCart {
 	public void removeOrderLine(OrderLine orderline) {
 		this.orderlines.remove(orderline);
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setOrderlines(List<OrderLine> orderlines) {
+		this.orderlines = orderlines;
+	}
+	
 }
