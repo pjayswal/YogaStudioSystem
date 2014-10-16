@@ -90,12 +90,22 @@ public class AdminService implements IAdminService{
 	}
 
 	public void addSection(Section section) {
-		sectionDAO.create(section);
+		if(section.getId()!=0)
+			updateSection(section);
+		else
+			sectionDAO.create(section);
 		
 	}
 
 	public void updateSection(Section section) {
-		sectionDAO.update(section);
+		Section oldSection = getSection(section.getId());
+		if(section.getCourse()!=null)
+		oldSection.setCourse(section.getCourse());
+		if(section.getFaculty()!=null)
+		oldSection.setFaculty(section.getFaculty());
+		if(section.getSemester()!=null)
+		oldSection.setSemester(section.getSemester());
+		sectionDAO.update(oldSection);
 		
 	}
 
@@ -231,6 +241,10 @@ public class AdminService implements IAdminService{
 	public void addRole(Role role) {
 		roleDAO.create(role);
 		
+	}
+
+	public List<Course> getPrerequsiteCandidates(Course course) {
+		return getCourses();
 	}
 
 }
