@@ -4,6 +4,7 @@ import java.beans.PropertyEditorSupport;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.ys.clientservices.IAdminService;
+import org.ys.commons.Category;
 import org.ys.commons.Course;
 import org.ys.commons.Faculty;
+import org.ys.commons.Product;
+import org.ys.commons.Section;
 import org.ys.commons.Semester;
 /**
  * to handle admin requests
@@ -78,76 +82,268 @@ public class AdminController {
 	public String getSemesterDetails(@PathVariable long id, Model model) {
 		Semester semester = adminService.getSemester(id);
 		model.addAttribute("semester", semester);
-		model.addAttribute("sections", semester.getSections());
 		return "admin/semesterdetails";
 	}
+	
 	/**
-	 * Semester Update
+	 * 
+	 * @param model
+	 * @return the list of course in the system
+	 */
+	@RequestMapping(value = "/course/", method = RequestMethod.GET)
+	public String listCourses(Model model) {
+		model.addAttribute("courses",adminService.getCourses());
+		return "admin/courselist";
+	}
+	/**
+	 * get Course from 
+	 * @param model
+	 * @return form for adding course
+	 */
+	@RequestMapping(value = "/course/add", method = RequestMethod.GET)
+	public String getCourseForm(Model model) {
+		model.addAttribute("course", new Course());
+		model.addAttribute("prerequisites", adminService.getCourses());
+		return "admin/courseadd";
+	}
+	/**
+	 * 
 	 * @param course
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/addCourseSubmit", method = RequestMethod.POST)
-	public ModelAndView submitCourseForm(
-			@ModelAttribute("course1") Course course, BindingResult result) {
-		if (result.hasErrors()) {
+	@RequestMapping(value = "/course/add", method = RequestMethod.POST)
+	public String createorUpdateCourse(@ModelAttribute("course") Course course,
+			BindingResult result) {
+		adminService.addCourse(course);
+		return "redirect:./";
+	}
+	/**
+	 * semester details with section list
+	 * @param id
+	 * @param model
+	 * @return 
+	 */
 
-			ModelAndView model = new ModelAndView("AddCourse");
-			return model;
+	@RequestMapping(value = "/course/{id}", method = RequestMethod.GET)
+	public String getCourseDetails(@PathVariable long id, Model model) {
+		Course course= adminService.getCourse(id);
+		model.addAttribute("course", course);
+		model.addAttribute("prerequisites", adminService.getPrerequsiteCandidates(course));
+		return "admin/courseupdate";
+	}
+
+
+	
+	/* Faculty related request mapping */
+	/**
+	 * 
+	 * @param model
+	 * @return the list of faculty in the system
+	 */
+	@RequestMapping(value = "/faculty/", method = RequestMethod.GET)
+	public String faculties(Model model) {
+		List<Faculty> faculties = adminService.getFaculties(); 
+		model.addAttribute("faculties",faculties);
+		return "admin/facultylist";
+	}
+	/**
+	 * 
+	 * @param model
+	 * @return form for adding faculty
+	 */
+	@RequestMapping(value = "/faculty/add", method = RequestMethod.GET)
+	public String facultyAdd(Model model) {
+		model.addAttribute("faculty", new Faculty());
+		return "admin/facultyadd";
+	}
+	/**
+	 * 
+	 * @param faculty
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/faculty/add", method = RequestMethod.POST)
+	public String facultyAdd(@ModelAttribute("faculty") Faculty faculty,
+			BindingResult result) {
+		adminService.addFaculty(faculty);
+		if(result.hasErrors()){
+			System.out.println(result.getAllErrors().toString());
 		}
+		return "redirect:./";
+	}
+	/**
+	* faculty update
+	* @param id
+	* @param model
+	* @return
+	*/
+	@RequestMapping(value = "/faculty/{id}", method = RequestMethod.GET)
+	public String facultyUpdate(@PathVariable long id, Model model) {
+		Faculty faculty = adminService.getFaculty(id);
+		model.addAttribute("faculty", faculty);
+		return "admin/facultyupdate";
+	}
 
-		ModelAndView model = new ModelAndView("AddCourseSuccess");
-		model.addObject("welcomeMessage", "Course Successfully Added");
-
-		return model;
+	@RequestMapping(value = "/section/", method = RequestMethod.GET)
+	public String listSections(Model model, @RequestParam("semester_id") String id) {
+		Semester semester = adminService.getSemester(Long.parseLong(id));
+		model.addAttribute("semester", semester);
+		model.addAttribute("sections", semester.getSections());
+		return "admin/sectionlist";
 	}
 	
-	@RequestMapping(value = "/addsemester", method = RequestMethod.GET)
-	public ModelAndView getSemesterForm() {
-
-		ModelAndView model = new ModelAndView("AddSemester");
-
-		return model;
+	/**
+	 * get Course from 
+	 * @param model
+	 * @return form for adding course
+	 */
+	@RequestMapping(value = "/section/add", method = RequestMethod.GET)
+	public String getSectionForm(Model model,@RequestParam("semester_id") String id) {
+		model.addAttribute("section", new Section());
+		model.addAttribute("faculties",adminService.getFaculties());
+		model.addAttribute("courses",adminService.getCourses());
+		model.addAttribute("semester", adminService.getSemester(Long.parseLong(id)));
+		return "admin/sectionadd";
 	}
-
-	@RequestMapping(value = "/addSemesterSubmit", method = RequestMethod.POST)
-	public ModelAndView submitSemesterForm(
-			@ModelAttribute("semester1") Semester semester, BindingResult result) {
-		if (result.hasErrors()) {
-
-			ModelAndView model = new ModelAndView("AddSemester");
-			return model;
-		}
-
-		ModelAndView model = new ModelAndView("AddSemesterSuccess");
-		model.addObject("welcomeMessage", "Semester Successfully Added");
-
-		return model;
+	/**
+	 * 
+	 * @param course
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/section/add", method = RequestMethod.POST)
+	public String createorUpdateSection(@ModelAttribute("section") Section section) {
+		adminService.addSection(section);
+		return "redirect:./?semester_id="+section.getSemester().getId();
 	}
-	
-	@RequestMapping(value = "/addfaculty", method = RequestMethod.GET)
-	public ModelAndView getFacultyForm() {
+	/**
+	 * semester details with section list
+	 * @param id
+	 * @param model
+	 * @return 
+	 */
 
-		ModelAndView model = new ModelAndView("AddFaculty");
-
-		return model;
-	}
-
-	@RequestMapping(value = "/addFacultySubmit", method = RequestMethod.POST)
-	public ModelAndView submitFacultyForm(
-			@ModelAttribute("faculty1") Faculty faculty, BindingResult result) {
-		if (result.hasErrors()) {
-
-			ModelAndView model = new ModelAndView("AddFaculty");
-			return model;
-		}
-
-		ModelAndView model = new ModelAndView("AddFacultySuccess");
-		model.addObject("welcomeMessage", "Faculty Successfully Added");
-
-		return model;
+	@RequestMapping(value = "/section/{id}", method = RequestMethod.GET)
+	public String getSectionDetails(@PathVariable long id, Model model) {
+		model.addAttribute("faculties",adminService.getFaculties());
+		model.addAttribute("courses",adminService.getCourses());
+		model.addAttribute("section", adminService.getSection(id));
+		return "admin/sectionupdate";
 	}
 	
+	/**
+	 * 
+	 * @param model
+	 * @return the list of category in the system
+	 */
+	@RequestMapping(value = "/category/", method = RequestMethod.GET)
+	public String listCategory(Model model) {
+		List<Category> categories = adminService.getCategories();
+		model.addAttribute("categories", categories);
+		return "admin/categorylist";
+	}
+
+	/**
+	 * get Category from
+	 * 
+	 * @param model
+	 * @return form for adding category
+	 */
+	@RequestMapping(value = "/category/add", method = RequestMethod.GET)
+	public String getCategoryForm(Model model) {
+		model.addAttribute("category", new Category());
+		return "admin/categoryadd";
+	}
+
+	/**
+	 * 
+	 * @param category
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/category/add", method = RequestMethod.POST)
+	public String createorUpdateCategory(
+			@ModelAttribute("category") Category category, BindingResult result) {
+		adminService.addCategory(category);
+		return "redirect:./";
+	}
+
+	/**
+	 * category details with product list
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+
+	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+	public String getCategoryUpdate(@PathVariable long id, Model model) {
+		Category category = adminService.getCategory(id);
+		model.addAttribute("category", category);
+		return "admin/categoryupdate";
+	}
+
+	/**
+	 * 
+	 * @param model
+	 * @return the list of products in the system
+	 */
+	@RequestMapping(value = "/product/", method = RequestMethod.GET)
+	public String listProducts(Model model,
+			@RequestParam("category_id") String id) {
+		Category category = adminService.getCategory(Long.parseLong(id));
+		model.addAttribute("category", category);
+		model.addAttribute("products", category.getProducts());
+		return "admin/productlist";
+	}
+
+	/**
+	 * get product from
+	 * 
+	 * @param model
+	 * @return form for adding product
+	 */
+	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
+	public String getProductForm(Model model, @RequestParam("category_id") String id) {
+		model.addAttribute("category", adminService.getCategory(Long.parseLong(id)));
+		model.addAttribute("product", new Product());
+		return "admin/productadd";
+	}
+
+	/**
+	 * 
+	 * @param product
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
+	public String createorUpdateProducts(Model model,
+			@RequestParam("category_id") String id,
+			@ModelAttribute("product") Product product) {
+		Category category = adminService.getCategory(Long.parseLong(id));
+		model.addAttribute("category", category);
+		product.setCategory(category);
+		adminService.addProduct(product);
+		return "redirect:./?category_id="+id;
+	}
+
+	/**
+	 * get product edit form
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+	public String getProductUpdate(@PathVariable long id, Model model) {
+		Product product = adminService.getProduct(id);
+		model.addAttribute("product", product);
+		return "admin/productupdate";
+	}
+
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		
@@ -161,5 +357,52 @@ public class AdminController {
 					}
 				});
 
+		
+		
+	binder.registerCustomEditor(List.class, "prerequisites",
+			new CustomCollectionEditor(List.class) {
+				@Override
+				protected Object convertElement(Object element) {
+					Long id = null;
+					if (element instanceof String
+							&& !((String) element).equals("")) {
+						// From the JSP 'element' will be a String
+						try {
+							id = Long.parseLong((String) element);
+						} catch (NumberFormatException e) {
+							System.out.println("Element was "
+									+ ((String) element));
+							e.printStackTrace();
+						}
+					} else if (element instanceof Long) {
+						// From the database 'element' will be a Long
+						id = (Long) element;
+					}
+					return id != null ? adminService.getCourse(id)
+							: null;
+				}
+			});
+	binder.registerCustomEditor(Faculty.class, "faculty",
+			new PropertyEditorSupport() {
+
+				@Override
+				public void setAsText(String id) {
+					Faculty faculty = adminService.getFaculty((Long
+							.parseLong(id)));
+					setValue(faculty);
+				}
+			});
+	
+	binder.registerCustomEditor(Course.class, "course",
+			new PropertyEditorSupport() {
+
+				@Override
+				public void setAsText(String id) {
+					Course course = adminService.getCourse((Long
+							.parseLong(id)));
+					setValue(course);
+				}
+			});
 	}
+
 }

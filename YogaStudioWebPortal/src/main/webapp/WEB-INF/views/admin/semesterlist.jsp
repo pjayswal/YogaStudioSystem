@@ -45,7 +45,7 @@
 							<td>${semester.dateFrom}</td>
 							<td>${semester.dateTo}</td>
 							<td><a href="./${semester.id}">edit</a></td>
-							<td><a href="./${semester.id}">View Sections</a></td>
+							<td><a href="../section/?semester_id=${semester.id}">View Sections</a></td>
 						</tr>
 					</tbody>
 
