@@ -2,6 +2,7 @@ package org.ys.clientservices;
 
 import java.util.List;
 
+import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Section;
@@ -14,7 +15,7 @@ public interface ICustomerService {
 	public void assignAdvisor(String username,Faculty advisor);
 	
 	public List<Section> getCurrentSections();
-	public boolean enrollSection(String username,Section section); 
+	public List<Course> enrollSection(String username,Section section); 
 	public void withdrawSection(String username,Section section);
 	
 	public void requestWaiver(String username, Section section, String description);
