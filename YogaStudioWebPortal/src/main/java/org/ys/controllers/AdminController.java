@@ -1,11 +1,14 @@
 package org.ys.controllers;
 
+import java.beans.PropertyEditorSupport;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,18 +40,18 @@ public class AdminController {
 	 * @return the list of semester in the system
 	 */
 	@RequestMapping(value = "/semester/", method = RequestMethod.GET)
-	public String viewSemesters(Model model) {
+	public String listSemesters(Model model) {
 		List<Semester> semesters = adminService.getSemesters(); 
 		model.addAttribute("semesters",semesters);
 		return "admin/semesterlist";
 	}
 	/**
-	 * 
+	 * get Semester from 
 	 * @param model
 	 * @return form for adding semester
 	 */
 	@RequestMapping(value = "/semester/add", method = RequestMethod.GET)
-	public String formSemester(Model model) {
+	public String getSemesterForm(Model model) {
 		model.addAttribute("semester", new Semester());
 		return "admin/semesteradd";
 	}
@@ -59,7 +62,7 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/semester/add", method = RequestMethod.POST)
-	public String createStudent(@ModelAttribute("semester") Semester semester,
+	public String createorUpdateSemeter(@ModelAttribute("semester") Semester semester,
 			BindingResult result) {
 		adminService.addSemester(semester);
 		return "redirect:./";
@@ -144,5 +147,19 @@ public class AdminController {
 
 		return model;
 	}
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		
+		binder.registerCustomEditor(Long.class, "id",
+				new PropertyEditorSupport() {
 
+					@Override
+					public void setAsText(String text) {
+						Long id= Long.parseLong(text);
+						setValue(id);
+					}
+				});
+
+	}
 }

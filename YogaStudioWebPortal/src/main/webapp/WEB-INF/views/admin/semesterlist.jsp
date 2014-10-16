@@ -22,15 +22,16 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">List of Semesters Available</div>
 		<div class="panel-body">
-			<table class="table table-hover">
+			<table data-toggle="table" class="table table-hover" data-toolbar="#transform-buttons">
 				<thead>
 					<tr>
-						<td>Semester ID</td>
-						<td>Semester Name</td>
-						<td>Semester Description</td>
-						<td>Start Date</td>
-						<td>End Date</td>
-						<td>Details</td>
+						<th>Semester ID</th>
+						<th>Semester Name</th>
+						<th>Semester Description</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Edit</th>
+						<th>View Sections</th>
 
 					</tr>
 				</thead>
@@ -43,7 +44,8 @@
 							<td>${semester.description}</td>
 							<td>${semester.dateFrom}</td>
 							<td>${semester.dateTo}</td>
-							<td><a href="./${semester.id}">View Details</a></td>
+							<td><a href="./${semester.id}">edit</a></td>
+							<td><a href="./${semester.id}">View Sections</a></td>
 						</tr>
 					</tbody>
 
