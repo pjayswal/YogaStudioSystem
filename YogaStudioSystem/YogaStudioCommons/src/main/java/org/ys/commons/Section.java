@@ -120,4 +120,8 @@ public class Section {
 	public String toString() {
 		return course.getName()+":"+faculty.getName();
 	}
+	
+	public int getAvailSeats(){
+		return totalSeat-enrolledCustomers.size();
+	}
 }
