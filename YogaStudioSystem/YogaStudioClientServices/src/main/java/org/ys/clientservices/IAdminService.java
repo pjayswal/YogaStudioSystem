@@ -45,6 +45,7 @@ public interface IAdminService {
 	
 	public Customer getCustomer(long id);
 	public Course getCourse(long id);
+	public List<Course> getPrerequsiteCandidates(Course course);
 	public Section getSection(long id);
 	public Semester getSemester(long id);
 	public Faculty getFaculty(long id);
