@@ -16,6 +16,7 @@ public class Waiver {
 	@OneToOne
 	private Course course;
 	@ManyToOne
+	private String details;
 	private Customer customer;
 	private boolean status=false;
 	
@@ -57,5 +58,14 @@ public class Waiver {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+	
 
 }
