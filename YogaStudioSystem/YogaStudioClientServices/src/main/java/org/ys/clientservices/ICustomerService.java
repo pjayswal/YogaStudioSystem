@@ -1,35 +1,26 @@
 package org.ys.clientservices;
 
+import java.util.List;
+
 import org.ys.commons.Customer;
-import org.ys.commons.Product;
+import org.ys.commons.Faculty;
 import org.ys.commons.Section;
-import org.ys.commons.Semester;
 
 public interface ICustomerService {
 
 	public void addCustomer(Customer customer);
-	public void viewCustomer(Customer customer);
 	public void updateCustomer(Customer customer);
-	public void deleteCustomer(Customer customer);
-	public void loginCustomer(Customer customer);
-	public void logoutCustomer(Customer customer);
+	public void disableCustomer(String  username);
+	public void assignAdvisor(String username,Faculty advisor);
 	
-	public void assignAdvisor(Customer customer);
-	public void enrollSection(Customer customer,Section section); 
-	public void withdrawSection(Customer customer,Section section); 
-	public void requestWaiver(Customer customer, Section section, String description);
-	public void requestWaitingList(Customer customer, Section section);
-	public void browseCourse(Customer customer);
-	public void browseSection(Customer customer, Section section);
-	public void brwoseSemester(Customer customer, Semester semester);
+	public List<Section> getCurrentSections();
+	public boolean enrollSection(String username,Section section); 
+	public void withdrawSection(String username,Section section);
 	
-	public void addToCart(Customer customer, Product product);
-	public void checkout(Customer customer, Product product);
-	public void payment(Customer customer, Product product);
-	public void browseProduct(Customer customer, Product product);
-	public void browseCategory(Customer customer, Product product);
+	public void requestWaiver(String username, Section section, String description);
+	public void requestWaitingList(String username, Section section);
 	
-	
+	public void getCustomer(long id);
 	
 	
 }
