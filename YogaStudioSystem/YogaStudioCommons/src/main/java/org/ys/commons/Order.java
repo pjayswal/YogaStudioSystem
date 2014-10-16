@@ -36,7 +36,7 @@ public class Order {
 	private Customer customer;
 	@OneToMany
 	@JoinColumn(name="order_id")
-	private List<OrderLine> orderlines = new ArrayList<OrderLine>();
+	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 	
 
 	public Order() {
@@ -51,7 +51,7 @@ public class Order {
 		this.shippingAddress = shippingAddress;
 		this.status = status;
 		this.customer = customer;
-		this.orderlines = shoppingCart.getOrderlines();
+		this.orderLines = shoppingCart.getOrderLines();
 		this.totalAmount = computeTotalAmount(shoppingCart);
 		this.status = status;
 		customer.internalAddOrder(this);
@@ -60,7 +60,7 @@ public class Order {
 	
 	public double computeTotalAmount(ShoppingCart shoppingCart){
 		double totalAmount=0;
-		for(OrderLine ol:shoppingCart.getOrderlines()){
+		for(OrderLine ol:shoppingCart.getOrderLines()){
 			totalAmount += ol.getAmount();
 		}
 		return totalAmount;
@@ -122,12 +122,12 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public List<OrderLine> getOrderlines() {
-		return orderlines;
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
 	}
 
-	public void setOrderlines(List<OrderLine> orderlines) {
-		this.orderlines = orderlines;
+	public void setOrderLines(List<OrderLine> orderlines) {
+		this.orderLines = orderlines;
 	}
 
 	public long getId() {
