@@ -62,5 +62,9 @@ public interface IAdminService {
 	public List<Category> getCategories();
 	public List<Order> getOrders();
 	
+	public Customer getCustomer(String username);
+	public Faculty getFaculty(String username);
+	public Admin getAdmin(String username);
+	
 
 }

@@ -247,4 +247,16 @@ public class AdminService implements IAdminService{
 		return getCourses();
 	}
 
+	public Customer getCustomer(String username) {
+		return customerDAO.getCustomer(username);
+	}
+
+	public Faculty getFaculty(String username) {
+		return facultyDAO.getFaculty(username);
+	}
+
+	public Admin getAdmin(String username) {
+		return adminDAO.getAdmin(username);
+	}
+
 }
