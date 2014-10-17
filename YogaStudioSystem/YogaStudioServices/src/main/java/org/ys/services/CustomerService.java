@@ -89,8 +89,8 @@ public class CustomerService implements ICustomerService{
 		
 	}
 
-	public void getCustomer(long id) {
-		// TODO Auto-generated method stub
+	public Customer getCustomer(long id) {
+		return customerDAO.get(id);
 		
 	}
 

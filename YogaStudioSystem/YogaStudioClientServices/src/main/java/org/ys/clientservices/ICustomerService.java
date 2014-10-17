@@ -21,7 +21,7 @@ public interface ICustomerService {
 	public void requestWaiver(String username, Section section, String description);
 	public void requestWaitingList(String username, Section section);
 	
-	public void getCustomer(long id);
+	public Customer getCustomer(long id);
 	
 	
 }
