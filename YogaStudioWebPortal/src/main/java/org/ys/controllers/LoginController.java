@@ -35,12 +35,21 @@ public class LoginController {
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
-		if(username.equals("admin")){
-			System.out.println("Admin logged");
-			return "redirect:/home.html";
+//		if(username.equals("admin")){
+//			System.out.println("Admin logged");
+//			return "redirect:/admin/";
+//		}
+		if(request.isUserInRole(Role.ROLE_CUSTOMER)){
+			return "redirect:/customer/home";
+		}
+		else if(request.isUserInRole(Role.ROLE_ADMIN)){
+			return "redirect:/admin/home/";
+		}
+		else if(request.isUserInRole(Role.ROLE_FACULTY)){
+			return "redirect:/faculty/home";
 		}
 		else
-			return "redirect:/loginerror.html";
+			return "redirect:/home.html";
 		
 	}
 
