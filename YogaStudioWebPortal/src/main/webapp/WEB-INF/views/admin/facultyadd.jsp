@@ -53,7 +53,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Phone:</label>
 				<div class="col-sm-7">
-					<form:input type="date" cssClass="form-control"
+					<form:input type="text" cssClass="form-control"
 						path="phone" placeholder="phone" />
 				</div>
 				<div class="col-sm-3">
