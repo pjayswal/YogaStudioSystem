@@ -72,4 +72,27 @@ public class CustomerController {
 		return "redirect:../section/";
 	}
 
+	/**
+	 * Withdraw Section
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+
+	@RequestMapping(value = "/withdraw/", method = RequestMethod.GET)
+	public String getEnrolledSection(Model model) {
+		model.addAttribute("sections", customerService.getCustomer(1).getEnrolledSections());
+		return "customer/withdrawlist";
+	}
+	
+	@RequestMapping(value = "/withdraw/{id}", method = RequestMethod.GET)
+	public String withdrawSection(@PathVariable long id, Model model) {
+		Customer customer = customerService.getCustomer(1);
+		String username = customer.getUser().getUsername();
+		Section section = adminService.getSection(id);
+		customerService.withdrawSection(username, section);
+		return "redirect:../withdraw/";
+	}
+
 }
