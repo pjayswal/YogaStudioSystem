@@ -35,7 +35,7 @@ public class LoginController {
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
-		if(username=="admin"){
+		if(username.equals("admin")){
 			System.out.println("Admin logged");
 			return "redirect:/home.html";
 		}
