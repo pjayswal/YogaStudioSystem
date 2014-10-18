@@ -13,11 +13,11 @@ import javax.persistence.Transient;
 @Entity
 public class Waiver {
 	@Transient
-	public String STATUS_UNSEEN="UNSEEN";
+	public static String STATUS_UNSEEN="UNSEEN";
 	@Transient
-	public String STATUS_WAIVED="WAIVED";
+	public static String STATUS_WAIVED="WAIVED";
 	@Transient
-	public String STATUS_REJECTED="REJECTED";
+	public static String STATUS_REJECTED="REJECTED";
 	
 	@Id @GeneratedValue
 	private long id;
