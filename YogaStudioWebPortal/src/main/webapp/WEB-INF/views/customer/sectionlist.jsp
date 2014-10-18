@@ -44,7 +44,7 @@
 							<td><a href="../enroll/${sectionDataSet.section.id}">Enroll</a></td>
 						</c:if>
 						<c:if test="${sectionDataSet.option=='WAIVE'}">
-							<td><a href="../waivelist/${sectionDataSet.section.id}">Waive</a></td>
+							<td><a href="../waiver/${sectionDataSet.section.id}">Waive</a></td>
 						</c:if>
 
 

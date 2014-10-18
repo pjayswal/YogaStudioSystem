@@ -14,6 +14,7 @@ import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
 import org.ys.commons.Course;
 import org.ys.commons.Customer;
+import org.ys.commons.Product;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
 import org.ys.helper.SectionDataSet;
@@ -108,15 +109,16 @@ public class CustomerController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/waivelist/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/waiver/{id}", method = RequestMethod.GET)
 	public String waiveSectionList(@PathVariable long id, Model model) {
 		Section section = adminService.getSection(id);
 		Customer customer=customerService.getCustomer(1);
 		SectionDataSet sectionDataSet=new SectionDataSet(customer, section);
-		Course course=section.getCourse();
-		model.addAttribute(sectionDataSet);
+		List<Course> courses=sectionDataSet.getUnfullfilledPrerequisites();
+		//model.addAttribute(sectionDataSet);
+		model.addAttribute("waiver", new Waiver());
 		model.addAttribute(section);
-		model.addAttribute("courses", sectionDataSet.getUnfullfilledPrerequisites());
+		model.addAttribute("courses", courses);
 		//model.addAttribute("waiver", new Waiver());
 		return "customer/waiverlist";
 	}
@@ -130,7 +132,9 @@ public class CustomerController {
 	@RequestMapping(value = "/waiver/add", method = RequestMethod.POST)
 	public String createWaiver(@ModelAttribute("waiver") Waiver waiver,
 			BindingResult result) {
-		// customerService.requestWaiver(username, section, description);
+		Customer customer = customerService.getCustomer(1);
+		String username = customer.getUser().getUsername();
+		customerService.addWaiverRequest(username, waiver);
 		return "redirect:../section/";
 	}
 }

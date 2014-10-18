@@ -97,9 +97,10 @@ public class CustomerService implements ICustomerService {
 
 	}
 
-	public void requestWaiver(String username, Section section,
-			String description) {
-
+	public void addWaiverRequest(String username, Waiver waiver) {
+		Customer customer = customerDAO.getCustomer(username);
+		customer.addWaiver(waiver);
+		customerDAO.update(customer);
 	}
 
 	public void requestWaitingList(String username, Section section) {

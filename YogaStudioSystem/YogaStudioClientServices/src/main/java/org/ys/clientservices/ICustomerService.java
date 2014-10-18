@@ -6,6 +6,7 @@ import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Section;
+import org.ys.commons.Waiver;
 import org.ys.helper.SectionDataSet;
 
 public interface ICustomerService {
@@ -27,8 +28,7 @@ public interface ICustomerService {
 
 	public void withdrawSection(String username, Section section);
 
-	public void requestWaiver(String username, Section section,
-			String description);
+	public void addWaiverRequest(String username, Waiver waiver);
 
 	public void requestWaitingList(String username, Section section);
 
