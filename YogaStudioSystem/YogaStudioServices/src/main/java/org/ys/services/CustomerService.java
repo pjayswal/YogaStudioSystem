@@ -16,6 +16,7 @@ import org.ys.commons.Section;
 import org.ys.commons.Waiver;
 import org.ys.helper.SectionDataSet;
 import org.ys.idao.ICustomerDAO;
+import org.ys.idao.IFacultyDAO;
 import org.ys.idao.IRoleDAO;
 import org.ys.idao.ISectionDAO;
 
@@ -25,11 +26,12 @@ public class CustomerService implements ICustomerService {
 	@Autowired
 	private ICustomerDAO customerDAO;
 	@Autowired
+	private IFacultyDAO facultyDAO;
+	@Autowired
 	private ISectionDAO sectionDAO;
 	@Autowired
 	private IRoleDAO roleDAO;
-	
-	
+
 	public void addCustomer(Customer customer) {
 		Role role = roleDAO.get(Role.ROLE_CUSTOMER_ID);
 		customer.getUser().addRole(role);
@@ -60,6 +62,11 @@ public class CustomerService implements ICustomerService {
 
 	public void enrollSection(String username, Section section) {
 		Customer customer = customerDAO.getCustomer(username);
+		List<Faculty> faculty = facultyDAO.getAll();
+
+		if (customer.getAdvisor() == null) {
+			customer.setAdvisor(faculty.get(0));
+		}
 		section.addEnrolledCustomers(customer);
 		sectionDAO.update(section);
 	}
@@ -99,7 +106,15 @@ public class CustomerService implements ICustomerService {
 
 	public void addWaiverRequest(String username, Waiver waiver) {
 		Customer customer = customerDAO.getCustomer(username);
+		List<Faculty> faculty = facultyDAO.getAll();
+
+		if (customer.getAdvisor() == null) {
+			customer.setAdvisor(faculty.get(0));
+		}
+		
 		customer.addWaiver(waiver);
+		waiver.setStatus(true);
+		
 		customerDAO.update(customer);
 	}
 
@@ -115,7 +130,7 @@ public class CustomerService implements ICustomerService {
 
 	public List<SectionDataSet> getSections(Customer customer) {
 		List<SectionDataSet> sectionDataSet = new ArrayList<SectionDataSet>();
-		for(Section section:sectionDAO.getAll()){
+		for (Section section : sectionDAO.getAll()) {
 			sectionDataSet.add(new SectionDataSet(customer, section));
 		}
 		return sectionDataSet;

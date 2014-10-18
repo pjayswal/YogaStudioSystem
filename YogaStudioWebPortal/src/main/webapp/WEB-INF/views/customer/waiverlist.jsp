@@ -36,7 +36,7 @@
 						<td>${course.name}</td>
 						<td>${course.code}</td>
 						<td>${course.description}</td>
-						<form:form class="form-horizontal" role="form"
+<%-- 						<form:form class="form-horizontal" role="form"
 							commandName="waiver" action="./waive/" method="post">
 
 							<div class="form-group">
@@ -69,7 +69,8 @@
 							</div>
 
 						</form:form>
-	
+	 --%>
+	 <td><a href="../waiverform/${course.id}">Waive</a></td>
 					</tr>
 				</tbody>
 			</c:forEach>

@@ -124,12 +124,26 @@ public class CustomerController {
 	}
 
 	/**
+	 * get waiver form
+	 *
+	 * @param model
+	 * @return form for adding customer
+	 */
+	@RequestMapping(value = "/waiverform/{id}", method = RequestMethod.GET)
+	public String getWaiverForm(@PathVariable long id, Model model) {
+		Course course=adminService.getCourse(id);
+		model.addAttribute(course);
+		model.addAttribute("waiver", new Waiver());
+		return "customer/waiver";
+	}
+	
+	/**
 	 * 
 	 * @param waiver
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/waiver/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/waiverform/add", method = RequestMethod.POST)
 	public String createWaiver(@ModelAttribute("waiver") Waiver waiver,
 			BindingResult result) {
 		Customer customer = customerService.getCustomer(1);

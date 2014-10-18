@@ -22,12 +22,15 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Course: </label>
 			<div class="col-sm-7">
-				<form:input type="text" cssClass="form-control" path="course"
-					value="${course.name}" readonly="true" />
+				<input type="text" value="${course.name}" readonly />
 			</div>
-			<div class="col-sm-3">
-				<form:errors path="course-name" cssClass="error" />
+		</div>
+		<div class="form-group">
+			<div class="col-sm-7">
+				<form:input type="hidden" cssClass="form-control" path="course.id"
+					value="${course.id}" readonly="true" />
 			</div>
+			
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Description:</label>
