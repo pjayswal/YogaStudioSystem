@@ -12,15 +12,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.ys.clientservices.IAdminService;
+import org.ys.clientservices.IEmailService;
 import org.ys.commons.Admin;
 import org.ys.commons.Role;
+import org.ys.commons.Semester;
 import org.ys.commons.UserCredential;
 
 @Controller
 public class LoginController {
 	@Autowired
 	private IAdminService adminService;
+	@Autowired
+	private IEmailService emailService;
 	//@PostConstruct
 	private void init() {
 		Role admin = new Role("ROLE_ADMIN");
@@ -51,6 +56,11 @@ public class LoginController {
 		else
 			return "redirect:/home.html";
 		
+	}
+	@RequestMapping(value = "/activate", method = RequestMethod.GET)
+	public String activateCustomer(Model model, @RequestParam("id") String id) {
+		emailService.enableUser(id);
+		return "redirect:/login.jsp";
 	}
 
 }

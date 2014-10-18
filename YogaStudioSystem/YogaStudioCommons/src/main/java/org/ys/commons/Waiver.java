@@ -6,11 +6,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 
 
 @Entity
 public class Waiver {
+	@Transient
+	public String STATUS_UNSEEN="UNSEEN";
+	@Transient
+	public String STATUS_WAIVED="WAIVED";
+	@Transient
+	public String STATUS_REJECTED="REJECTED";
+	
 	@Id @GeneratedValue
 	private long id;
 	@OneToOne
@@ -18,14 +26,14 @@ public class Waiver {
 	private String description;
 	@ManyToOne
 	private Customer customer;
-	private boolean status=false;
+	private String status;
 	
 	public Waiver() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Waiver( Course course) {
 		super();
+		this.status=STATUS_UNSEEN;
 		this.course = course;
 	}
 
@@ -43,14 +51,6 @@ public class Waiver {
 		this.customer = customer;
 	}
 
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -66,6 +66,14 @@ public class Waiver {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 }
