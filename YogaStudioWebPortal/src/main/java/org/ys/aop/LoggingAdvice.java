@@ -13,7 +13,6 @@ public class LoggingAdvice {
 	@Before("execution(* org.ys.services.*Service.*(..))")
 	public void logCustomerServiceMethod(JoinPoint joinPoint){
 		logger.info(joinPoint.getSignature().getName());
-		System.out.println("Hello");
 	}
 }
 
