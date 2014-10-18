@@ -1,37 +1,50 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>YogaStudioSystem</groupId>
-    <artifactId>YogaStudioSystem</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>YogaStudioSystem</groupId>
-  <artifactId>YogaStudioServices</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>YogaStudioServices</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-    	<groupId>YogaStudioSystem</groupId>
-    	<artifactId>YogaStudioClientServices</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-    	<groupId>YogaStudioSystem</groupId>
-    	<artifactId>YogaStudioDAO</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>YogaStudioSystem</groupId>
+		<artifactId>YogaStudioSystem</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>YogaStudioSystem</groupId>
+	<artifactId>YogaStudioServices</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>YogaStudioServices</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.springframework-version>4.1.1.RELEASE</org.springframework-version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>YogaStudioSystem</groupId>
+			<artifactId>YogaStudioClientServices</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>YogaStudioSystem</groupId>
+			<artifactId>YogaStudioDAO</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
-  </dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.5</version>
+		</dependency>
+	
+    </dependencies>
 </project>
