@@ -35,6 +35,7 @@
 				<value>org.ys.commons.Role</value>
 				<value>org.ys.commons.UserCredential</value>
 				<value>org.ys.commons.Person</value>
+				<value>org.ys.commons.Registration</value>
 				
 				<value>org.ys.commons.Admin</value>
 				<value>org.ys.commons.Customer</value>
