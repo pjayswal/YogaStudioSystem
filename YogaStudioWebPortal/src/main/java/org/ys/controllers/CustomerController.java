@@ -10,15 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
-import org.ys.commons.Category;
 import org.ys.commons.Customer;
-import org.ys.commons.Product;
 import org.ys.commons.Section;
 
 @Controller
 @RequestMapping(value = "/customer/")
 public class CustomerController {
-
 	@Autowired
 	private ICustomerService customerService;
 	@Autowired
@@ -26,7 +23,7 @@ public class CustomerController {
 
 	/**
 	 * get Registration form
-	 * 
+	 *
 	 * @param model
 	 * @return form for adding customer
 	 */
@@ -37,7 +34,7 @@ public class CustomerController {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customer
 	 * @param result
 	 * @return
@@ -52,17 +49,18 @@ public class CustomerController {
 	@RequestMapping(value = "/section/")
 	public String getAvailableSections(Model model) {
 		model.addAttribute("sections", adminService.getSections());
+		Customer customer = customerService.getCustomer(1);
+		model.addAttribute("customer", customer);
 		return "customer/sectionlist";
 	}
 
 	/**
 	 * Enroll Section
-	 * 
+	 *
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-
 	@RequestMapping(value = "/enroll/{id}", method = RequestMethod.GET)
 	public String enrollSection(@PathVariable long id, Model model) {
 		Customer customer = customerService.getCustomer(1);
@@ -74,18 +72,18 @@ public class CustomerController {
 
 	/**
 	 * Withdraw Section
-	 * 
+	 *
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-
 	@RequestMapping(value = "/withdraw/", method = RequestMethod.GET)
 	public String getEnrolledSection(Model model) {
-		model.addAttribute("sections", customerService.getCustomer(1).getEnrolledSections());
+		model.addAttribute("sections", customerService.getCustomer(1)
+				.getEnrolledSections());
 		return "customer/withdrawlist";
 	}
-	
+
 	@RequestMapping(value = "/withdraw/{id}", method = RequestMethod.GET)
 	public String withdrawSection(@PathVariable long id, Model model) {
 		Customer customer = customerService.getCustomer(1);
@@ -94,5 +92,4 @@ public class CustomerController {
 		customerService.withdrawSection(username, section);
 		return "redirect:../withdraw/";
 	}
-
 }

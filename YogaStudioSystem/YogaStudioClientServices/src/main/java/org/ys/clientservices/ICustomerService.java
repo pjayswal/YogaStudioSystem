@@ -10,18 +10,27 @@ import org.ys.commons.Section;
 public interface ICustomerService {
 
 	public void addCustomer(Customer customer);
+
 	public void updateCustomer(Customer customer);
-	public void disableCustomer(String  username);
-	public void assignAdvisor(String username,Faculty advisor);
-	
+
+	public void disableCustomer(String username);
+
+	public void assignAdvisor(String username, Faculty advisor);
+
 	public List<Section> getCurrentSections();
-	public List<Course> enrollSection(String username,Section section); 
-	public void withdrawSection(String username,Section section);
-	
-	public void requestWaiver(String username, Section section, String description);
+
+	public void enrollSection(String username, Section section);
+
+	public List<Course> getUnfullfilledPrerequisites(String username,
+			Section section);
+
+	public void withdrawSection(String username, Section section);
+
+	public void requestWaiver(String username, Section section,
+			String description);
+
 	public void requestWaitingList(String username, Section section);
-	
+
 	public Customer getCustomer(long id);
-	
-	
+
 }
