@@ -1,5 +1,7 @@
 package org.ys.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
+import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Section;
+import org.ys.commons.Waiver;
+import org.ys.helper.SectionDataSet;
 
 @Controller
 @RequestMapping(value = "/customer/")
@@ -50,7 +55,10 @@ public class CustomerController {
 	public String getAvailableSections(Model model) {
 		model.addAttribute("sections", adminService.getSections());
 		Customer customer = customerService.getCustomer(1);
+		List<SectionDataSet> sectionDataSet = customerService
+				.getSections(customer);
 		model.addAttribute("customer", customer);
+		model.addAttribute("sectionDataSets", sectionDataSet);
 		return "customer/sectionlist";
 	}
 
@@ -91,5 +99,38 @@ public class CustomerController {
 		Section section = adminService.getSection(id);
 		customerService.withdrawSection(username, section);
 		return "redirect:../withdraw/";
+	}
+
+	/**
+	 * Waive Section
+	 *
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/waivelist/{id}", method = RequestMethod.GET)
+	public String waiveSectionList(@PathVariable long id, Model model) {
+		Section section = adminService.getSection(id);
+		Customer customer=customerService.getCustomer(1);
+		SectionDataSet sectionDataSet=new SectionDataSet(customer, section);
+		Course course=section.getCourse();
+		model.addAttribute(sectionDataSet);
+		model.addAttribute(section);
+		model.addAttribute("courses", sectionDataSet.getUnfullfilledPrerequisites());
+		//model.addAttribute("waiver", new Waiver());
+		return "customer/waiverlist";
+	}
+
+	/**
+	 * 
+	 * @param waiver
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/waiver/add", method = RequestMethod.POST)
+	public String createWaiver(@ModelAttribute("waiver") Waiver waiver,
+			BindingResult result) {
+		// customerService.requestWaiver(username, section, description);
+		return "redirect:../section/";
 	}
 }

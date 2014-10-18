@@ -10,14 +10,15 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Welcome to Administration</title>
+<title>Waiver List</title>
 </head>
 <br>
 <br>
 <br>
 <br>
 <div class="panel panel-primary">
-	<div class="panel-heading">Sections in the Current Semester</div>
+	<div class="panel-heading">Prerequisites for the course:
+		${section.course.name}</div>
 	<div class="panel-body">
 		<table data-toggle="table" class="table table-hover">
 			<thead>
@@ -26,28 +27,18 @@
 					<th>Course</th>
 					<th>Faculty</th>
 					<th>Available Seats</th>
-					<th>Enroll</th>
+					<th>Waiver</th>
 				</tr>
 			</thead>
 
-			<c:forEach var="sectionDataSet" items="${sectionDataSets}">
+			<c:forEach var="course" items="${courses}">
 				<tbody>
 					<tr>
-						<td>${sectionDataSet.section.id}</td>
-						<td>${sectionDataSet.section.course.name}</td>
-						<td>${sectionDataSet.section.faculty.name}</td>
-						<td>${sectionDataSet.section.getAvailSeats()}</td>
-						<c:if test="${sectionDataSet.option=='ENROLLED'}">
-							<td>Already Enrolled</td>
-						</c:if>
-						<c:if test="${sectionDataSet.option=='ENROLL'}">
-							<td><a href="../enroll/${sectionDataSet.section.id}">Enroll</a></td>
-						</c:if>
-						<c:if test="${sectionDataSet.option=='WAIVE'}">
-							<td><a href="../waivelist/${sectionDataSet.section.id}">Waive</a></td>
-						</c:if>
-
-
+						<%-- <td>${course.getSections.id}</td> --%>
+						<td>${course.name}</td>
+						<td>${course.faculty.name}</td>
+						<td>${course.getSections.getAvailSeats()}</td>
+						<td><a href="../waive/${sectionDataSet.section.id}">Waive</a></td>
 					</tr>
 				</tbody>
 			</c:forEach>

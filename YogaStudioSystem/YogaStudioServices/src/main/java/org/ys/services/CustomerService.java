@@ -14,6 +14,7 @@ import org.ys.commons.Faculty;
 import org.ys.commons.Role;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
+import org.ys.helper.SectionDataSet;
 import org.ys.idao.ICustomerDAO;
 import org.ys.idao.IRoleDAO;
 import org.ys.idao.ISectionDAO;
@@ -109,6 +110,14 @@ public class CustomerService implements ICustomerService {
 	public Customer getCustomer(long id) {
 		return customerDAO.get(id);
 
+	}
+
+	public List<SectionDataSet> getSections(Customer customer) {
+		List<SectionDataSet> sectionDataSet = new ArrayList<SectionDataSet>();
+		for(Section section:sectionDAO.getAll()){
+			sectionDataSet.add(new SectionDataSet(customer, section));
+		}
+		return sectionDataSet;
 	}
 
 }

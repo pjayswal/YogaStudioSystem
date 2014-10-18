@@ -6,6 +6,7 @@ import org.ys.commons.Course;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Section;
+import org.ys.helper.SectionDataSet;
 
 public interface ICustomerService {
 
@@ -32,5 +33,7 @@ public interface ICustomerService {
 	public void requestWaitingList(String username, Section section);
 
 	public Customer getCustomer(long id);
+	
+	public List<SectionDataSet> getSections(Customer customer);
 
 }
