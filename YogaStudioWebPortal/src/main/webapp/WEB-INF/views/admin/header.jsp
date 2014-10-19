@@ -7,6 +7,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>YogaStudio Portal</title>
+<style>
+.error {
+    color: #ff0000;
+    font-style: italic;
+    font-weight: bold;
+}
+</style>
 <!-- Bootstrap core CSS -->
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">

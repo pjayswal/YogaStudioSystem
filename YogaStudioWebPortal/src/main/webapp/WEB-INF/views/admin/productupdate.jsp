@@ -17,16 +17,13 @@
 <br>
 <div class="container">
 	<form:form class="form-horizontal" role="form" commandName="product"
-   action="./add?category_id=${category.id}" method="post">
+   action="./add?category_id=${product.category.id}" method="post">
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Id: </label>
 			<div class="col-sm-7">
 				<form:input type="text" cssClass="form-control" path="id"
 					autocomplete="on" value="${product.id}" readonly="true" />
-			</div>
-			<div class="col-sm-3">
-				<form:errors path="name" cssClass="error" />
 			</div>
 		</div>
 

@@ -90,10 +90,12 @@ public class AdminService implements IAdminService{
 	}
 
 	public void addSection(Section section) {
-		if(section.getId()!=0)
-			updateSection(section);
+		if(section.getId()!=0){
+			
+		}
 		else
 			sectionDAO.create(section);
+			System.out.println("section updated");
 		
 	}
 
@@ -105,6 +107,7 @@ public class AdminService implements IAdminService{
 		oldSection.setFaculty(section.getFaculty());
 		if(section.getSemester()!=null)
 		oldSection.setSemester(section.getSemester());
+		section.setSemester(oldSection.getSemester());
 		sectionDAO.update(oldSection);
 		
 	}
