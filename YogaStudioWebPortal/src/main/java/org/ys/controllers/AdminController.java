@@ -3,6 +3,8 @@ package org.ys.controllers;
 import java.beans.PropertyEditorSupport;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,7 @@ import org.ys.commons.Faculty;
 import org.ys.commons.Product;
 import org.ys.commons.Section;
 import org.ys.commons.Semester;
-/**
- * to handle admin requests
- * @author pramod
- *
- */
+
 @Controller
 @RequestMapping(value="/admin/")
 public class AdminController {
@@ -66,8 +64,11 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/semester/add", method = RequestMethod.POST)
-	public String createorUpdateSemeter(@ModelAttribute("semester") Semester semester,
+	public String createorUpdateSemeter(@Valid @ModelAttribute("semester") Semester semester,
 			BindingResult result) {
+		if(result.hasErrors()){
+			return "admin/semesteradd";
+		}
 		adminService.addSemester(semester);
 		return "redirect:./";
 	}
@@ -113,8 +114,19 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/course/add", method = RequestMethod.POST)
-	public String createorUpdateCourse(@ModelAttribute("course") Course course,
+	public String createorUpdateCourse(Model model,
+			@Valid @ModelAttribute("course") Course course,
 			BindingResult result) {
+		if(result.hasErrors()){
+			if(course.getId()!=0){
+				model.addAttribute("prerequisites", adminService.getCourses());
+				return "admin/courseupdate";
+			}
+			else{
+				model.addAttribute("prerequisites", adminService.getCourses());
+				return "admin/courseadd";
+			}
+		}
 		adminService.addCourse(course);
 		return "redirect:./";
 	}
@@ -164,12 +176,15 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/faculty/add", method = RequestMethod.POST)
-	public String facultyAdd(@ModelAttribute("faculty") Faculty faculty,
+	public String createOrUpdateFaculty(@Valid @ModelAttribute("faculty") Faculty faculty,
 			BindingResult result) {
-		adminService.addFaculty(faculty);
 		if(result.hasErrors()){
-			System.out.println(result.getAllErrors().toString());
+			if(faculty.getId()!=0)
+				return "admin/facultyadd";
+			else
+				return "admin/facultyupdate";
 		}
+		adminService.addFaculty(faculty);
 		return "redirect:./";
 	}
 	/**
@@ -213,9 +228,14 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/section/add", method = RequestMethod.POST)
-	public String createorUpdateSection(@ModelAttribute("section") Section section) {
+	public String createorUpdateSection(@Valid @ModelAttribute("section") Section section,
+			@RequestParam("semester_id") String id,
+			BindingResult result) {
+		if(result.hasErrors()){
+			return "admin/sectionadd";
+		}
 		adminService.addSection(section);
-		return "redirect:./?semester_id="+section.getSemester().getId();
+		return "redirect:./?semester_id="+id;
 	}
 	/**
 	 * semester details with section list
@@ -263,8 +283,10 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/category/add", method = RequestMethod.POST)
-	public String createorUpdateCategory(
-			@ModelAttribute("category") Category category, BindingResult result) {
+	public String createorUpdateCategory(@Valid	@ModelAttribute("category") Category category, BindingResult result) {
+		if(result.hasErrors()){
+			return "admin/categoryadd";
+		}
 		adminService.addCategory(category);
 		return "redirect:./";
 	}
@@ -320,7 +342,18 @@ public class AdminController {
 	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
 	public String createorUpdateProducts(Model model,
 			@RequestParam("category_id") String id,
-			@ModelAttribute("product") Product product) {
+			@Valid @ModelAttribute("product") Product product,BindingResult result) {
+		if(result.hasErrors()){
+			if(product.getId()==0){
+				model.addAttribute("category", adminService.getCategory(Long.parseLong(id)));
+				return "admin/productadd";
+			}
+			else {
+				return "admin/productupdate";
+				
+			}
+				
+		}
 		Category category = adminService.getCategory(Long.parseLong(id));
 		model.addAttribute("category", category);
 		product.setCategory(category);

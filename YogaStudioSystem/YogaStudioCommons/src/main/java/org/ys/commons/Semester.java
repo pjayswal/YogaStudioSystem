@@ -11,13 +11,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Semester {
 	
 	
 	@Id @GeneratedValue
 	private long id;
-	
+	@NotEmpty(message="name is required")
 	private String name;
 	private String description;
 	@OneToMany(mappedBy="semester")

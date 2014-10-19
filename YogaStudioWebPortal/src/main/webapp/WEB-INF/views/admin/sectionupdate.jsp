@@ -17,13 +17,13 @@
 <br>
 <div class="container">
 	<form:form class="form-horizontal" role="form" commandName="section"
-		action="./add" method="post">
+		action="./add?semester_id=${section.semester.id}" method="post">
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Semester: </label>
 			<div class="col-sm-7">
-				<input type="text" value="${section.semester.name}" autocomplete="off"
-					readonly />
+				<form:input type="text" path="${semester.id}" value="${section.semester.id}" autocomplete="off"
+					/>
 
 			</div>
 		</div>

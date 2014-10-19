@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 
 @Entity
@@ -23,6 +25,7 @@ public class Waiver {
 	private long id;
 	@OneToOne
 	private Course course;
+	@NotEmpty(message="description is required")
 	private String description;
 	@ManyToOne
 	private Customer customer;

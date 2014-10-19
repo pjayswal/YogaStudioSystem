@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Category {
 	@Id @GeneratedValue
 	private long id;
-
+	@NotEmpty(message="name is required")
 	private String name;
 	@OneToMany(mappedBy="category")
 	private List<Product> products = new ArrayList<Product>();

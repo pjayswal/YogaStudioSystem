@@ -25,7 +25,7 @@
 	</div>
 	<div class="container">
 		<form:form class="form-horizontal" role="form" commandName="section"
-			action="./add" method="post">
+			action="./add?semester_id=${semester.id}" method="post">
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Semester:

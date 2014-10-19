@@ -4,15 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Product {
 	@Id @GeneratedValue
 	private long id;
-	
+	@NotEmpty(message="name is required")
 	private String name;
+	@NotEmpty(message="description is required")
 	private String description;
 	private byte[] picture;
+	@Min(value=0,message="minimum price to be set is 0")
 	private double price;
 	@ManyToOne
 	private Category category;

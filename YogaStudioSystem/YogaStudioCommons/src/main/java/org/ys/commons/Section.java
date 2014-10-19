@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Section {
@@ -17,11 +19,14 @@ public class Section {
 	private long id;
 	@ManyToOne
 	@JoinColumn(name="course_id")
+	@NotNull(message="course is required")
 	private Course course;
 	@ManyToOne
 	private Semester semester;
+	@Min(value=10,message="minimum seat require is 10")
 	private int totalSeat;
 	@ManyToOne
+	@NotNull(message="faculty is required")
 	private Faculty faculty;
 	@ManyToMany(mappedBy="enrolledSections")
 	private List<Customer> enrolledCustomers = new ArrayList<Customer>();
