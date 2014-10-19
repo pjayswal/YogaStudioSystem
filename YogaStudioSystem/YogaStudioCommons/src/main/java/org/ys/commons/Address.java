@@ -2,11 +2,17 @@ package org.ys.commons;
 
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Embeddable
 public class Address {
+	@NotEmpty(message="street is required")
 	private String street;
+	@NotEmpty(message="city is required")
 	private String city;
+	@NotEmpty(message="state is required")
 	private String state;
+	@NotEmpty(message="zip is required")
 	private String zipCode;
 	
 	public Address() {

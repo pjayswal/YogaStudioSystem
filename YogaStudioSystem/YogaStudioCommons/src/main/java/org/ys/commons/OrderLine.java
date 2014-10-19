@@ -5,13 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 
 @Entity
 public class OrderLine {
 	@Id @GeneratedValue
 	private long id;
-	
+	@Min(value=0,message="minimum value 0 is allowed")
 	private int quantity;
+	@Min(value=0,message="minimum value 0 is allowed")
 	private double amount;
 	@ManyToOne
 	@JoinColumn

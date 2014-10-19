@@ -9,13 +9,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="user")
 public class UserCredential {
 	
 	@Id
+	@NotEmpty
 	private String username;
-	
+	@NotEmpty
 	private String password;
 	private boolean enabled=false;
 	

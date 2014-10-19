@@ -8,19 +8,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Course {
 	@Id
 	@GeneratedValue
 	private long id;
-
+	@NotEmpty(message="code is required")
 	private String code;
+	@NotEmpty(message="name is required")
 	private String name;
 	private String description;
 
-	@OneToMany
+	@ManyToMany
 	@JoinTable(name = "prerequisite", joinColumns = { @JoinColumn(name = "course_id") }, inverseJoinColumns = { @JoinColumn(name = "prerequisite_id") })
 	private List<Course> prerequisites = new ArrayList<Course>();
 	@OneToMany(mappedBy = "course")

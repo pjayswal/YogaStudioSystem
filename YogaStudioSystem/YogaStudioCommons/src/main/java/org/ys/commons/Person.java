@@ -15,14 +15,21 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Person {
 	@Id @GeneratedValue(strategy = GenerationType.TABLE)
 	private long id;
+	@NotEmpty
 	private String name;
+	@Email
+	@NotEmpty
 	private String email;
+	@NotEmpty
 	private String phone;
 	@Temporal(TemporalType.DATE)
 	private Date dob;
