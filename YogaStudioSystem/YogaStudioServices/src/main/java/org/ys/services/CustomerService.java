@@ -113,7 +113,7 @@ public class CustomerService implements ICustomerService {
 		}
 		
 		customer.addWaiver(waiver);
-		waiver.setStatus(true);
+		waiver.setStatus(Waiver.STATUS_WAIVED);
 		
 		customerDAO.update(customer);
 	}
