@@ -59,7 +59,10 @@ public class AdminService implements IAdminService{
 	private IAdminDAO adminDAO;
 
 
+
 	public void addFaculty(Faculty faculty) {
+		Role role = roleDAO.get(Role.ROLE_FACULTY_ID);
+		faculty.getUser().addRole(role);
 		facultyDAO.create(faculty);
 		
 	}

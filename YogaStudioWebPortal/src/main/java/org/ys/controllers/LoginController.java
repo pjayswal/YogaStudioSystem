@@ -1,8 +1,5 @@
 package org.ys.controllers;
 
-import java.util.Date;
-
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.IEmailService;
-import org.ys.commons.Admin;
+import org.ys.commons.Customer;
+import org.ys.commons.Faculty;
 import org.ys.commons.Role;
-import org.ys.commons.Semester;
-import org.ys.commons.UserCredential;
 
 @Controller
 public class LoginController {
@@ -26,31 +22,22 @@ public class LoginController {
 	private IAdminService adminService;
 	@Autowired
 	private IEmailService emailService;
-	//@PostConstruct
-	private void init() {
-		Role admin = new Role("ROLE_ADMIN");
-		adminService.addRole(admin);
-		UserCredential uadmin = new UserCredential("admin", "admin");
-		Admin administrator = new Admin("admin", "admin@yogastudio.com", "01-8974567893", new Date(), uadmin);
-		adminService.addAdmin(administrator);
-	}
-	
 	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
-//		if(username.equals("admin")){
-//			System.out.println("Admin logged");
-//			return "redirect:/admin/";
-//		}
 		if(request.isUserInRole(Role.ROLE_CUSTOMER)){
+			Customer customer = adminService.getCustomer(username);
+			request.getSession().setAttribute("customer", customer);
 			return "redirect:/customer/home";
 		}
 		else if(request.isUserInRole(Role.ROLE_ADMIN)){
 			return "redirect:/admin/home/";
 		}
-		else if(request.isUserInRole(Role.ROLE_FACULTY)){
+		else if(request.isUserInRole(Role.ROLE_FACULTY)){ 
+			Faculty faculty = adminService.getFaculty(username);
+			request.setAttribute("faculty", faculty);
 			return "redirect:/faculty/home";
 		}
 		else
