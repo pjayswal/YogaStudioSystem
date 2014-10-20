@@ -28,7 +28,7 @@ public class CustomerController {
 	@Autowired
 	private IAdminService adminService;
 
-	@RequestMapping(value = "/home/")
+	@RequestMapping(value = "/home")
 	public String getHomePage(Model model, HttpServletRequest request) {
 		return "customer/home";
 	}
