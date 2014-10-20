@@ -29,7 +29,7 @@ public class LoginController {
 		String username =user.getUsername();
 		if(request.isUserInRole(Role.ROLE_CUSTOMER)){
 			Customer customer = adminService.getCustomer(username);
-		request.getSession().setAttribute("loggedInUser", customer);
+			request.getSession().setAttribute("loggedInUser", customer);
 			return "redirect:/customer/home";
 		}
 		else if(request.isUserInRole(Role.ROLE_ADMIN)){
@@ -37,7 +37,7 @@ public class LoginController {
 		}
 		else if(request.isUserInRole(Role.ROLE_FACULTY)){ 
 			Faculty faculty = adminService.getFaculty(username);
-			request.setAttribute("loggedInUser", faculty);
+			request.getSession().setAttribute("loggedInUser", faculty);
 			return "redirect:/faculty/home";
 		}
 		else
