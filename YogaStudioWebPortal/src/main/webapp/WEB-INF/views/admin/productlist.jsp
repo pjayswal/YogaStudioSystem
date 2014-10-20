@@ -25,6 +25,7 @@
 					<td>Product ID</td>
 					<td>Name</td>
 					<td>Description</td>
+					<td>IMage</td>
 					<td>Price</td>
 					<td>Edit</td>
 				</tr>
@@ -36,6 +37,7 @@
 						<td>${product.id}</td>
 						<td>${product.name}</td>
 						<td>${product.description}</td>
+						<td><img  src="../productpic/${product.id}">
 						<td>${product.price}</td>
 						<td><a href="../product/${product.id}">Edit</a></td>
 					</tr>
