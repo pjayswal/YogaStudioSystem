@@ -1,5 +1,6 @@
 package org.ys.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.ys.clientservices.IFacultyService;
-import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
@@ -28,28 +28,37 @@ public class FacultyService implements IFacultyService {
 	@Autowired
 	private ISectionDAO sectionDAO;
 
-	public List<Waiver> getWaiverRequests(String username) {
-		Faculty faculty = facultyDAO.getFaculty(username);
-		return faculty.getWaiverRequests();
+	public List<Waiver> getWaiverRequests(Faculty faculty) {
+		List<Waiver> unseenWaiverList = new ArrayList<Waiver>();
+		List<Waiver> waivers = faculty.getWaiverRequests();
+		for (Waiver waiver : waivers) {
+			if (waiver.getStatus().equals(Waiver.STATUS_UNSEEN)) {
+				unseenWaiverList.add(waiver);
+			}
+		}
+		return unseenWaiverList;
 	}
 
-	public List<Section> getCurrentSections(String username) {
-		Faculty faculty = facultyDAO.getFaculty(username);
+	public List<Section> getTakingSections(Faculty faculty) {
 		return faculty.getTakingSections();
 	}
 
-	public void approveWaiver(String username, Waiver waiver) {
-		Customer customer = customerDAO.getCustomer(username);
-		waiver.setStatus("WAIVED");
-		customerDAO.update(customer);
+	public void approveWaiver(Waiver waiver) {
+		waiver.setStatus(Waiver.STATUS_WAIVED);
 		waiverDAO.update(waiver);
 	}
 
-	public void rejectWaiver(String username, Waiver waiver) {
-		Customer customer = customerDAO.getCustomer(username);
-		waiver.setStatus("REJECTED");
-		customerDAO.update(customer);
+	public void rejectWaiver(Waiver waiver) {
+		waiver.setStatus(Waiver.STATUS_REJECTED);
 		waiverDAO.update(waiver);
+	}
+
+	public Faculty getFaculty(long id) {
+		return facultyDAO.get(id);
+	}
+
+	public Waiver getWaiver(long id) {
+		return waiverDAO.get(id);
 	}
 
 }
