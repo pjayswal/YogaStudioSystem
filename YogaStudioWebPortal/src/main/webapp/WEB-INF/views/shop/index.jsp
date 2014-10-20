@@ -105,7 +105,7 @@
                         <a class="btn btn-default" href="cart/">Cart</a>
                       </div>
                       <div class="col-sm-6 col-xs-6 text-right">
-                        <a class="btn btn-primary" href="">Checkout</a>
+                        <a class="btn btn-primary" href="checkout/">Checkout</a>
                       </div>
                     </div>
                   </li>

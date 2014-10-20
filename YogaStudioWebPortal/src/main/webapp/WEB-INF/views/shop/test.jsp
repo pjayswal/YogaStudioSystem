@@ -30,7 +30,7 @@
 						<label class="col-sm-2 control-label">Street: </label>
 						<div class="col-sm-7">
 							<form:input type="text" cssClass="form-control" path="shippingAddress.street"
-								value="${customer.address.street}" autocomplete="off" />
+								value="${order.shippingAddress.street}" autocomplete="off" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="shippingAddress.street" cssClass="error" />
@@ -41,7 +41,7 @@
 						<label class="col-sm-2 control-label">City:</label>
 						<div class="col-sm-7">
 							<form:input type="text" cssClass="form-control" path="shippingAddress.city"
-								value="${customer.address.city}" autocomplete="off" />
+								value="${order.shippingAddress.city}" autocomplete="off" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="shippingAddress.city" cssClass="error" />
@@ -53,7 +53,7 @@
 						<div class="col-sm-7">
 							<form:input type="text" cssClass="form-control" 
 								path="shippingAddress.state" 
-								value="${customer.address.state}"/>
+								value="${order.shippingAddress.state}"/>
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="shippingAddress.state" cssClass="error" />
@@ -64,7 +64,7 @@
 						<label class="col-sm-2 control-label">Zip Code:</label>
 						<div class="col-sm-7">
 							<form:input type="text" cssClass="form-control" 
-								path="shippingAddress.zipCode" value="${customer.address.zipCode}" />
+								path="shippingAddress.zipCode" value="${order.shippingAddress.zipCode}" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="shippingAddress.zipCode" cssClass="error" />
@@ -83,32 +83,7 @@
 						
 						
 						
-						
-						
-						
-						
-						
-						
-						<ul class="list-unstyled">
-							<li>
-								<input type="radio" name="pmtmthd" id="VISAMASTER_PAYPAL" checked="checked"
-								value="VISAMASTER_PAYPAL"><label for="VISAMASTER_PAYPAL"><img src="https://secureir.ebaystatic.com/pictures/aw/pics/checkout/payments/paypal/ppguest_1.gif" border="0"/>
-								</label><div class="bmldiv">&nbsp;&nbsp;Processed by PayPal</div>
-							</li>
-							<li>
-								<input type="radio" name="pmtmthd"	id="PAYPAL"									
-								value="PAYPAL"><label for="PAYPAL"><img src="https://secureir.ebaystatic.com/pictures/aw/pics/checkout/payments/paypal/pymt_paypal.png" border="0"/></label>
-							</li>
-							<li>
-								<input type="radio" name="pmtmthd"	id="CREDITCARD"
-								value="CREDITCARD"><label for="CREDITCARD" class="fcccc">Credit card</label>
-							</li>
-						</ul>	
-						
-						
-						
-						
-						
+						${payment}
 						
 						
 						

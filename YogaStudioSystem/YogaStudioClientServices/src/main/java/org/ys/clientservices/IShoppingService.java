@@ -22,7 +22,7 @@ public interface IShoppingService {
 	public void 			updateCartQuantity(Customer customer, OrderLine orderLine, int quantity);
 	public void 			removeFromCart(Customer customer, OrderLine orderLine);
 	public List<OrderLine> 	getCart(Customer customer);
-	public Order 		 	checkout(Address shippingAddress, Customer customer);
+	public Order 		 	checkout(Order order, Customer customer);
 	public Payment 		 	payment(Order order, String details);
 	public Customer 		getCustomer(long id);
 	public OrderLine 		getOrderLine(long id);

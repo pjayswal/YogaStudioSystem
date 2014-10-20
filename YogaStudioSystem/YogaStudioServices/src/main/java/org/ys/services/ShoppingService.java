@@ -97,14 +97,23 @@ public class ShoppingService implements IShoppingService{
 	}
 
 
-	public Order checkout(Address shippingAddress, Customer customer) {
-		Order order = new Order(new Date(), new Date(), shippingAddress, "Ordered", customer, customer.getShoppingCart());
+	public Order checkout(Order order, Customer customer) {
+		//Order order = new Order(new Date(), new Date(), shippingAddress, "Ordered", customer, customer.getShoppingCart());
+		order.setOrderDate(new Date());
+		order.setStatus("Ordered");
+		order.setCustomer(customer);
+		order.setOrderLines(customer.getShoppingCart().getOrderLines());
+		order.setShippingDate(new Date());
 		orderDAO.create(order);
+		customer.getShoppingCart().setOrderLines(null);
+		customerDAO.update(customer);
 		return order;		
 	}
 
 	public Payment payment(Order order, String details) {
 		Payment payment = new Payment(new Date(), order.getTotalAmount(), details, order);
+		order.setStatus("Paid");
+		orderDAO.update(order);
 		paymentDAO.create(payment);
 		return payment;		
 	}

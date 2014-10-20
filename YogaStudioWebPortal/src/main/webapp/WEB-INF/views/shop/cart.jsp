@@ -55,7 +55,7 @@
                   <td><img src="/YogaStudioWebPortal/resources/img/product2.jpg" class="img-cart" /></td>
                   <td><strong>${orderLine.product.name}</strong></td>
                   <td>
-                    <form class="form-inline"role="form" action="../cart/" method="post">
+                    <form class="form-inline" role="form" action="../cart/" method="post">
                       <input class="form-control" type="text" name="quantity" value="${orderLine.quantity}" size="1" />
                       <input class="form-control" type="hidden" name="id" value="${orderLine.id}" />
                       <button  title="Update" class="btn btn-default"><i class="fa fa-pencil"></i></button>
@@ -76,16 +76,16 @@
                 </tr>
                 <tr>
                   <td colspan="4" class="text-right">Total Shipping</td>
-                  <td>$2.00</td>
+                  <td>FREE</td>
                 </tr>
                 <tr>
                   <td colspan="4" class="text-right"><strong>Total</strong></td>
-                  <td>$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total+2}"/></td>
+                  <td>$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total}"/></td>
                 </tr>
                </tbody>
               </table>
               <a href="../" class="btn btn-default">Continue Shopping</a>
-              <a href="#" class="btn btn-primary pull-right">Checkout</a>
+              <a href="../checkout/" class="btn btn-primary pull-right">Checkout</a>
         </div>        
      <!-- begin:shopping-cart-details --> 
       <!-- begin:shopping-cart -->
@@ -128,7 +128,7 @@
                         <a class="btn btn-default" href="">Cart</a>
                       </div>
                       <div class="col-sm-6 col-xs-6 text-right">
-                        <a class="btn btn-primary" href="">Checkout</a>
+                        <a class="btn btn-primary" href="../checkout/">Checkout</a>
                       </div>
                     </div>
                   </li>

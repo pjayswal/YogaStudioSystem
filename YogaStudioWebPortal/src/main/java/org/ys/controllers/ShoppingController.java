@@ -2,6 +2,8 @@ package org.ys.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.ys.clientservices.IShoppingService;
 import org.ys.commons.Category;
 import org.ys.commons.Customer;
+import org.ys.commons.Order;
 import org.ys.commons.OrderLine;
+import org.ys.commons.Payment;
 import org.ys.commons.Product;
 import org.ys.commons.Semester;
 import org.ys.commons.ShoppingCart;
@@ -102,11 +106,11 @@ public class ShoppingController {
 	 * @return form 
 	 */
 	@RequestMapping(value = "/cart/", method = RequestMethod.POST)
-	public String cartUpdate(int id,int quantity) {
+	public String cartUpdate(Model model, @Valid int id,int quantity) {
 		Customer customer = shoppingService.getCustomer(98304);		
 		OrderLine orderLine = shoppingService.getOrderLine(id);
 		if (quantity==0) shoppingService.removeFromCart(customer, orderLine);
-		else shoppingService.updateCartQuantity(customer, orderLine, quantity);
+		else  shoppingService.updateCartQuantity(customer, orderLine, quantity);
 		return "redirect:../cart/";
 	}
 	
@@ -131,10 +135,28 @@ public class ShoppingController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/checkout", method = RequestMethod.GET)
+	@RequestMapping(value = "/checkout/", method = RequestMethod.GET)
 	public String checkout(Model model) {
 		Customer customer = shoppingService.getCustomer(98304);
 		model.addAttribute("customer", customer);
+		model.addAttribute("order",new Order());
 		return "shop/checkout";
+	}
+	/**
+	 * 
+	 * @param faculty
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/pay/", method = RequestMethod.POST)
+	public String pay(Model model, @Valid @ModelAttribute("order") Order order, String pmtmthd) {
+		Customer customer = shoppingService.getCustomer(98304);
+		order = shoppingService.checkout(order, customer);
+		Payment payment = shoppingService.payment(order, pmtmthd);
+
+		model.addAttribute("customer", customer);
+		model.addAttribute("order",order);
+		model.addAttribute("payment",pmtmthd);
+		return "shop/test";
 	}
 }

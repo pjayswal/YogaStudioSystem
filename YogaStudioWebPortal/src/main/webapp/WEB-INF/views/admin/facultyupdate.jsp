@@ -38,7 +38,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">User Name:</label>
 					<div class="col-sm-7">
-						<form:input type="text" cssClass="form-control" id="ususername"
+						<form:input type="text" cssClass="form-control" id="username"
 							path="user.username" placeholder="username" />
 					</div>
 					<div class="col-sm-3">
