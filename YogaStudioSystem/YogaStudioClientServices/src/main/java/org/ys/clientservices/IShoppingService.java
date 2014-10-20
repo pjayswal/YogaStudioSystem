@@ -14,14 +14,18 @@ import org.ys.commons.Payment;
 	
 public interface IShoppingService {
 
+	public List<Category> 	getCategories();
 	public List<Product> 	getProducts();
 	public List<Product> 	getCategoryProducts(Long category_id);
-	public Product 		 	getProductDetails(Long product_id);
-	public List<OrderLine> 	addToCart(Customer customer, Long product_id);
-	public List<OrderLine> 	updateCartQuantity(Customer customer, OrderLine orderLine, int quantity);
-	public List<OrderLine> 	removeFromCart(Customer customer, OrderLine orderLine);
+	public Product 		 	getProductDetail(Long product_id);
+	public void			 	addToCart(Customer customer, Long product_id);
+	public void 			updateCartQuantity(Customer customer, OrderLine orderLine, int quantity);
+	public void 			removeFromCart(Customer customer, OrderLine orderLine);
 	public List<OrderLine> 	getCart(Customer customer);
 	public Order 		 	checkout(Address shippingAddress, Customer customer);
 	public Payment 		 	payment(Order order, String details);
+	public Customer 		getCustomer(long id);
+	public OrderLine 		getOrderLine(long id);
+	public ShoppingCart		createSC();
 	
 }
