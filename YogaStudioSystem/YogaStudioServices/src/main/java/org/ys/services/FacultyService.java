@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.ys.clientservices.IFacultyService;
+import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
@@ -59,6 +60,10 @@ public class FacultyService implements IFacultyService {
 
 	public Waiver getWaiver(long id) {
 		return waiverDAO.get(id);
+	}
+
+	public List<Customer> getAdvisees(Faculty faculty) {
+		return faculty.getAdvisees();
 	}
 
 }
