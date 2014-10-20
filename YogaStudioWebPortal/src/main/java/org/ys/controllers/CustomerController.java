@@ -28,6 +28,11 @@ public class CustomerController {
 	@Autowired
 	private IAdminService adminService;
 
+	@RequestMapping(value = "/home")
+	public String getHomePage(Model model, HttpServletRequest request) {
+		return "customer/home";
+	}
+
 	@RequestMapping(value = "/section/")
 	public String getAvailableSections(Model model, HttpServletRequest request) {
 		model.addAttribute("sections", adminService.getSections());
@@ -66,8 +71,9 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/withdraw/", method = RequestMethod.GET)
-	public String getEnrolledSection(Model model,HttpServletRequest request) {
-		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+	public String getEnrolledSection(Model model, HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		model.addAttribute("sections", customer.getEnrolledSections());
 		return "customer/withdrawlist";
 	}
@@ -93,7 +99,8 @@ public class CustomerController {
 	public String waiveSectionList(@PathVariable long id, Model model,
 			HttpServletRequest request) {
 		Section section = adminService.getSection(id);
-		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		SectionDataSet sectionDataSet = new SectionDataSet(customer, section);
 		List<Course> courses = sectionDataSet.getUnfullfilledPrerequisites();
 		// model.addAttribute(sectionDataSet);

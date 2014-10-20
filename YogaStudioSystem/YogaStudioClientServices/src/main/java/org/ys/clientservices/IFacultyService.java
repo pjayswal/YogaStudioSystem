@@ -2,6 +2,7 @@ package org.ys.clientservices;
 
 import java.util.List;
 
+import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
@@ -19,5 +20,8 @@ public interface IFacultyService {
 	public Faculty getFaculty(long id);
 	
 	public Waiver getWaiver(long id);
+	
+	public List<Customer> getAdvisees(Faculty faculty);
+
 
 }

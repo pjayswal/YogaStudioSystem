@@ -33,7 +33,7 @@ public class LoginController {
 			return "redirect:/customer/home";
 		}
 		else if(request.isUserInRole(Role.ROLE_ADMIN)){
-			return "redirect:/admin/home/";
+			return "redirect:/admin/upload";
 		}
 		else if(request.isUserInRole(Role.ROLE_FACULTY)){ 
 			Faculty faculty = adminService.getFaculty(username);

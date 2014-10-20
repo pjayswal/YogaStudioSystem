@@ -1,4 +1,3 @@
-<%@page import="org.ys.commons.Section"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,25 +16,29 @@
 <br>
 <br>
 <div class="panel panel-primary">
-	<div class="panel-heading">All Waiver List</div>
+	<div class="panel-heading">${faculty.name}: Your all advisees</div>
 	<div class="panel-body">
 		<table data-toggle="table" class="table table-hover">
 			<thead>
 				<tr>
-					<th>Course</th>
-					<th>Customer</th>
-					<th>Description</th>
-					<th>Action</th>
+					<th>Customer ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>User Name</th>
+					<th>Date of Birth</th>
 				</tr>
 			</thead>
 
-			<c:forEach var="waiver" items="${waivers}">
+			<c:forEach var="customer" items="${customers}">
 				<tbody>
 					<tr>
-						<td>${waiver.course.name}</td>
-						<td>${waiver.customer.name}</td>
-						<td>${waiver.description}</td>
-						<td><a href="../accept/${waiver.id}">Accept</a> / <a href="../reject/${waiver.id}">Reject</a></td>
+						<td>${customer.getId()}</td>					
+						<td>${customer.getName()}</td>
+						<td>${customer.getEmail()}</td>
+						<td>${customer.getPhone()}</td>
+						<td>${customer.user.username}</td>
+						<td>${customer.getDob()}</td>
 					</tr>
 				</tbody>
 			</c:forEach>

@@ -25,7 +25,7 @@
 	</div>
 	<div class="container">
 	<form:form class="form-horizontal" role="form" commandName="product"
-   action="./add?category_id=${category.id}" method="post">
+   action="./add?category_id=${category.id}" method="post"  enctype="multipart/form-data">
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Category: </label>
@@ -58,7 +58,15 @@
 					<form:errors path="description" cssClass="error" />
 				</div>
 			</div>
-
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Image:</label>
+				<div class="col-sm-7">
+       			<input type="file" name="file" id="file"	 />
+				</div>
+				<div class="col-sm-3">
+					<form:errors path="picture" cssClass="error" />
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Price:</label>
 				<div class="col-sm-7">

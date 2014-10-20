@@ -25,7 +25,7 @@ public class FacultyController {
 	@RequestMapping(value = "/section/")
 	public String getTakingSections(Model model, HttpServletRequest request) {
 		Faculty faculty = (Faculty) request.getSession()
-				.getAttribute("faculty");
+				.getAttribute("loggedInUser");
 		model.addAttribute("sections",
 				facultyService.getTakingSections(faculty));
 		return "faculty/sectionlist";
@@ -34,9 +34,18 @@ public class FacultyController {
 	@RequestMapping(value = "/waiver/")
 	public String getWaiverRequests(Model model, HttpServletRequest request) {
 		Faculty faculty = (Faculty) request.getSession()
-				.getAttribute("faculty");
+				.getAttribute("loggedInUser");
 		model.addAttribute("waivers", facultyService.getWaiverRequests(faculty));
 		return "faculty/waiverlist";
+	}
+	
+	@RequestMapping(value = "/advisees/")
+	public String getAdvisees(Model model, HttpServletRequest request) {
+		Faculty faculty = (Faculty) request.getSession()
+				.getAttribute("loggedInUser");
+		model.addAttribute(faculty);
+		model.addAttribute("customers", facultyService.getAdvisees(faculty));
+		return "faculty/adviseelist";
 	}
 
 	@RequestMapping(value = "/accept/{id}")

@@ -83,7 +83,7 @@
 		<sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
  
 		<!-- access denied page -->
-		<sec:access-denied-handler error-page="/403" />
+<!-- 		<sec:access-denied-handler error-page="/403" /> -->
  
 		<sec:form-login 
 		    login-page="/login.jsp" 
@@ -94,7 +94,7 @@
 		<sec:logout logout-success-url="/login.jsp?logout"
 			delete-cookies="JSESSIONID" logout-url="/j_spring_security_logout" />
 		<!-- enable csrf protection -->
-		 <sec:csrf/> 
+<!-- 		 <sec:csrf/>  -->
 	</sec:http>
 	
 	<bean id="webexpressionHandler"
