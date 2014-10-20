@@ -61,4 +61,8 @@ public class OrderLine {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+	
+	public String toString(){
+		return product.getName()+" x "+quantity+" $"+amount;
+	}
 }
