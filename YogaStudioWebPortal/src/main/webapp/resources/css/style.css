@@ -1,0 +1,554 @@
+/* CUSTOMIZE THE GLOBAL
+-------------------------------------------------- */
+body {
+	background-color:#C0C0C0;
+	color:#666666;
+}
+
+.container {
+  background: none repeat scroll 0 0 #ffffff;
+  padding-right:20px;
+  padding-left:20px;
+}
+
+.container p {
+	text-align:justify;
+}
+
+ul, ol {
+	padding-left:15px;
+}
+
+.margin_top_zero {
+	margin-top:0px !important;
+}
+
+.margin_top_10 {
+	margin-top:10px !important;
+}
+
+.margin_top_20 {
+	margin-top:20px !important;
+}
+
+.margin_bottom_20 {
+	margin-bottom:20px !important;
+}
+
+.margin_left_10  {
+	margin-left:10px !important;
+}
+
+.padding_top_zero {
+	padding-top:0px !important;
+}
+
+.padding_left_10 {
+	padding-left:10px !important;
+}
+
+.text_decoration_underline {
+	text-decoration:underline;
+}
+
+/* CUSTOMIZE THE HEADER
+-------------------------------------------------- */
+.argonne_logo_img {
+	/*border-right:1px solid #999999;*/
+	float:left;
+	/*width:160px;*/
+}
+
+.argonne_logo_txt {
+	color:#000000;
+	font-family:Gill Sans MT;
+	font-size:36px;
+	line-height:57px;
+	padding-left:173px;
+}
+
+.argonne_logo_txt a {
+	color:#000000;
+}
+
+.argonne_logo_txt a:hover {
+	color:#000000;
+	text-decoration:none;
+}
+
+.need_help {
+	float:right;
+	font-size:14px;
+	padding-top:28px;
+}
+
+/* CUSTOMIZE THE NAVBAR LINKS
+-------------------------------------------------- */
+.navbar {
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+
+.navbar-collapse {
+	padding-left:0px;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border:none;
+}
+
+/* navbar-default */
+.navbar-default {
+	background-color:#022859;
+}
+
+.navbar-default .navbar-nav > li {
+	border-right:1px solid #3D6A93;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color:#FFFFFF;
+}
+
+.navbar-default .navbar-nav > li:hover {
+	background-color:#3D6A93;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	background-color:#3D6A93;
+	color:#FFFFFF;
+}
+
+/* navbar-right */
+.navbar-default .navbar-right {
+	background-color:#ABE4FF;
+}
+
+.navbar-default .navbar-right > li {
+	border-right:none;
+}
+
+.navbar-default .navbar-right > li > a, .navbar-default .navbar-right > li > a:hover, .navbar-default .navbar-right > li > a:focus {
+	color:#022859;
+}
+
+.navbar-default .navbar-right > li:hover {
+	background-color:#ABE4FF;
+}
+
+.navbar-default .navbar-right > .open > a, .navbar-default .navbar-right > .open > a:hover, .navbar-default .navbar-right > .open > a:focus {
+	background-color:#ABE4FF;
+	color:#022859;
+}
+
+/* dropdown-menu */
+@media screen and (min-width: 768px) {
+	.navbar-default .navbar-nav > li:hover .dropdown-menu {
+		border-radius: 0px;
+		display:block;
+		margin-left:-1px;
+	}
+	
+	.navbar-default .navbar-nav > li:hover .second-dropdown-menu {
+		display:none;
+	}
+	
+	.navbar-default .navbar-nav > li > ul > li:hover .second-dropdown-menu {
+		border-radius: 0px;
+		display:block;
+		margin-top:-32px;
+		margin-left:244px;
+	}
+	
+	.navbar-default .navbar-nav .open > .dropdown-menu {
+		display:none;
+	}
+}
+
+.navbar-default .navbar-nav .dropdown-menu {
+	background-color:#3D6A93;
+}
+
+.navbar-default .navbar-nav .dropdown-menu > li > a, .navbar-default .navbar-nav .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .dropdown-menu > li > a:focus {
+	background-color:#3D6A93;
+	color:#FFFFFF;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	background-color:#3D6A93;
+	color:#FFFFFF;
+}
+
+/* divider */
+.dropdown-menu .divider {
+	background-color:#699BBE;
+}
+
+.glyphicon-size {
+	color:#699BBE;
+	font-size:9px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+/* Carousel base class */
+.carousel {
+  height: 302px;
+  margin-top: 20px;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  color:#000000;
+  left:70%;
+  right:2%;
+  padding-bottom:28px;
+  text-align:left;
+  text-shadow:none;
+  z-index: 1;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 302px;
+}
+
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 302px;
+}
+
+.carousel-indicators{
+	bottom: 0px;
+    left: 87%;
+    margin-left: 0px;
+    width: 11%;
+}
+
+.carousel-indicators li {
+	background-color:#022859;
+	border-radius:0px;
+	border:3px solid #022859;
+	height:15px;
+	width:15px;
+}
+
+.carousel-indicators .active {
+	background:none;
+	border-radius:0px;
+	border:3px solid #022859;
+	height:16px;
+	width:16px;
+}
+
+.carousel-control {
+	text-shadow:none;
+	height:25%;
+	width:5%;
+	top:38%;
+}
+
+.carousel-control.left {
+	background-color:#3D6A93;
+	background-image:none;
+	background-repeat:no-repeat;
+}
+
+.carousel-control.right {
+	background-color:#3D6A93;
+	background-image:none;
+	background-repeat:no-repeat;
+	z-index:10;
+}
+
+.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left {
+	left:10%;
+}
+
+.carousel-control .icon-next, .carousel-control .glyphicon-chevron-right{
+	right:10%;
+}
+
+.carousel-control .icon-prev, .carousel-control .icon-next, .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right {
+	top:30%;
+}
+
+.glyphicon-banner-size {
+	font-size:30px;
+}
+
+.btn-lg {
+	border-radius:0px;
+	padding:7px 16px;
+}
+
+.btn-position {
+	margin-left:143px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+	background-color:#022859;
+	border-color:#022859;
+}
+
+/* CUSTOMIZE THE BODY CONTENT
+-------------------------------------------------- */
+.border_small_banner{
+	border: 1px solid #CCCCCC;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.image_caption {
+	padding-top:8px;
+}
+
+.external_link {
+	color:#FF0000;
+}
+
+.border_bottom_row {
+	border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 20px;
+    margin-top: 15px;	
+}
+
+.border_right_column {
+	border-right:1px solid #CCCCCC;
+}
+
+/* CUSTOMIZE THE FOOTER
+-------------------------------------------------- */
+.footer-top {
+	background-color: #3D6A93;
+	color: #99CDFC;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: 10px;
+    padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.footer-top a, .footer-top a:hover, .footer-top a:focus {
+    color: #FFFFFF;
+	text-decoration:none;
+}
+
+.footer-top ul, ol {
+	list-style:none;
+	padding-left:5px;
+	line-height:1.6;
+}
+
+@media screen and (min-width: 768px) {
+	.footer-top .col-footer-width-t1 {
+		width:290px;
+	}
+	
+	.footer-top .col-footer-width-t2 {
+		width:190px;
+	}
+}
+
+a.my-yoga-studio, a.my-yoga-studio:hover, a.my-yoga-studio:focus {
+	background-color:#ABE4FF;
+	border:none;
+	color:#022859;
+	float:right;
+}
+	
+.footer-bottom {
+	background-color: #666666;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.footer-bottom a, .footer-bottom a:hover, .footer-bottom a:focus {
+    color: #FFFFFF;
+	text-decoration:none;
+}
+
+@media screen and (min-width: 768px) {
+	.footer-bottom .col-lg-2 {
+		padding:5px;
+	}
+	
+	.footer-bottom .col-footer-width-1 {
+		width:190px;
+	}
+	
+	.footer-bottom .col-footer-width-2 {
+		width:128px;
+	}
+	
+	.footer-bottom .col-footer-width-3 {
+		width:300px;
+	}
+	
+	.footer-bottom .col-footer-width-4 {
+		width:180px;
+	}
+	
+	.footer-bottom .col-footer-width-5, .footer-bottom .col-footer-width-6 {
+		width:90px;
+	}
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .masthead,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* CUSTOMIZE THE LEFT SIDEBAR
+-------------------------------------------------- */
+.left_sidebar {
+	padding-left:0px;
+}
+
+.left_sidebar > li {
+	border-top:1px solid #CCCCCC;
+	line-height:2;
+	list-style:none;
+}
+
+.left_sidebar li a {
+	color:#022859;
+}
+
+.left_sidebar > li > ul > li {
+	line-height: 1.42857;
+    list-style:disc;
+    padding-bottom: 5px;
+}
+
+.left_sidebar > li > ul > li > ul { 
+    list-style:none;
+    margin-left:0;
+    padding-left:1em;
+}
+
+.left_sidebar > li > ul > li > ul > li:before { 
+	display:inline-block;
+    content:"-";
+    width:1em;
+    margin-left:-1em;
+	line-height: 1.7;
+}
+
+/* CUSTOMIZE THE INNER PAGES
+-------------------------------------------------- */
+.title_bg_color {
+	background-color:#EAEFF4;
+	color:#000000;
+	padding:10px 0px 10px 10px;
+	margin-top:0px;
+	margin-bottom:20px;
+}
+
+.border_labs_thumb {
+	border: 1px solid #CCCCCC;
+    margin-top: 5px;
+    min-height: 118px;
+    min-width: 178px;
+}
+
+.success_image {
+	float: left;
+    margin-top: 5px;
+    padding-right: 20px;
+}
+
+.contact_image {
+	border: 1px solid #CCCCCC;
+	float: left;
+    margin-right: 20px;
+    padding: 5px;
+}
+
+.myForm input[type="text"], input[type="password"] {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #CCCCCC;
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: 5px;
+    outline: medium none;
+    padding: 6px 0;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.myForm textarea {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #CCCCCC;
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: 5px;
+    min-height: 195px;
+    outline: medium none;
+    vertical-align: middle;
+    width: 100%;
+}
+
+/* CUSTOMIZE THE DASHBOARD PAGES
+-------------------------------------------------- */
+.dashboard {
+	background:#FFFFFF url(images/bg_blue.gif) repeat-x;
+}
+
+.dash_logo_txt1 {
+	float: left;
+    padding-top: 8px;
+}
+
+.dash_logo_txt1 a {
+	border-right:1px solid #999999;
+	color: #000000;
+    font-size: 17px;
+	padding-right:5px;
+    text-decoration: none;
+}
+
+.dash_logo_txt2 {
+	padding-top: 8px;
+}
+
+.dash_logo_txt2 a {
+	color: #666666;
+    font-size: 17px;
+	padding-left:5px;
+    text-decoration: none;
+}
+
+.dash-logo {
+	padding-right:0px;
+}
+
+.dash-logo a {
+	float: right;
+    margin-right: -5px;
+}
+
+.dash_left_sidebar {
+	padding-left:0px;
+}
+
+.dash_left_sidebar > li {
+	border-bottom:1px solid #CCCCCC;
+	line-height:2;
+	list-style:none;
+}
+
+.dash_left_sidebar li a {
+	color:#022859;
+}
