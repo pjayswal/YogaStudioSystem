@@ -43,6 +43,13 @@ public class ShoppingService implements IShoppingService{
 	@Autowired
 	private IPaymentDAO paymentDAO;
 
+	public OrderLine getOrderLine(long id) {
+		return orderLineDAO.get(id);
+	}
+
+	public Customer getCustomer(long id) {
+		return customerDAO.get(id);
+	}
 
 	public Product getProduct(long id) {
 		return productDAO.get(id);
@@ -50,36 +57,39 @@ public class ShoppingService implements IShoppingService{
 	
 	public List<Product> getProducts() {
 		return productDAO.getAll();
+	}
 
+	public List<Category> 	getCategories(){
+		return categoryDAO.getAll();
 	}
 
 	public List<Product> getCategoryProducts(Long category_id) {
 		return categoryDAO.get(category_id).getProducts();
 	}
 
-	public Product getProductDetails(Long product_id) {
+	public Product getProductDetail(Long product_id) {
 		return productDAO.get(product_id);		
 	}
 
-	public List<OrderLine> addToCart(Customer customer, Long product_id) {
+	public void addToCart(Customer customer, Long product_id) {
 		OrderLine orderLine = new OrderLine(1,getProduct(product_id).getPrice(),getProduct(product_id));
 		orderLineDAO.create(orderLine);
 		customer.getShoppingCart().addOrderLine(orderLine);
 		customerDAO.update(customer);
-		return customer.getShoppingCart().getOrderLines();		
+		//return customer.getShoppingCart().getOrderLines();		
 	}
 
-	public List<OrderLine> updateCartQuantity(Customer customer, OrderLine orderLine, int quantity) {
+	public void updateCartQuantity(Customer customer, OrderLine orderLine, int quantity) {
 		orderLine.setAmount(orderLine.getAmount()/orderLine.getQuantity()*quantity);
 		orderLine.setQuantity(quantity);
 		orderLineDAO.update(orderLine);
-		return customer.getShoppingCart().getOrderLines();		
+		//return customer.getShoppingCart().getOrderLines();		
 	}
 
-	public List<OrderLine> removeFromCart(Customer customer, OrderLine orderLine) {
+	public void removeFromCart(Customer customer, OrderLine orderLine) {
 		customer.getShoppingCart().getOrderLines().remove(orderLine);
 		shoppingCartDAO.update(customer.getShoppingCart());
-		return customer.getShoppingCart().getOrderLines();	
+		//return customer.getShoppingCart().getOrderLines();	
 	}
 	
 	public List<OrderLine> getCart(Customer customer) {
@@ -97,5 +107,14 @@ public class ShoppingService implements IShoppingService{
 		Payment payment = new Payment(new Date(), order.getTotalAmount(), details, order);
 		paymentDAO.create(payment);
 		return payment;		
+	}
+
+	public ShoppingCart createSC() {
+		ShoppingCart cart = new ShoppingCart();
+		shoppingCartDAO.create(cart);
+		Customer customer = customerDAO.get((long) 98304);
+		customer.setShoppingCart(cart);
+		customerDAO.update(customer);
+		return cart;
 	}
 }
