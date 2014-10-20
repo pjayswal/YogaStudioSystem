@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
@@ -14,9 +15,9 @@ public class Faculty extends Person {
 	private String bio;
 	@OneToMany(mappedBy="advisor")
 	private List<Customer> advisees=new ArrayList<Customer>();
-	@OneToMany(mappedBy="faculty")
+	@OneToMany(mappedBy="faculty",fetch=FetchType.EAGER)
 	private List<Section> takingSections=new ArrayList<Section>();
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="faculty_id")
 	private List<Waiver> waiverRequests=new ArrayList<Waiver>();
 	
