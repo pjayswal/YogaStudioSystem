@@ -43,14 +43,12 @@ public class CustomerService implements ICustomerService {
 		customerDAO.update(customer);
 	}
 
-	public void disableCustomer(String username) {
-		Customer customer = customerDAO.getCustomer(username);
+	public void disableCustomer(Customer customer) {
 		customer.getUser().setEnabled(false);
 		customerDAO.update(customer);
 	}
 
-	public void assignAdvisor(String username, Faculty faculty) {
-		Customer customer = customerDAO.getCustomer(username);
+	public void assignAdvisor(Customer customer, Faculty faculty) {
 		customer.setAdvisor(faculty);
 	}
 
@@ -60,8 +58,7 @@ public class CustomerService implements ICustomerService {
 
 	}
 
-	public void enrollSection(String username, Section section) {
-		Customer customer = customerDAO.getCustomer(username);
+	public void enrollSection(Customer customer, Section section) {
 		List<Faculty> faculty = facultyDAO.getAll();
 
 		if (customer.getAdvisor() == null) {
@@ -71,9 +68,8 @@ public class CustomerService implements ICustomerService {
 		sectionDAO.update(section);
 	}
 
-	public List<Course> getUnfullfilledPrerequisites(String username,
+	public List<Course> getUnfullfilledPrerequisites(Customer customer,
 			Section section) {
-		Customer customer = customerDAO.getCustomer(username);
 		List<Section> customerSections = customer.getEnrolledSections();
 		List<Waiver> customerWaivers = customer.getWaivers();
 
@@ -95,8 +91,7 @@ public class CustomerService implements ICustomerService {
 
 	}
 
-	public void withdrawSection(String username, Section section) {
-		Customer customer = customerDAO.getCustomer(username);
+	public void withdrawSection(Customer customer, Section section) {
 		section.getEnrolledCustomers().remove(customer);
 		customer.getEnrolledSections().remove(section);
 		sectionDAO.update(section);
@@ -104,21 +99,18 @@ public class CustomerService implements ICustomerService {
 
 	}
 
-	public void addWaiverRequest(String username, Waiver waiver) {
-		Customer customer = customerDAO.getCustomer(username);
+	public void addWaiverRequest(Customer customer, Waiver waiver) {
 		List<Faculty> faculty = facultyDAO.getAll();
 
 		if (customer.getAdvisor() == null) {
 			customer.setAdvisor(faculty.get(0));
 		}
-		
 		customer.addWaiver(waiver);
 		waiver.setStatus(Waiver.STATUS_WAIVED);
-		
 		customerDAO.update(customer);
 	}
 
-	public void requestWaitingList(String username, Section section) {
+	public void requestWaitingList(Customer customer, Section section) {
 		// TODO Auto-generated method stub
 
 	}

@@ -2,6 +2,8 @@ package org.ys.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,6 @@ import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
 import org.ys.commons.Course;
 import org.ys.commons.Customer;
-import org.ys.commons.Product;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
 import org.ys.helper.SectionDataSet;
@@ -27,35 +28,11 @@ public class CustomerController {
 	@Autowired
 	private IAdminService adminService;
 
-	/**
-	 * get Registration form
-	 *
-	 * @param model
-	 * @return form for adding customer
-	 */
-	@RequestMapping(value = "/register/", method = RequestMethod.GET)
-	public String getRegistrationForm(Model model) {
-		model.addAttribute("customer", new Customer());
-		return "customer/registration";
-	}
-
-	/**
-	 *
-	 * @param customer
-	 * @param result
-	 * @return
-	 */
-	@RequestMapping(value = "/register/submit", method = RequestMethod.POST)
-	public String createorUpdateCustomer(Model model,
-			@ModelAttribute("customer") Customer customer, BindingResult result) {
-		customerService.addCustomer(customer);
-		return "redirect:../../section/";
-	}
-
 	@RequestMapping(value = "/section/")
-	public String getAvailableSections(Model model) {
+	public String getAvailableSections(Model model, HttpServletRequest request) {
 		model.addAttribute("sections", adminService.getSections());
-		Customer customer = customerService.getCustomer(1);
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		List<SectionDataSet> sectionDataSet = customerService
 				.getSections(customer);
 		model.addAttribute("customer", customer);
@@ -71,11 +48,13 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/enroll/{id}", method = RequestMethod.GET)
-	public String enrollSection(@PathVariable long id, Model model) {
-		Customer customer = customerService.getCustomer(1);
-		String username = customer.getUser().getUsername();
+	public String enrollSection(@PathVariable long id, Model model,
+			HttpServletRequest request) {
+
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		Section section = adminService.getSection(id);
-		customerService.enrollSection(username, section);
+		customerService.enrollSection(customer, section);
 		return "redirect:../section/";
 	}
 
@@ -87,18 +66,19 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/withdraw/", method = RequestMethod.GET)
-	public String getEnrolledSection(Model model) {
-		model.addAttribute("sections", customerService.getCustomer(1)
-				.getEnrolledSections());
+	public String getEnrolledSection(Model model,HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+		model.addAttribute("sections", customer.getEnrolledSections());
 		return "customer/withdrawlist";
 	}
 
 	@RequestMapping(value = "/withdraw/{id}", method = RequestMethod.GET)
-	public String withdrawSection(@PathVariable long id, Model model) {
-		Customer customer = customerService.getCustomer(1);
-		String username = customer.getUser().getUsername();
+	public String withdrawSection(@PathVariable long id, Model model,
+			HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		Section section = adminService.getSection(id);
-		customerService.withdrawSection(username, section);
+		customerService.withdrawSection(customer, section);
 		return "redirect:../withdraw/";
 	}
 
@@ -110,16 +90,17 @@ public class CustomerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/waiver/{id}", method = RequestMethod.GET)
-	public String waiveSectionList(@PathVariable long id, Model model) {
+	public String waiveSectionList(@PathVariable long id, Model model,
+			HttpServletRequest request) {
 		Section section = adminService.getSection(id);
-		Customer customer=customerService.getCustomer(1);
-		SectionDataSet sectionDataSet=new SectionDataSet(customer, section);
-		List<Course> courses=sectionDataSet.getUnfullfilledPrerequisites();
-		//model.addAttribute(sectionDataSet);
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+		SectionDataSet sectionDataSet = new SectionDataSet(customer, section);
+		List<Course> courses = sectionDataSet.getUnfullfilledPrerequisites();
+		// model.addAttribute(sectionDataSet);
 		model.addAttribute("waiver", new Waiver());
 		model.addAttribute(section);
 		model.addAttribute("courses", courses);
-		//model.addAttribute("waiver", new Waiver());
+		// model.addAttribute("waiver", new Waiver());
 		return "customer/waiverlist";
 	}
 
@@ -131,12 +112,12 @@ public class CustomerController {
 	 */
 	@RequestMapping(value = "/waiverform/{id}", method = RequestMethod.GET)
 	public String getWaiverForm(@PathVariable long id, Model model) {
-		Course course=adminService.getCourse(id);
+		Course course = adminService.getCourse(id);
 		model.addAttribute(course);
 		model.addAttribute("waiver", new Waiver());
 		return "customer/waiver";
 	}
-	
+
 	/**
 	 * 
 	 * @param waiver
@@ -145,10 +126,10 @@ public class CustomerController {
 	 */
 	@RequestMapping(value = "/waiverform/add", method = RequestMethod.POST)
 	public String createWaiver(@ModelAttribute("waiver") Waiver waiver,
-			BindingResult result) {
-		Customer customer = customerService.getCustomer(1);
-		String username = customer.getUser().getUsername();
-		customerService.addWaiverRequest(username, waiver);
+			BindingResult result, HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
+		customerService.addWaiverRequest(customer, waiver);
 		return "redirect:../section/";
 	}
 }

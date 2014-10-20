@@ -28,16 +28,16 @@ public class LoginController {
 		User  user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username =user.getUsername();
 		if(request.isUserInRole(Role.ROLE_CUSTOMER)){
-			Customer customer = adminService.getCustomer(username);
-			request.getSession().setAttribute("customer", customer);
+//			Customer customer = adminService.getCustomer(username);
+//			request.getSession().setAttribute("customer", customer);
 			return "redirect:/customer/home";
 		}
 		else if(request.isUserInRole(Role.ROLE_ADMIN)){
 			return "redirect:/admin/home/";
 		}
 		else if(request.isUserInRole(Role.ROLE_FACULTY)){ 
-			Faculty faculty = adminService.getFaculty(username);
-			request.setAttribute("faculty", faculty);
+//			Faculty faculty = adminService.getFaculty(username);
+//			request.setAttribute("faculty", faculty);
 			return "redirect:/faculty/home";
 		}
 		else

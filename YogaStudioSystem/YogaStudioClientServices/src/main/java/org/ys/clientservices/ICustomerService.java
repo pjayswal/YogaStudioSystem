@@ -15,22 +15,22 @@ public interface ICustomerService {
 
 	public void updateCustomer(Customer customer);
 
-	public void disableCustomer(String username);
+	public void disableCustomer(Customer customer);
 
-	public void assignAdvisor(String username, Faculty advisor);
+	public void assignAdvisor(Customer customer, Faculty advisor);
 
 	public List<Section> getCurrentSections();
 
-	public void enrollSection(String username, Section section);
+	public void enrollSection(Customer customer, Section section);
 
-	public List<Course> getUnfullfilledPrerequisites(String username,
+	public List<Course> getUnfullfilledPrerequisites(Customer customer,
 			Section section);
 
-	public void withdrawSection(String username, Section section);
+	public void withdrawSection(Customer customer, Section section);
 
-	public void addWaiverRequest(String username, Waiver waiver);
+	public void addWaiverRequest(Customer customer, Waiver waiver);
 
-	public void requestWaitingList(String username, Section section);
+	public void requestWaitingList(Customer customer, Section section);
 
 	public Customer getCustomer(long id);
 	
