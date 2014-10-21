@@ -2,6 +2,7 @@ package org.ys.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,10 +62,12 @@ public class CustomerService implements ICustomerService {
 	}
 
 	public void enrollSection(Customer customer, Section section) {
-		List<Faculty> faculty = facultyDAO.getAll();
+		List<Faculty> faculties = facultyDAO.getAll();
+		Random r = new Random();
+		int id = r.nextInt(faculties.size());
 
 		if (customer.getAdvisor() == null) {
-			customer.setAdvisor(faculty.get(0));
+			customer.setAdvisor(faculties.get(id));
 		}
 		section.addEnrolledCustomers(customer);
 		sectionDAO.update(section);
