@@ -19,6 +19,7 @@ import org.ys.commons.Admin;
 import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Role;
+import org.ys.commons.ShoppingCart;
 import org.ys.services.AdminService;
 
 public class SessionFilter implements Filter {
@@ -58,6 +59,12 @@ public class SessionFilter implements Filter {
 							faculty);
 				}
 				
+			}
+			else{
+				Customer customer = new Customer();
+				customer.setShoppingCart(new ShoppingCart());
+				httpRequest.getSession().setAttribute("loggedInUser",
+						customer);
 			}
 		}
 

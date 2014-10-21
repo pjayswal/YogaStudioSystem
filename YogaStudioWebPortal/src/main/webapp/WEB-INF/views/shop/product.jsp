@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -98,7 +100,12 @@
                           </tr>
                           <tr>
                               <td colspan="3" align="right">
+                               <sec:authorize access="isAuthenticated()">
                                 <a href="../cart/${product.id}" class="btn btn-sm btn-success">Add to Cart</a>
+                                </sec:authorize>
+                                 <sec:authorize access="isAnonymous()">
+                    				 <a href="../../login" class="btn btn-sm btn-success">Add to Cart</a>    
+                				</sec:authorize>  
                               </td>  
                           </tr>
                         </tbody>

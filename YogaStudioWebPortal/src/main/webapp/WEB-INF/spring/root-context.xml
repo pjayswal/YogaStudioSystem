@@ -61,7 +61,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">5</prop>
 				<prop key="hibernate.show_sql">true</prop>
@@ -113,7 +113,8 @@
 	<sec:http auto-config="true" use-expressions="true">
  
 		<sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
- 
+ 		<sec:intercept-url pattern="/faculty/**" access="ROLE_FACULTY" />
+ 		<sec:intercept-url pattern="/faculty/**" access="ROLE_ADMIN" />
 		<!-- access denied page -->
 <!-- 		<sec:access-denied-handler error-page="/403" /> -->
 
@@ -124,7 +125,7 @@
 			authentication-failure-url="/login.jsp?error='login failed'"
 			username-parameter="username"
 			password-parameter="password" />
-		<sec:logout logout-success-url="/login.jsp?logout"
+		<sec:logout logout-success-url="/"
 			delete-cookies="JSESSIONID" logout-url="/j_spring_security_logout" />
 		<!-- enable csrf protection -->
 <!-- 		 <sec:csrf/>  -->
