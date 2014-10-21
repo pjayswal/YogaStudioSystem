@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -98,7 +97,7 @@
 					<label class="col-sm-2 control-label">Date of Birth:</label>
 					<div class="col-sm-7">
 						<form:input type="date" cssClass="form-control" id="dob"
-							path="dob" placeholder="date of birth" />
+							path="dob" value="${fn:replace(faculty.dob,'-','/')}" placeholder="date of birth" />
 					</div>
 					<div class="col-sm-3">
 						<form:errors path="dob" cssClass="error" />
