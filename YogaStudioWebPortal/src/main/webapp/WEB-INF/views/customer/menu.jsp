@@ -35,19 +35,31 @@
 				<li class="dropdown"><a href="<c:url value="/customer/home" />">HOME</a></li>
 				<li class="dropdown"><a href="about-us">ABOUT US</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">PROFILE</a>
+					<ul class="dropdown-menu">
+						<li><a href="<c:url value="/customer/update/" />">VIEW PROFILE</a></li>
+						<li class="divider"></li>
+						<li><a href="<c:url value="/customer/update/" />">UPDATE PROFILE</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">COURSE</a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/customer/section/" />">SECTION
 								LIST</a></li>
 					</ul></li>
-				<li class="dropdown"><a href="about-us">SHOP</a></li>
+				<li class="dropdown"><a href="<c:url value="/shop/" />">SHOP</a></li>
 				<li class="dropdown"><a href="faq">FAQ</a></li>
 				<li class="dropdown"><a href="contact-us">CONTACT US</a></li>
 			</ul>
+
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/login" />">MY
-						YOGA <b class="glyphicon glyphicon-play"></b>
+				<li class="dropdown"><a href="<c:url value="/register/" />">REGISTER
+						<b class="glyphicon glyphicon-play"></b>
 				</a></li>
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a href="<c:url value="/login" />">LOGIN <b class="glyphicon glyphicon-play"></b></a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->

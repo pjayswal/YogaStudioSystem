@@ -39,6 +39,10 @@ ul, ol {
 	margin-left:10px !important;
 }
 
+.margin_left_20  {
+	margin-left:20px !important;
+}
+
 .padding_top_zero {
 	padding-top:0px !important;
 }
@@ -48,7 +52,7 @@ ul, ol {
 }
 
 .text_decoration_underline {
-	text-decoration:underline;
+	text-decoration:underline !important;;
 }
 
 /* CUSTOMIZE THE HEADER

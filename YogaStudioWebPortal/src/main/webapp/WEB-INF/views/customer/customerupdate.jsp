@@ -9,14 +9,20 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Welcome to Customer</title>
+<title>Update Profile</title>
 </head>
-<br>
-<br>
-<br>
-<br>
-<div class="container">
-	<form:form class="form-horizontal" role="form" commandName="customer"
+
+<body>
+
+	<div class="container">
+
+		<jsp:include page="menu.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+		<h2 class="text-center login-title">Update Profile</h2>
+		<div class="margin_top_20">
+			<form:form class="form-horizontal" role="form" commandName="customer"
 		action="add" method="post">
 
 		<div class="form-group">
@@ -103,8 +109,21 @@
 			</div>
 
 	</form:form>
+		</div>
 
-</div>
 
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
 </html>
