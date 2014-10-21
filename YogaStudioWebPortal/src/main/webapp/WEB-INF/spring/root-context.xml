@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-	xmlns:sec="http://www.springframework.org/schema/security"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:beans="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
@@ -13,14 +11,14 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-4.1.xsd">
-	
-	
+
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<tx:annotation-driven transaction-manager="txManager"
+	<tx:annotation-driven transaction-manager="txManager"
 		proxy-target-class="true" />
 
 	<context:annotation-config />
-		
+
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -31,22 +29,22 @@
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="annotatedClasses">
 			<list>
-			
+
 				<value>org.ys.commons.Role</value>
 				<value>org.ys.commons.UserCredential</value>
 				<value>org.ys.commons.Person</value>
 				<value>org.ys.commons.Registration</value>
-				
+
 				<value>org.ys.commons.Admin</value>
 				<value>org.ys.commons.Customer</value>
 				<value>org.ys.commons.Faculty</value>
-				
+
 				<value>org.ys.commons.Waiver</value>
-				
+
 				<value>org.ys.commons.Course</value>
 				<value>org.ys.commons.Section</value>
 				<value>org.ys.commons.Semester</value>
-				
+
 				<value>org.ys.commons.Order</value>
 				<value>org.ys.commons.OrderLine</value>
 				<value>org.ys.commons.ShoppingCart</value>
@@ -56,7 +54,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="hibernateProperties"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
@@ -68,67 +66,74 @@
 			</props>
 		</property>
 	</bean>
-	
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="url" value="jdbc:mysql://localhost/yogadb"></property>
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
-	</bean>		
+	</bean>
 	<context:annotation-config />
 	<context:component-scan base-package="org.ys" />
-	
-    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host"><value>smtp.gmail.com</value></property>
-        <property name="port"><value>465</value></property>
-        <property name="protocol"><value>smtp</value></property>
-        <property name="username"><value>pramod.jayswal@gmail.com</value></property>
-        <property name="password"><value>youarenot</value></property>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">false</prop>
-                <prop key="mail.smtp.quitwait">false</prop>
-                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-                <prop key="mail.smtp.socketFactory.fallback">false</prop>
-                <prop key="mail.debug">true</prop>
-            </props>
-        </property>
-    </bean>
-    <bean id="emailTemplate" class="org.springframework.mail.SimpleMailMessage">
-        <property name="from" value="yogastudio.mum@gmail.com" />
-        <property name="to" value="pramod.jayswal@gmail.com" />
-        <property name="subject" value="Testing Subject Line for email senind.." />
-        <property name="text">
-            <value>
+
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>smtp.gmail.com</value>
+		</property>
+		<property name="port">
+			<value>465</value>
+		</property>
+		<property name="protocol">
+			<value>smtp</value>
+		</property>
+		<property name="username">
+			<value>pramod.jayswal@gmail.com</value>
+		</property>
+		<property name="password">
+			<value>youarenot</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">false</prop>
+				<prop key="mail.smtp.quitwait">false</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				<prop key="mail.smtp.socketFactory.fallback">false</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="emailTemplate" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="yogastudio.mum@gmail.com" />
+		<property name="to" value="pramod.jayswal@gmail.com" />
+		<property name="subject" value="Testing Subject Line for email senind.." />
+		<property name="text">
+			<value>
         <![CDATA[
             Dear %s,
             Mail Content : %s
         ]]>
-            </value>
-        </property>
-    </bean>
-	
-	<sec:http auto-config="true" use-expressions="true">
- 
-		<sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
- 		<sec:intercept-url pattern="/faculty/**" access="ROLE_FACULTY" />
- 		<sec:intercept-url pattern="/faculty/**" access="ROLE_ADMIN" />
-		<!-- access denied page -->
-<!-- 		<sec:access-denied-handler error-page="/403" /> -->
+			</value>
+		</property>
+	</bean>
 
- 		
-		<sec:form-login 
-		    login-page="/login.jsp" 
-		    default-target-url="/processlogin" 
-			authentication-failure-url="/login.jsp?error='login failed'"
-			username-parameter="username"
-			password-parameter="password" />
-		<sec:logout logout-success-url="/"
-			delete-cookies="JSESSIONID" logout-url="/j_spring_security_logout" />
+	<sec:http auto-config="true" use-expressions="true">
+
+		<sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/faculty**" access="hasRole('ROLE_FACULTY')" />
+
+		<!-- access denied page -->
+		<!-- <sec:access-denied-handler error-page="/403" /> -->
+
+
+		<sec:form-login login-page="/login.jsp"
+			default-target-url="/processlogin" authentication-failure-url="/login.jsp?error='login failed'"
+			username-parameter="username" password-parameter="password" />
+		<sec:logout logout-success-url="/" delete-cookies="JSESSIONID"
+			logout-url="/j_spring_security_logout" />
 		<!-- enable csrf protection -->
-<!-- 		 <sec:csrf/>  -->
+		<!-- <sec:csrf/> -->
 	</sec:http>
 
 	<bean id="webexpressionHandler"
@@ -137,10 +142,8 @@
 	<sec:authentication-manager>
 		<sec:authentication-provider>
 			<sec:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query=
-				"select username,password, enabled from user where username=?"
-				authorities-by-username-query=
-				"select u.username, r.role from user u,user_role ur,role r where u.username =? and u.username=ur.username and ur.role_id=r.id " />
+				users-by-username-query="select username,password, enabled from user where username=?"
+				authorities-by-username-query="select u.username, r.role from user u,user_role ur,role r where u.username =? and u.username=ur.username and ur.role_id=r.id " />
 
 		</sec:authentication-provider>
 	</sec:authentication-manager>

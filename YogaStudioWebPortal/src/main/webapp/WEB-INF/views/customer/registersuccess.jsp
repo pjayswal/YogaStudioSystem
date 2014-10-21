@@ -8,24 +8,36 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Registration Success</title>
+<title>Yoga Studio Registration Success</title>
 </head>
 
 <body>
-	<br>
-	<br>
-	<br>
-	<div class="navbar navbar-inverse navbar-default" role="navigation">
-		<div class="container">
-			<a class="navbar-brand" href="<c:url value=" /index.jsp"/>">Home</a>
-			<label class="navbar-brand"><strong>Registration Success</strong></label>
-		</div>
-	</div>
+
 	<div class="container">
-	<h1>${welcomeMessage}</h1>
-	<h5>An Email is sent to your email to your account verify y</h5>
-		<footer>
-			<p>&copy; Yoga Studio Portal 2014</p>
-		</footer>
+
+		<jsp:include page="menu.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+		<h2 class="text-center login-title">Yoga Studio Registration Success</h2>
+		<div class="panel panel-primary margin_top_20">
+			<h1>${welcomeMessage}</h1>
+			<h5 class="text-center">An Email is sent to your email to your account verify.</h5>
+		</div>
+
+
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
 	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
+</html>
