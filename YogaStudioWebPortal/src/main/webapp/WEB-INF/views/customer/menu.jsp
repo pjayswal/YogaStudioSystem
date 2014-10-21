@@ -45,7 +45,7 @@
 				<li class="dropdown"><a href="contact-us">CONTACT US</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/login.jsp" />">MY
+				<li class="dropdown"><a href="<c:url value="/login" />">MY
 						YOGA <b class="glyphicon glyphicon-play"></b>
 				</a></li>
 			</ul>

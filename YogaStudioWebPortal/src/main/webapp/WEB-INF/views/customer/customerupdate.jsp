@@ -65,7 +65,7 @@
 			<label class="col-sm-2 control-label">Date of Birth:</label>
 			<div class="col-sm-7">
 				<form:input type="date" cssClass="form-control" id="dob"
-					path="dob" autocomplete="on" value="${customer.getDob()}" />
+					path="dob" autocomplete="on" value="${fn:replace(customer.getDob(),'-','/')}"/>
 			</div>
 			<div class="col-sm-3">
 				<form:errors path="dob" cssClass="error" />
