@@ -3,6 +3,7 @@ package org.ys.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
 import org.ys.commons.Course;
 import org.ys.commons.Customer;
+import org.ys.commons.Faculty;
 import org.ys.commons.Section;
 import org.ys.commons.Waiver;
 import org.ys.helper.SectionDataSet;
@@ -139,4 +141,42 @@ public class CustomerController {
 		customerService.addWaiverRequest(customer, waiver);
 		return "redirect:../section/";
 	}
+
+	/**
+	 * customer update
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/update/", method = RequestMethod.GET)
+	public String customerUpdate(Model model, HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
+		model.addAttribute("user", customer.getUser());
+		model.addAttribute("customer", customer);
+		return "customer/customerupdate";
+	}
+
+	/**
+	 * 
+	 * @param customer
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/update/add", method = RequestMethod.POST)
+	public String updateCustomer(
+			@Valid @ModelAttribute("customer") Customer customer,
+			BindingResult result, HttpServletRequest request) {
+		Customer oldCustomer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
+		oldCustomer.setName(customer.getName());
+		oldCustomer.setEmail(customer.getEmail());
+		oldCustomer.setPhone(customer.getPhone());
+		oldCustomer.setDob(customer.getDob());
+		oldCustomer.getUser().setPassword(customer.getUser().getPassword());
+		customerService.updateCustomer(oldCustomer);
+		return "redirect:../section/";
+	}
+
 }
