@@ -22,7 +22,7 @@
 		</jsp:include>
 
 		<h2 class="text-center login-title">Registration to Yoga Studio</h2>
-		<div class="margin_top_20">
+		<div class="panel panel-primary margin_top_20">
 			<form:form class="form-horizontal" role="form" commandName="customer"
 				action="./submit/" method="post">
 

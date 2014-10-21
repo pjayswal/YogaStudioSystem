@@ -10,33 +10,38 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Waiver List</title>
+<title>Yoga Studio : Waiver List</title>
 </head>
-<br>
-<br>
-<br>
-<br>
-<div class="panel panel-primary">
-	<div class="panel-heading">Prerequisites for the course:
-		${section.course.name}</div>
-	<div class="panel-body">
-		<table data-toggle="table" class="table table-hover">
-			<thead>
-				<tr>
-					<th>Course</th>
-					<th>Course Code</th>
-					<th>Description</th>
-					<th>Apply for Waiver</th>
-				</tr>
-			</thead>
 
-			<c:forEach var="course" items="${courses}">
-				<tbody>
-					<tr>
-						<td>${course.name}</td>
-						<td>${course.code}</td>
-						<td>${course.description}</td>
-<%-- 						<form:form class="form-horizontal" role="form"
+<body>
+
+	<div class="container">
+
+		<jsp:include page="menu.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+		<div class="panel panel-primary margin_top_20">
+			<div class="panel-heading">Prerequisites for the course:
+				${section.course.name}</div>
+			<div class="panel-body">
+				<table data-toggle="table" class="table table-hover">
+					<thead>
+						<tr>
+							<th>Course</th>
+							<th>Course Code</th>
+							<th>Description</th>
+							<th>Apply for Waiver</th>
+						</tr>
+					</thead>
+
+					<c:forEach var="course" items="${courses}">
+						<tbody>
+							<tr>
+								<td>${course.name}</td>
+								<td>${course.code}</td>
+								<td>${course.description}</td>
+								<%-- 						<form:form class="form-horizontal" role="form"
 							commandName="waiver" action="./waive/" method="post">
 
 							<div class="form-group">
@@ -70,14 +75,27 @@
 
 						</form:form>
 	 --%>
-	 <td><a href="../waiverform/${course.id}">Waive</a></td>
-					</tr>
-				</tbody>
-			</c:forEach>
-		</table>
+								<td><a href="../waiverform/${course.id}">Waive</a></td>
+							</tr>
+						</tbody>
+					</c:forEach>
+				</table>
+
+			</div>
+		</div>
+
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
 
 	</div>
-</div>
+	<!-- /container -->
 
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
 </html>

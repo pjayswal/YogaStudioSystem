@@ -31,7 +31,7 @@
 							<th>Course</th>
 							<th>Faculty</th>
 							<th>Available Seats</th>
-							<th>Enroll</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 

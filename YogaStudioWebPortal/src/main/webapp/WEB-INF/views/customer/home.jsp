@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -16,7 +19,7 @@
 		<jsp:include page="menu.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
-		
+
 		<!-- Carousel
 	================================================== -->
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -30,7 +33,8 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="../resources/images/stock-photo-banner.jpg"
+					<img
+						src="<c:url value="/resources/images/stock-photo-banner.jpg" />"
 						alt="First slide">
 					<div class="container">
 						<div class="carousel-caption">
@@ -48,7 +52,8 @@
 					</div>
 				</div>
 				<div class="item">
-					<img src="../resources/images/stock-photo-banner2.jpg"
+					<img
+						src="<c:url value="/resources/images/stock-photo-banner2.jpg" />"
 						alt="Second slide">
 					<div class="container">
 						<div class="carousel-caption">
@@ -66,7 +71,8 @@
 					</div>
 				</div>
 				<div class="item">
-					<img src="../resources/images/stock-photo-banner3.jpg"
+					<img
+						src="<c:url value="/resources/images/stock-photo-banner3.jpg" />"
 						alt="Third slide">
 					<div class="container">
 						<div class="carousel-caption">
@@ -83,7 +89,7 @@
 					</div>
 				</div>
 				<!--<div class="item">
-		  <img src="../resources/images/stock-photo-banner4.jpg" alt="Fourth slide">
+		  <img src="<c:url value="/resources/images/stock-photo-banner4.jpg" />" alt="Fourth slide">
 		  <div class="container">
 			<div class="carousel-caption"> -->
 				<!--<h2>Section Title4</h2>-->
@@ -93,7 +99,8 @@
 		  </div>
 		</div>-->
 				<div class="item">
-					<img src="../resources/images/stock-photo-banner5.jpg"
+					<img
+						src="<c:url value="/resources/images/stock-photo-banner5.jpg" />"
 						alt="Fifth slide">
 					<div class="container">
 						<div class="carousel-caption">
@@ -122,7 +129,8 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="border_small_banner">
-					<img src="../resources/images/stock-photo-small-banner.jpg"
+					<img
+						src="<c:url value="/resources/images/stock-photo-small-banner.jpg" />"
 						class="img-responsive" alt="stock photo small banner" />
 					<div class="image_caption">Lab Spotlight: Argonne – Inert
 						Glove Box</div>
@@ -245,6 +253,6 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
 </html>

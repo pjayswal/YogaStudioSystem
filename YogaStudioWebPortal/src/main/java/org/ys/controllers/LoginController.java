@@ -25,16 +25,16 @@ public class LoginController {
 	@RequestMapping(value="/processlogin",method=RequestMethod.GET)
 	public String redirectToSpecificController(Model m,HttpServletRequest request){
 		if(request.isUserInRole(Role.ROLE_CUSTOMER)){
-			return "redirect:/customer/section/";
+			return "redirect:/customer/home";
 		}
 		else if(request.isUserInRole(Role.ROLE_ADMIN)){
-			return "redirect:/admin/home";
+			return "redirect:/admin/";
 		}
 		else if(request.isUserInRole(Role.ROLE_FACULTY)){ 
 			return "redirect:/faculty/home";
 		}
 		else
-			return "redirect:/home.html";
+			return "redirect:/";
 		
 	}
 	

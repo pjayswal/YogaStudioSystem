@@ -37,7 +37,7 @@
 							name="${_csrf.parameterName}" value="${_csrf.token}" />
 					</form>
 				</div>
-				<a href="#" class="text-center new-account">Create an account </a>
+				<a href="<c:url value="/register/" />">Create an account</a>
 			</div>
 		</div>
 

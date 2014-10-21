@@ -58,15 +58,16 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/register/" />">REGISTER
-						<b class="glyphicon glyphicon-play"></b>
-				</a></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/login" />">LOGIN
-						<b class="glyphicon glyphicon-play"></b>
-				</a></li>
+				<sec:authorize access="isAnonymous()">
+					<li class="dropdown"><a href="<c:url value="/login" />">LOGIN
+							<b class="glyphicon glyphicon-play"></b>
+					</a></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="dropdown"><a
+						href="<c:url value="/j_spring_security_logout" />">LOGOUT <b
+							class="glyphicon glyphicon-play"></b></a></li>
+				</sec:authorize>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
