@@ -37,15 +37,20 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">PROFILE</a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/customer/update/" />">VIEW PROFILE</a></li>
+						<li><a href="<c:url value="/customer/update/" />">VIEW
+								PROFILE</a></li>
 						<li class="divider"></li>
-						<li><a href="<c:url value="/customer/update/" />">UPDATE PROFILE</a></li>
+						<li><a href="<c:url value="/customer/update/" />">UPDATE
+								PROFILE</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">COURSE</a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/customer/section/" />">SECTION
 								LIST</a></li>
+						<li class="divider"></li>
+						<li><a href="<c:url value="/customer/withdraw/" />">WIDTHRAW
+								SECTION</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="<c:url value="/shop/" />">SHOP</a></li>
 				<li class="dropdown"><a href="faq">FAQ</a></li>
@@ -57,9 +62,11 @@
 						<b class="glyphicon glyphicon-play"></b>
 				</a></li>
 			</ul>
-			
+
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/login" />">LOGIN <b class="glyphicon glyphicon-play"></b></a></li>
+				<li class="dropdown"><a href="<c:url value="/login" />">LOGIN
+						<b class="glyphicon glyphicon-play"></b>
+				</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
