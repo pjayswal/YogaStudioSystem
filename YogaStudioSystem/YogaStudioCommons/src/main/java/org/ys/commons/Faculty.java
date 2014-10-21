@@ -15,9 +15,9 @@ public class Faculty extends Person {
 	private String bio;
 	@OneToMany(mappedBy="advisor")
 	private List<Customer> advisees=new ArrayList<Customer>();
-	@OneToMany(mappedBy="faculty",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="faculty")
 	private List<Section> takingSections=new ArrayList<Section>();
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany
 	@JoinColumn(name="faculty_id")
 	private List<Waiver> waiverRequests=new ArrayList<Waiver>();
 	

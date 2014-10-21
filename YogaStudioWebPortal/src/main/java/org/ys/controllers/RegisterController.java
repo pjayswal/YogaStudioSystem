@@ -7,12 +7,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.ys.clientservices.ICustomerService;
+import org.ys.clientservices.IEmailService;
 import org.ys.commons.Customer;
 @Controller
 public class RegisterController {
 	@Autowired
 	private ICustomerService customerService;
+	@Autowired
+	private IEmailService emailService;
+	
 	
 	/**
 	 * get Registration form
@@ -38,6 +43,13 @@ public class RegisterController {
 		customerService.addCustomer(customer);
 		return "registersuccess";
 	}
+	
+	@RequestMapping(value = "/activate", method = RequestMethod.GET)
+	public String activateCustomer(Model model, @RequestParam("id") String id) {
+		emailService.enableUser(id);
+		return "redirect:/login";
+	}
+
 
 
 }

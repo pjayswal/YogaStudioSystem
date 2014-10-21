@@ -76,7 +76,39 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
 	</bean>		
+	<context:annotation-config />
+	<context:component-scan base-package="org.ys" />
 	
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host"><value>smtp.gmail.com</value></property>
+        <property name="port"><value>465</value></property>
+        <property name="protocol"><value>smtp</value></property>
+        <property name="username"><value>pramod.jayswal@gmail.com</value></property>
+        <property name="password"><value>youarenot</value></property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">false</prop>
+                <prop key="mail.smtp.quitwait">false</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.fallback">false</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="emailTemplate" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="yogastudio.mum@gmail.com" />
+        <property name="to" value="pramod.jayswal@gmail.com" />
+        <property name="subject" value="Testing Subject Line for email senind.." />
+        <property name="text">
+            <value>
+        <![CDATA[
+            Dear %s,
+            Mail Content : %s
+        ]]>
+            </value>
+        </property>
+    </bean>
 	
 	<sec:http auto-config="true" use-expressions="true">
  
@@ -84,7 +116,8 @@
  
 		<!-- access denied page -->
 <!-- 		<sec:access-denied-handler error-page="/403" /> -->
- 
+
+ 		
 		<sec:form-login 
 		    login-page="/login.jsp" 
 		    default-target-url="/login" 
@@ -96,7 +129,7 @@
 		<!-- enable csrf protection -->
 <!-- 		 <sec:csrf/>  -->
 	</sec:http>
-	
+
 	<bean id="webexpressionHandler"
 		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 

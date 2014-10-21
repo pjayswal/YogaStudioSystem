@@ -1,5 +1,6 @@
 package org.ys.commons;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ public class Product {
 	private String name;
 	@NotEmpty(message="description is required")
 	private String description;
+	@Column(columnDefinition="longblob")
 	private byte[] picture;
 	@Min(value=0,message="minimum price to be set is 0")
 	private double price;

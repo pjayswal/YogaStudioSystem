@@ -10,12 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.ys.clientservices.IAdminService;
@@ -24,9 +20,9 @@ import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Role;
 import org.ys.services.AdminService;
-@Controller
+
 public class SessionFilter implements Filter {
-	@Autowired
+	
 	private IAdminService adminService;
 
 	@Override
@@ -61,6 +57,7 @@ public class SessionFilter implements Filter {
 					httpRequest.getSession().setAttribute("loggedInUser",
 							faculty);
 				}
+				
 			}
 		}
 
