@@ -1,20 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html >
 <html>
 <head>
 <jsp:include page="header.jsp">
-<jsp:param value="a" name="a"/>
+	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Welcome to Administration</title>
+<title>Welcome to Yoga Studio</title>
 </head>
-<body>	.<br/>
-	.<br/>.
-	<h3 class="text-center login-title"><a href="${category.id}">Welcome to Yoga Studio's Online Shop</a></h3><br/>
-<div class="container theme-showcase" role="main"> 
-	 <!-- begin:product-category --> 
+
+<body>
+
+	<div class="container">
+
+		<jsp:include page="menu.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+	<br/>
+	  <!-- begin:product-category --> 
         <div class="col-sm-2">
           <div class="list-group">
           <div class="panel panel-info">
@@ -114,6 +119,23 @@
           </c:if>
 		</div>		
       <!-- end:shopping-cart -->
-</div>
+       
+       
+       
+
+
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="../resources/js/bootstrap.min.js"></script>
 </body>
 </html>

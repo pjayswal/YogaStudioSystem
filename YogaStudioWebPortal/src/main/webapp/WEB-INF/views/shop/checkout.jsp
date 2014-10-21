@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html >
 <html>
@@ -8,17 +9,18 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Customer Registration</title>
+<title>Welcome to Yoga Studio</title>
 </head>
 
 <body>
-	<br>
-	<br>
-	<br>
-
-
 
 	<div class="container">
+
+		<jsp:include page="menu.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
+	<br/>
 			<form:form class="form-horizontal" role="form"
 			action="../pay/" method="post" commandName="order">
         <h3> Checkout: Shipping an Payment information</h3>
@@ -120,18 +122,28 @@
 			
 			
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-3">
-					<button type="submit" class="btn btn-success pull-right">Pay</button>
+				<div class="col-sm-offset-2 col-sm-4">
+					<button type="submit" class="btn btn-primary pull-right">Pay</button>
 				</div>
 			</div>			
 		</form:form>
-		<footer>
-			<p>&copy; Yoga Studio Portal 2014</p>
-		</footer>
+       
+       
+       
+
+
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
+
 	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="../resources/js/bootstrap.min.js"></script>
 </body>
-
-
-
-
-
+</html>
