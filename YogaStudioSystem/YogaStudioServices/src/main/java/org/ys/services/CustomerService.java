@@ -13,6 +13,7 @@ import org.ys.commons.Customer;
 import org.ys.commons.Faculty;
 import org.ys.commons.Role;
 import org.ys.commons.Section;
+import org.ys.commons.ShoppingCart;
 import org.ys.commons.Waiver;
 import org.ys.helper.SectionDataSet;
 import org.ys.idao.ICustomerDAO;
@@ -35,6 +36,7 @@ public class CustomerService implements ICustomerService {
 	public void addCustomer(Customer customer) {
 		Role role = roleDAO.get(Role.ROLE_CUSTOMER_ID);
 		customer.getUser().addRole(role);
+		customer.setShoppingCart(new ShoppingCart());
 		customerDAO.create(customer);
 
 	}
