@@ -10,7 +10,7 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Admin Home</title>
+<title>Add Faculty</title>
 </head>
 
 <body>
@@ -20,7 +20,6 @@
 		<jsp:include page="menu.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
-
 
 		<div class="panel panel-primary margin_top_20">
 			<div class="panel-heading">Add Product Category</div>
@@ -113,7 +112,6 @@
 
 						</div>
 					</div>
-
 
 					<div class="panel panel-default">
 						<div class="panel-heading">Address Information</div>

@@ -9,7 +9,8 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Admin Home</title>
+<title>List Product</title>
+
 </head>
 
 <body>
@@ -56,6 +57,9 @@
 		<a href="../product/add?category_id=${category.id}">
 			<button type="button" class="btn btn-success">Add Product</button>
 		</a>
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
 	</div>
 	<!-- /container -->
 

@@ -56,7 +56,7 @@
                     <li class="dropdown"><a href="<c:url value="/login" />">LOGIN <b class="glyphicon glyphicon-play"></b></a></li>    
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-                    <li class="dropdown"><a href="<c:url value="/j_spring_security_logout" />" >Logout <b class="glyphicon glyphicon-play"></b></a></li>    
+                    <li class="dropdown"><a href="<c:url value="/j_spring_security_logout" />" >LOGOUT <b class="glyphicon glyphicon-play"></b></a></li>    
             </sec:authorize>
               
 			

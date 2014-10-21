@@ -10,7 +10,7 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Admin Home</title>
+<title>Add Product</title>
 </head>
 
 <body>
@@ -90,12 +90,12 @@
 			</div>
 		</div>
 
-	<jsp:include page="footer.jsp">
-		<jsp:param value="a" name="a" />
-	</jsp:include>
+		<jsp:include page="footer.jsp">
+			<jsp:param value="a" name="a" />
+		</jsp:include>
 
 	</div>
-	
+
 	<!-- /container -->
 
 
