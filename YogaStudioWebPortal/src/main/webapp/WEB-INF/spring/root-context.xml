@@ -120,7 +120,7 @@
  		
 		<sec:form-login 
 		    login-page="/login.jsp" 
-		    default-target-url="/login" 
+		    default-target-url="/processlogin" 
 			authentication-failure-url="/login.jsp?error='login failed'"
 			username-parameter="username"
 			password-parameter="password" />

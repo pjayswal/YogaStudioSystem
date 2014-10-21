@@ -28,7 +28,7 @@ public class LoginController {
 			return "redirect:/customer/section/";
 		}
 		else if(request.isUserInRole(Role.ROLE_ADMIN)){
-			return "redirect:/admin/upload";
+			return "redirect:/admin/home";
 		}
 		else if(request.isUserInRole(Role.ROLE_FACULTY)){ 
 			return "redirect:/faculty/home";
