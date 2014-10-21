@@ -2,6 +2,7 @@ package org.ys.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,12 @@ public class ShoppingController {
 	private IShoppingService shoppingService;
 	
 	@RequestMapping(value="/")
-	public String home(Model model){
+	public String home(Model model,HttpServletRequest request){
 		//shoppingService.createSC();
 		List<Category> categories = shoppingService.getCategories();
 		List<Product> products = shoppingService.getProducts();
-		List<OrderLine> orderLines = shoppingService.getCart(shoppingService.getCustomer(98304));
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+		List<OrderLine> orderLines = shoppingService.getCart(customer);
 		model.addAttribute("categories", categories);
 		model.addAttribute("products", products);
 		model.addAttribute("orderLines", orderLines);
@@ -47,10 +49,11 @@ public class ShoppingController {
 	 * @return the list of products in the category
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String faculties(@PathVariable long id, Model model) {
+	public String faculties(@PathVariable long id, Model model,HttpServletRequest request) {
 		List<Category> categories = shoppingService.getCategories();
 		List<Product> products = shoppingService.getCategoryProducts(id);
-		List<OrderLine> orderLines = shoppingService.getCart(shoppingService.getCustomer(98304));
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+		List<OrderLine> orderLines = shoppingService.getCart(customer);
 		model.addAttribute("orderLines", orderLines);
 		model.addAttribute("categories", categories);
 		model.addAttribute("products", products);
@@ -64,10 +67,11 @@ public class ShoppingController {
 	* @return
 	*/
 	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
-	public String productDetail(@PathVariable long id, Model model) {
+	public String productDetail(@PathVariable long id, Model model,HttpServletRequest request) {
 		List<Category> categories = shoppingService.getCategories();
 		Product product = shoppingService.getProductDetail(id);
-		List<OrderLine> orderLines = shoppingService.getCart(shoppingService.getCustomer(98304));
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
+		List<OrderLine> orderLines = shoppingService.getCart(customer);
 		model.addAttribute("orderLines", orderLines);
 		model.addAttribute("categories", categories);
 		model.addAttribute("product", product);
@@ -79,8 +83,8 @@ public class ShoppingController {
 	 * @return form 
 	 */
 	@RequestMapping(value = "/cart/{id}", method = RequestMethod.GET)
-	public String cartAdd(@PathVariable long id) {
-		Customer customer = shoppingService.getCustomer(98304);
+	public String cartAdd(@PathVariable long id,HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
 		boolean productInCart = false;
 		for(OrderLine orderLine: customer.getShoppingCart().getOrderLines()){
 			if(orderLine.getProduct().getId()==id){
@@ -93,10 +97,12 @@ public class ShoppingController {
 		return "redirect:../cart/";
 	}
 	@RequestMapping(value="/cart/", method = RequestMethod.GET)
-	public String cart(Model model){
+	public String cart(Model model,HttpServletRequest request){
 		//shoppingService.createSC();
 		List<Category> categories = shoppingService.getCategories();
-		List<OrderLine> orderLines = shoppingService.getCart(shoppingService.getCustomer(98304));
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
+		List<OrderLine> orderLines = shoppingService.getCart(customer);
 		model.addAttribute("categories", categories);
 		model.addAttribute("orderLines", orderLines);
 		return "shop/cart";
@@ -106,8 +112,9 @@ public class ShoppingController {
 	 * @return form 
 	 */
 	@RequestMapping(value = "/cart/", method = RequestMethod.POST)
-	public String cartUpdate(Model model, @Valid int id,int quantity) {
-		Customer customer = shoppingService.getCustomer(98304);		
+	public String cartUpdate(Model model, @Valid int id,int quantity,HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		OrderLine orderLine = shoppingService.getOrderLine(id);
 		if (quantity==0) shoppingService.removeFromCart(customer, orderLine);
 		else  shoppingService.updateCartQuantity(customer, orderLine, quantity);
@@ -119,8 +126,9 @@ public class ShoppingController {
 	 * @return form 
 	 */
 	@RequestMapping(value = "/cart/remove/{id}", method = RequestMethod.GET)
-	public String cartRemove(@PathVariable long id) {
-		Customer customer = shoppingService.getCustomer(98304);
+	public String cartRemove(@PathVariable long id,HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute(
+				"loggedInUser");
 		for(OrderLine orderLine: customer.getShoppingCart().getOrderLines()){
 			if(orderLine.getProduct().getId()==id){
 				shoppingService.removeFromCart(customer, orderLine);
@@ -136,8 +144,8 @@ public class ShoppingController {
 	 * @return
 	 */
 	@RequestMapping(value = "/checkout/", method = RequestMethod.GET)
-	public String checkout(Model model) {
-		Customer customer = shoppingService.getCustomer(98304);
+	public String checkout(Model model,HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
 		model.addAttribute("customer", customer);
 		model.addAttribute("order",new Order());
 		return "shop/checkout";
@@ -149,14 +157,14 @@ public class ShoppingController {
 	 * @return
 	 */
 	@RequestMapping(value = "/pay/", method = RequestMethod.POST)
-	public String pay(Model model, @Valid @ModelAttribute("order") Order order, String pmtmthd) {
-		Customer customer = shoppingService.getCustomer(98304);
+	public String pay(Model model, @Valid @ModelAttribute("order") Order order, String pmtmthd,HttpServletRequest request) {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedInUser");
 		order = shoppingService.checkout(order, customer);
 		Payment payment = shoppingService.payment(order, pmtmthd);
 
 		model.addAttribute("customer", customer);
 		model.addAttribute("order",order);
 		model.addAttribute("payment",pmtmthd);
-		return "shop/test";
+		return "shop/success";
 	}
 }

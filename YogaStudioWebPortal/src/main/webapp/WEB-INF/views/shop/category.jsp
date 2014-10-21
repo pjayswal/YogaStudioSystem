@@ -39,7 +39,7 @@
    <c:if test="${count%3==1}" ><div class="row product-container"></c:if>
         <div class="col-md-4 col-sm-3 col-xs-6">
           <div class="thumbnail product-item">
-            <a href="product/${product.id}"><img alt="" src="/YogaStudioWebPortal/resources/img/product2.jpg">
+            <a href="product/${product.id}"><img  src="../admin/productpic/${product.id}">
             <div class="caption"><a href="product/${product.id}">
               ${product.name}</a>
               <p class="product-item-price">$${product.price}</p>

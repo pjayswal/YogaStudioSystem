@@ -52,7 +52,7 @@
           <c:set var = "total" value="${0}"/>        
           <c:forEach var="orderLine" items="${orderLines}">
                 <tr>
-                  <td><img src="/YogaStudioWebPortal/resources/img/product2.jpg" class="img-cart" /></td>
+                  <td><img  src="../../admin/productpic/${orderLine.product.id}" class="img-cart" /></td>
                   <td><strong>${orderLine.product.name}</strong></td>
                   <td>
                     <form class="form-inline" role="form" action="../cart/" method="post">

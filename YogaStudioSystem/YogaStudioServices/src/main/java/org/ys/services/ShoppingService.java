@@ -103,6 +103,8 @@ public class ShoppingService implements IShoppingService{
 		order.setStatus("Ordered");
 		order.setCustomer(customer);
 		order.setOrderLines(customer.getShoppingCart().getOrderLines());
+		order.setTotalAmount(order.computeTotalAmount(customer.getShoppingCart()));
+		customer.getShoppingCart().setOrderLines(null);
 		order.setShippingDate(new Date());
 		orderDAO.create(order);
 		customer.getShoppingCart().setOrderLines(null);
@@ -121,7 +123,7 @@ public class ShoppingService implements IShoppingService{
 	public ShoppingCart createSC() {
 		ShoppingCart cart = new ShoppingCart();
 		shoppingCartDAO.create(cart);
-		Customer customer = customerDAO.get((long) 98304);
+		Customer customer = customerDAO.get((long) 1);
 		customer.setShoppingCart(cart);
 		customerDAO.update(customer);
 		return cart;

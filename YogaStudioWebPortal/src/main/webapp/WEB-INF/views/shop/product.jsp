@@ -52,7 +52,7 @@
                 <div class="col-md-6 col-sm-6">
 
                         <div class="product-single">
-                          <img src="/YogaStudioWebPortal/resources/img/product4.jpg" class="img-responsive">
+                          <img  src="../../admin/productpic/${product.id}" class="img-responsive">
                         </div>
                 </div>
                 <!-- end:product-image-slider -->

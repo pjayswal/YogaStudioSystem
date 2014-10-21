@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -35,7 +36,9 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	@OneToMany
-	@JoinColumn(name="order_id")
+	@JoinTable(name="order_orderline",
+		joinColumns={@JoinColumn(name="cart_id")},
+		inverseJoinColumns={@JoinColumn(name="orderline_id")})
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 	
 
