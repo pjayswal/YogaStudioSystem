@@ -108,7 +108,7 @@
                                 <a href="../cart/${product.id}" class="btn btn-sm btn-success">Add to Cart</a>
                                 </sec:authorize>
                                  <sec:authorize access="isAnonymous()">
-                    				 <a href="../../login" class="btn btn-sm btn-success">Add to Cart</a>    
+                    				 <a href="../../login/" class="btn btn-sm btn-success">Add to Cart</a>    
                 				</sec:authorize>  
                               </td>  
                           </tr>

@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="argonne_logo_img">
-					<a href="<c:url value="/customer/home" />"><img
+					<a href="<c:url value="/customer/home/" />"><img
 						src="<c:url value="/resources/images/yoga-studio-logo.jpg" />"
 						class="img-responsive" alt="logo" /></a>
 				</div>
@@ -32,8 +32,8 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="<c:url value="/customer/home" />">HOME</a></li>
-				<li class="dropdown"><a href="about-us">ABOUT US</a></li>
+				<li class="dropdown"><a href="<c:url value="/customer/home/" />">HOME</a></li>
+				<li class="dropdown"><a href="<c:url value="/about-us/" />">ABOUT US</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">PROFILE</a>
 					<ul class="dropdown-menu">
@@ -53,20 +53,21 @@
 								SECTION</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="<c:url value="/shop/" />">SHOP</a></li>
-				<li class="dropdown"><a href="faq">FAQ</a></li>
-				<li class="dropdown"><a href="contact-us">CONTACT US</a></li>
+				<li class="dropdown"><a href="<c:url value="/faq/" />">FAQ</a></li>
+				<li class="dropdown"><a href="<c:url value="/contact-us/" />">CONTACT US</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/register/" />">REGISTER
-						<b class="glyphicon glyphicon-play"></b>
-				</a></li>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"><a href="<c:url value="/login" />">LOGIN
-						<b class="glyphicon glyphicon-play"></b>
-				</a></li>
+				<sec:authorize access="isAnonymous()">
+					<li class="dropdown"><a href="<c:url value="/login/" />">LOGIN
+							<b class="glyphicon glyphicon-play"></b>
+					</a></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="dropdown"><a
+						href="<c:url value="/j_spring_security_logout" />">LOGOUT <b
+							class="glyphicon glyphicon-play"></b></a></li>
+				</sec:authorize>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
