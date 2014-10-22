@@ -12,6 +12,7 @@ import org.ys.commons.Product;
 import org.ys.commons.Role;
 import org.ys.commons.Section;
 import org.ys.commons.Semester;
+import org.ys.commons.UserCredential;
 
 public interface IAdminService {
 	public void addAdmin(Admin admin);
@@ -65,6 +66,8 @@ public interface IAdminService {
 	public Customer getCustomer(String username);
 	public Faculty getFaculty(String username);
 	public Admin getAdmin(String username);
+	
+	public UserCredential getUser(String username);
 	
 
 }

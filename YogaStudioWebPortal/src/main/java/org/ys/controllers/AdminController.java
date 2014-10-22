@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -35,6 +34,7 @@ import org.ys.commons.Faculty;
 import org.ys.commons.Product;
 import org.ys.commons.Section;
 import org.ys.commons.Semester;
+import org.ys.utils.UserValidator;
 
 @Controller
 @RequestMapping(value = "/admin/")
@@ -82,7 +82,10 @@ public class AdminController {
 			@Valid @ModelAttribute("semester") Semester semester,
 			BindingResult result) {
 		if (result.hasErrors()) {
+			if(semester.getId()!=0)
 			return "admin/semesteradd";
+			else
+				return "admin/semesterupdate";
 		}
 		adminService.addSemester(semester);
 		return "redirect:./";
@@ -198,8 +201,10 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/faculty/add", method = RequestMethod.POST)
 	public String createOrUpdateFaculty(
-			@Valid @ModelAttribute("faculty") Faculty faculty,
+			 @Valid @ModelAttribute("faculty") Faculty faculty,
 			BindingResult result) {
+		UserValidator userValidator = new UserValidator(adminService);
+		userValidator.validate(faculty.getUser(), result);
 		if (result.hasErrors()) {
 			if (faculty.getId() != 0)
 				return "admin/facultyadd";

@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="argonne_logo_img">
-					<a href="<c:url value="/customer/home" />"><img
+					<a href="<c:url value="/admin/home" />"><img
 						src="<c:url value="/resources/images/yoga-studio-logo.jpg" />"
 						class="img-responsive" alt="logo" /></a>
 				</div>
@@ -32,14 +32,12 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="<c:url value="/admin/home" />">HOME</a></li>
+				<li class="dropdown"><a href="<c:url value="/admin/" />">HOME</a></li>
 				<li class="dropdown"><a href="<c:url value="/admin/semester/" />">Semester</a></li>
 				<li class="dropdown"><a href="<c:url value="/admin/course/" />">Course</a></li>
 				<li class="dropdown"><a href="<c:url value="/admin/faculty/" />">Faculty</a></li>
 				<li class="dropdown"><a href="<c:url value="/admin/category/" />">Product Category</a></li>
 				
-				<li class="dropdown"><a href="faq">FAQ</a></li>
-				<li class="dropdown"><a href="contact-us">CONTACT US</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

@@ -17,6 +17,7 @@ import org.ys.commons.Product;
 import org.ys.commons.Role;
 import org.ys.commons.Section;
 import org.ys.commons.Semester;
+import org.ys.commons.UserCredential;
 import org.ys.idao.IAdminDAO;
 import org.ys.idao.ICategoryDAO;
 import org.ys.idao.ICourseDAO;
@@ -264,6 +265,10 @@ public class AdminService implements IAdminService{
 
 	public Admin getAdmin(String username) {
 		return adminDAO.getAdmin(username);
+	}
+
+	public UserCredential getUser(String username) {
+		return userDAO.get(username);
 	}
 
 }

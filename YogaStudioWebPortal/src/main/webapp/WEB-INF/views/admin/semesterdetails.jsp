@@ -65,7 +65,7 @@
 						<label class="col-sm-2 control-label">Start Date: </label>
 						<div class="col-sm-7">
 							<form:input type="date" cssClass="form-control" path="dateFrom"
-								autocomplete="on" value="${semester.dateFrom}" />
+								autocomplete="on" value="${fn:replace(semester.dateFrom,'-','/')}"/>
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="dateFrom" cssClass="error" />
@@ -75,7 +75,7 @@
 						<label class="col-sm-2 control-label">End Date: </label>
 						<div class="col-sm-7">
 							<form:input type="date" cssClass="form-control" path="dateTo"
-								autocomplete="on" value="${semester.dateTo}" />
+								autocomplete="on" value="${fn:replace(semester.dateTo,'-','/')}" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="dateTo" cssClass="error" />
