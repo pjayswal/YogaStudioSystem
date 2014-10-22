@@ -22,7 +22,7 @@ public class FacultyController {
 	@Autowired
 	private IAdminService adminService;
 
-	@RequestMapping(value = "/home")
+	@RequestMapping(value = "/home/")
 	public String getHomePage(Model model, HttpServletRequest request) {
 		return "faculty/home";
 	}

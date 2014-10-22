@@ -40,7 +40,7 @@
 						as Project Proposal.</li>
 					<li>&nbsp;</li>
 					<li><a class="btn btn-lg btn-primary my-yoga-studio"
-						href="<c:url value="/login" />" role="button">MY YOGA <b
+						href="<c:url value="/" />" role="button">MY YOGA <b
 							class="glyphicon glyphicon-play"></b></a></li>
 				</ul>
 			</div>

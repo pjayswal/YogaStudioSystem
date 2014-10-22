@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="argonne_logo_img">
-					<a href="<c:url value="/faculty/home/" />"><img
+					<a href="<c:url value="/" />"><img
 						src="<c:url value="/resources/images/yoga-studio-logo.jpg" />"
 						class="img-responsive" alt="logo" /></a>
 				</div>
@@ -32,36 +32,17 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="<c:url value="/faculty/home/" />">HOME</a></li>
+				<li class="dropdown"><a href="<c:url value="/" />">HOME</a></li>
 				<li class="dropdown"><a href="<c:url value="/about-us/" />">ABOUT US</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">COURSE</a>
-					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/faculty/section/" />">SECTION
-								LIST</a></li>
-						<li class="divider"></li>
-						<li><a href="<c:url value="/faculty/advisees/" />">ADVISEE
-								LIST</a></li>
-						<li class="divider"></li>
-						<li><a href="<c:url value="/faculty/waiver/" />">WAIVER
-								REQUEST</a></li>
-					</ul></li>
+				<li class="dropdown"><a href="<c:url value="/section/" />">COURSE</a></li>
 				<li class="dropdown"><a href="<c:url value="/shop/" />">SHOP</a></li>
 				<li class="dropdown"><a href="<c:url value="/faq/" />">FAQ</a></li>
 				<li class="dropdown"><a href="<c:url value="/contact-us/" />">CONTACT US</a></li>
 			</ul>
-
 			<ul class="nav navbar-nav navbar-right">
-				<sec:authorize access="isAnonymous()">
-					<li class="dropdown"><a href="<c:url value="/login/" />">LOGIN
-							<b class="glyphicon glyphicon-play"></b>
-					</a></li>
-				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
-					<li class="dropdown"><a
-						href="<c:url value="/j_spring_security_logout" />">LOGOUT <b
-							class="glyphicon glyphicon-play"></b></a></li>
-				</sec:authorize>
+				<li class="dropdown"><a href="<c:url value="/login/" />">LOGIN
+						<b class="glyphicon glyphicon-play"></b>
+				</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
