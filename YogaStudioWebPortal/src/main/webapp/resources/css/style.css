@@ -487,7 +487,7 @@ a.my-yoga-studio, a.my-yoga-studio:hover, a.my-yoga-studio:focus {
     font-weight: normal;
     margin-bottom: 5px;
     outline: medium none;
-    padding: 6px 0;
+    /*padding: 6px 0;*/
     vertical-align: middle;
     width: 100%;
 }

@@ -22,10 +22,15 @@ public class FacultyController {
 	@Autowired
 	private IAdminService adminService;
 
+	@RequestMapping(value = "/home/")
+	public String getHomePage(Model model, HttpServletRequest request) {
+		return "faculty/home";
+	}
+
 	@RequestMapping(value = "/section/")
 	public String getTakingSections(Model model, HttpServletRequest request) {
-		Faculty faculty = (Faculty) request.getSession()
-				.getAttribute("loggedInUser");
+		Faculty faculty = (Faculty) request.getSession().getAttribute(
+				"loggedInUser");
 		model.addAttribute("sections",
 				facultyService.getTakingSections(faculty));
 		return "faculty/sectionlist";
@@ -33,16 +38,16 @@ public class FacultyController {
 
 	@RequestMapping(value = "/waiver/")
 	public String getWaiverRequests(Model model, HttpServletRequest request) {
-		Faculty faculty = (Faculty) request.getSession()
-				.getAttribute("loggedInUser");
+		Faculty faculty = (Faculty) request.getSession().getAttribute(
+				"loggedInUser");
 		model.addAttribute("waivers", facultyService.getWaiverRequests(faculty));
 		return "faculty/waiverlist";
 	}
-	
+
 	@RequestMapping(value = "/advisees/")
 	public String getAdvisees(Model model, HttpServletRequest request) {
-		Faculty faculty = (Faculty) request.getSession()
-				.getAttribute("loggedInUser");
+		Faculty faculty = (Faculty) request.getSession().getAttribute(
+				"loggedInUser");
 		model.addAttribute(faculty);
 		model.addAttribute("customers", facultyService.getAdvisees(faculty));
 		return "faculty/adviseelist";

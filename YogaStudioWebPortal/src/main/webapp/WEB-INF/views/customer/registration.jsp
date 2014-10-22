@@ -7,7 +7,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-<jsp:include page="header.jsp">
+<jsp:include page="../header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
 <title>Yoga Studio Customer Registration</title>
@@ -17,11 +17,11 @@
 
 	<div class="container">
 
-		<jsp:include page="menu.jsp">
+		<jsp:include page="../menu.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
 
-		<h2 class="text-center login-title">Registration to Yoga Studio</h2>
+		<h2 class="text-center login-title">Register to Yoga Studio</h2>
 		<div class="panel panel-primary margin_top_20">
 			<form:form class="form-horizontal" role="form" commandName="customer"
 				action="./submit/" method="post">
@@ -163,7 +163,7 @@
 		</div>
 
 
-		<jsp:include page="footer.jsp">
+		<jsp:include page="../footer.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
 

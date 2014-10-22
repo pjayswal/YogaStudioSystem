@@ -3,7 +3,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-<jsp:include page="customer/header.jsp">
+<jsp:include page="/header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
 <title>Yoga Studio : Login</title>
@@ -13,7 +13,7 @@
 	<%=request.getParameter("error")%>
 	<div class="container">
 
-		<jsp:include page="customer/menu.jsp">
+		<jsp:include page="/menu.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
 
@@ -26,22 +26,22 @@
 
 						<input type="text" name="username" class="form-control"
 							placeholder="Username" required autofocus> <input
-							type="password" name="password" class="form-control"
+							type="password" name="password" class="form-control margin_top_10"
 							placeholder="Password" required>
-						<button class="btn btn-lg btn-primary btn-block" type="submit">
+						<button class="btn btn-lg btn-primary btn-block margin_top_10" type="submit">
 							Sign in</button>
 						<label class="checkbox pull-left margin_left_20"> <input type="checkbox"
 							value="remember-me"> Remember me
-						</label> <a href="#" class="pull-right need-help">Need help? </a><span
+						</label> <a href="#" class="pull-right need-help margin_top_10">Need help? </a><span
 							class="clearfix"></span> <input type="hidden"
 							name="${_csrf.parameterName}" value="${_csrf.token}" />
 					</form>
 				</div>
-				<a href="<c:url value="/register/" />">Create an account</a>
+				<a href="<c:url value="/register/" />"><b>Create an account</b></a>
 			</div>
 		</div>
 
-		<jsp:include page="customer/footer.jsp">
+		<jsp:include page="/footer.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
 

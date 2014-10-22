@@ -37,11 +37,11 @@ public class RegisterController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/register/submit", method = RequestMethod.POST)
+	@RequestMapping(value = "/register/submit/", method = RequestMethod.POST)
 	public String createorUpdateCustomer(Model model,
 			@ModelAttribute("customer") Customer customer, BindingResult result) {
 		customerService.addCustomer(customer);
-		return "registersuccess";
+		return "customer/registersuccess";
 	}
 	
 	@RequestMapping(value = "/activate", method = RequestMethod.GET)
