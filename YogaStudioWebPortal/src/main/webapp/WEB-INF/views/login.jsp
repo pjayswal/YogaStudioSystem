@@ -10,7 +10,6 @@
 </head>
 
 <body>
-	<%=request.getParameter("error")%>
 	<div class="container">
 
 		<jsp:include page="/menu.jsp">
