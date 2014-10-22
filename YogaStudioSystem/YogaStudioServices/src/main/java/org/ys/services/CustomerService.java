@@ -111,7 +111,7 @@ public class CustomerService implements ICustomerService {
 			customer.setAdvisor(faculty.get(0));
 		}
 		customer.addWaiver(waiver);
-		waiver.setStatus(Waiver.STATUS_WAIVED);
+		waiver.setStatus(Waiver.STATUS_UNSEEN);
 		customerDAO.update(customer);
 	}
 

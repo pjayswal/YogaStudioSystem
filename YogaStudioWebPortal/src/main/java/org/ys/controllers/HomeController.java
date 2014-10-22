@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.ys.clientservices.IAdminService;
 import org.ys.clientservices.ICustomerService;
 import org.ys.commons.Customer;
+import org.ys.commons.Section;
 import org.ys.helper.SectionDataSet;
 
 /**
@@ -36,7 +37,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
@@ -48,6 +49,14 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 		return "home";
+	}
+
+	@RequestMapping(value = "/section/")
+	public String getAvailableSections(Model model, HttpServletRequest request) {
+		// model.addAttribute("sections", adminService.getSections());
+		List<Section> sections = customerService.getCurrentSections();
+		model.addAttribute("sections", sections);
+		return "/sectionlist";
 	}
 
 }

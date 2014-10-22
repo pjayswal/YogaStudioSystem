@@ -24,7 +24,7 @@ public class EmailAdvice {
 		String name = customer.getName();
 		UUID registrationID = UUID.randomUUID();
 		String activationURL= DataDefinition.INDEX+"activate?id="+registrationID;
-		String content = "Please click on this link to activate you account:\n"+activationURL;
+		String content = "Please click on this link to activate your account:\n"+activationURL;
 		yogaEmailService.sendMail(name, content, new String[]{email});
 		yogaEmailService.addRegistration(new Registration(registrationID, customer.getUser()));
 		System.out.println("Email Sender");

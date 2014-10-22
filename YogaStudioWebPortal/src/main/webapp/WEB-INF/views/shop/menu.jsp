@@ -33,28 +33,30 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="<c:url value="/customer/home/" />">HOME</a></li>
-				<li class="dropdown"><a href="<c:url value="/about-us/" />">ABOUT US</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">PROFILE</a>
-					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/customer/update/" />">VIEW
-								PROFILE</a></li>
-						<li class="divider"></li>
-						<li><a href="<c:url value="/customer/update/" />">UPDATE
-								PROFILE</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">COURSE</a>
-					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/customer/section/" />">SECTION
-								LIST</a></li>
-						<li class="divider"></li>
-						<li><a href="<c:url value="/customer/withdraw/" />">WIDTHRAW
-								SECTION</a></li>
-					</ul></li>
+				<li class="dropdown"><a href="<c:url value="#" />">ABOUT US</a></li>
+				<sec:authorize access="isAnonymous()">
+					<li class="dropdown"><a href="<c:url value="/section/" />">COURSE</a></li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">PROFILE</a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value="/customer/update/" />">UPDATE
+									PROFILE</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">COURSE</a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value="/customer/section/" />">SECTION
+									LIST</a></li>
+							<li class="divider"></li>
+							<li><a href="<c:url value="/customer/withdraw/" />">WIDTHRAW
+									SECTION</a></li>
+						</ul></li>
+				</sec:authorize>
 				<li class="dropdown"><a href="<c:url value="/shop/" />">SHOP</a></li>
-				<li class="dropdown"><a href="<c:url value="/faq/" />">FAQ</a></li>
-				<li class="dropdown"><a href="<c:url value="/contact-us/" />">CONTACT US</a></li>
+				<li class="dropdown"><a href="<c:url value="#" />">FAQ</a></li>
+				<li class="dropdown"><a href="<c:url value="#" />">CONTACT US</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

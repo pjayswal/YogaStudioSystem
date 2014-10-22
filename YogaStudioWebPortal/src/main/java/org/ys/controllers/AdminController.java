@@ -103,7 +103,7 @@ public class AdminController {
 	public String getSemesterDetails(@PathVariable long id, Model model) {
 		Semester semester = adminService.getSemester(id);
 		model.addAttribute("semester", semester);
-		return "admin/semesterdetails";
+		return "admin/semesterupdate";
 	}
 
 	/**
@@ -203,10 +203,12 @@ public class AdminController {
 	public String createOrUpdateFaculty(
 			 @Valid @ModelAttribute("faculty") Faculty faculty,
 			BindingResult result) {
-		UserValidator userValidator = new UserValidator(adminService);
-		userValidator.validate(faculty.getUser(), result);
+		if(faculty.getId()==0){
+			UserValidator userValidator = new UserValidator(adminService);
+			userValidator.validate(faculty.getUser(), result);
+		}
 		if (result.hasErrors()) {
-			if (faculty.getId() != 0)
+			if (faculty.getId() == 0)
 				return "admin/facultyadd";
 			else
 				return "admin/facultyupdate";
@@ -265,8 +267,12 @@ public class AdminController {
 	public String createorUpdateSection(
 			@Valid @ModelAttribute("section") Section section,
 			@RequestParam("semester_id") String id, BindingResult result) {
+		
 		if (result.hasErrors()) {
+			if(section.getId()==0)
 			return "admin/sectionadd";
+			else 
+				return "admin/sectionupdate";
 		}
 		adminService.addSection(section);
 		return "redirect:./?semester_id=" + id;

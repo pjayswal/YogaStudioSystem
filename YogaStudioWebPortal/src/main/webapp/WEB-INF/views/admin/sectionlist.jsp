@@ -45,7 +45,7 @@
 								<td>${section.faculty.name}</td>
 								<td>${fn:length(section.enrolledCustomers)}</td>
 								<td>${section.getAvailSeats()}</td>
-								<td><a href="../section/${section.id}">View Details</a></td>
+								<td><a href="../section/${section.id}">Edit</a></td>
 							</tr>
 						</tbody>
 					</c:forEach>

@@ -96,7 +96,14 @@ public class AdminService implements IAdminService{
 
 	public void addSection(Section section) {
 		if(section.getId()!=0){
-			
+			Section oldSection = sectionDAO.get(section.getId());
+			if(oldSection.getCourse()!=section.getCourse())
+				oldSection.setCourse(section.getCourse());
+			if(oldSection.getFaculty()!=section.getFaculty())
+				oldSection.setFaculty(section.getFaculty());
+			if(oldSection.getTotalSeat()!=section.getTotalSeat())
+				oldSection.setTotalSeat(section.getTotalSeat());
+			sectionDAO.update(oldSection);
 		}
 		else
 			sectionDAO.create(section);

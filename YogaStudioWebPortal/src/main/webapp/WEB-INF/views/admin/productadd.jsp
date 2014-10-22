@@ -32,8 +32,8 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Category: </label>
 						<div class="col-sm-7">
-							<input type="text" value="${category.name}" autocomplete="off"
-								readOnly />
+							<form:input type="text" path="category.name" value="${category.name}" autocomplete="off"
+								readOnly="true" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="name" cssClass="error" />

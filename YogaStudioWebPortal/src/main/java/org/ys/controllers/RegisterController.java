@@ -47,7 +47,7 @@ public class RegisterController {
 	@RequestMapping(value = "/activate", method = RequestMethod.GET)
 	public String activateCustomer(Model model, @RequestParam("id") String id) {
 		emailService.enableUser(id);
-		return "redirect:/login";
+		return "redirect:/login/";
 	}
 
 

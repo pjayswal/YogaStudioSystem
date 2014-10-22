@@ -4,7 +4,8 @@
 
 <STYLE type="text/css">
 .footer, .push {
-	height: 220px; /* .push must be the same height as .footer */
+	/*height: 220px;  .push must be the same height as .footer */
+	margin-top: 100px;
 }
 * {
     margin: 0;

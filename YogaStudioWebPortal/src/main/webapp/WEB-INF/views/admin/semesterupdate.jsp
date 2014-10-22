@@ -10,7 +10,7 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Add Semester</title>
+<title>Update Semeter</title>
 </head>
 
 <body>
@@ -23,16 +23,27 @@
 
 
 		<div class="panel panel-primary margin_top_20">
-			<div class="panel-heading">Add Semester</div>
+			<div class="panel-heading">Update Semester:${semester.name}</div>
 			<div class="panel-body">
 				<form:form class="form-horizontal" role="form"
 					commandName="semester" action="./add" method="post">
 
 					<div class="form-group">
+						<label class="col-sm-2 control-label">Id: </label>
+						<div class="col-sm-7">
+							<form:input type="text" cssClass="form-control" path="id"
+								autocomplete="on" value="${semester.id}" />
+						</div>
+						<div class="col-sm-3">
+							<form:errors path="name" cssClass="error" />
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label class="col-sm-2 control-label">Name: </label>
 						<div class="col-sm-7">
 							<form:input type="text" cssClass="form-control" path="name"
-								placeholder="name" autocomplete="off" />
+								autocomplete="on" value="${semester.name}" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="name" cssClass="error" />
@@ -42,50 +53,55 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Description:</label>
 						<div class="col-sm-7">
-							<form:input type="description" cssClass="form-control"
-								path="description" placeholder="description" autocomplete="off" />
+							<form:input type="text" cssClass="form-control"
+								path="description" value="${semester.description}"
+								autocomplete="on" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="description" cssClass="error" />
 						</div>
 					</div>
-
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Start Date:</label>
+						<label class="col-sm-2 control-label">Start Date: </label>
 						<div class="col-sm-7">
-							<form:input type="date" cssClass="form-control" id="startdate"
-								path="dateFrom" placeholder="starting date" />
+							<form:input type="date" cssClass="form-control" path="dateFrom"
+								autocomplete="on" value="${fn:replace(semester.dateFrom,'-','/')}"/>
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="dateFrom" cssClass="error" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">End Date:</label>
+						<label class="col-sm-2 control-label">End Date: </label>
 						<div class="col-sm-7">
-							<form:input type="date" cssClass="form-control" id="startdate"
-								path="dateTo" placeholder="End date" />
+							<form:input type="date" cssClass="form-control" path="dateTo"
+								autocomplete="on" value="${fn:replace(semester.dateTo,'-','/')}" />
 						</div>
 						<div class="col-sm-3">
 							<form:errors path="dateTo" cssClass="error" />
 						</div>
 					</div>
-
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-success">Save</button>
+							<button type="submit" class="btn btn-success">Update</button>
 						</div>
 					</div>
+					<div class="form-group">
+<!-- 						<div class="col-sm-offset-2 col-sm-10"> -->
+<%-- 							<a href="delete?id=${semester.id}"> --%>
+<!-- 								<button type="button" class="btn btn-primary">Delete</button> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+					</div>
+
 				</form:form>
 			</div>
 		</div>
-
 		<jsp:include page="footer.jsp">
 			<jsp:param value="a" name="a" />
 		</jsp:include>
 
 	</div>
-
 	<!-- /container -->
 
 

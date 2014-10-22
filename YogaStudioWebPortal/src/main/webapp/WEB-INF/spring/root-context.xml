@@ -103,7 +103,7 @@
     <bean id="emailTemplate" class="org.springframework.mail.SimpleMailMessage">
         <property name="from" value="yogastudio.mum@gmail.com" />
         <property name="to" value="pramod.jayswal@gmail.com" />
-        <property name="subject" value="Testing Subject Line for email senind.." />
+        <property name="subject" value="Yoga Studio Account Activation" />
         <property name="text">
             <value>
         <![CDATA[
@@ -117,8 +117,8 @@
 	<sec:http auto-config="true" use-expressions="true">
  
 		<sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
- 		<sec:intercept-url pattern="/faculty/**" access="ROLE_FACULTY" />
- 		<sec:intercept-url pattern="/faculty/**" access="ROLE_ADMIN" />
+ 		<sec:intercept-url pattern="/faculty/**" access="hasRole('ROLE_FACULTY')" />
+ 		
 		<!-- access denied page -->
 <!-- 		<sec:access-denied-handler error-page="/403" /> -->
 

@@ -51,6 +51,15 @@
 								<c:if test="${sectionDataSet.option=='WAIVE'}">
 									<td><a href="../waiver/${sectionDataSet.section.id}">Waive</a></td>
 								</c:if>
+								 <c:if test="${sectionDataSet.option=='PENDING'}">
+									<td>Waiver Request Pending</td>
+								</c:if>
+								<c:if test="${sectionDataSet.option=='ACCEPTED'}">
+									<td><a href="../enroll/${sectionDataSet.section.id}">Enroll</a></td>
+								</c:if>
+								<c:if test="${sectionDataSet.option=='REJECTED'}">
+									<td>Waiver Request Rejected</td>
+								</c:if> 
 							</tr>
 						</tbody>
 					</c:forEach>

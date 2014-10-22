@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -10,22 +9,14 @@
 <jsp:include page="header.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-<title>Update Product</title>
+<title>Welcome to Administration</title>
 </head>
-
-<body>
-
-	<div class="container">
-
-		<jsp:include page="menu.jsp">
-			<jsp:param value="a" name="a" />
-		</jsp:include>
-
-
-		<div class="panel panel-primary margin_top_20">
-			<div class="panel-heading">Update Product Category</div>
-			<div class="panel-body">
-				<form:form class="form-horizontal" role="form" commandName="category"
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<form:form class="form-horizontal" role="form" commandName="category"
 		action="./add" method="post">
 
 		<div class="form-group">
@@ -55,24 +46,17 @@
 				<button type="submit" class="btn btn-success">Update</button>
 			</div>
 		</div>
-		
-
-	</form:form>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<a href="delete?id=${category.id}">
+					<button type="button" class="btn btn-primary">Delete</button>
+				</a>
 			</div>
 		</div>
-		
-		<jsp:include page="footer.jsp">
-			<jsp:param value="a" name="a" />
-		</jsp:include>
 
-	</div>
-	<!-- /container -->
+	</form:form>
 
+</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
 </html>

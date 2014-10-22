@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="argonne_logo_img">
-					<a href="<c:url value="/admin/home" />"><img
+					<a href="<c:url value="/admin/" />"><img
 						src="<c:url value="/resources/images/yoga-studio-logo.jpg" />"
 						class="img-responsive" alt="logo" /></a>
 				</div>
@@ -33,10 +33,10 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="<c:url value="/admin/" />">HOME</a></li>
-				<li class="dropdown"><a href="<c:url value="/admin/semester/" />">Semester</a></li>
-				<li class="dropdown"><a href="<c:url value="/admin/course/" />">Course</a></li>
-				<li class="dropdown"><a href="<c:url value="/admin/faculty/" />">Faculty</a></li>
-				<li class="dropdown"><a href="<c:url value="/admin/category/" />">Product Category</a></li>
+				<li class="dropdown"><a href="<c:url value="/admin/semester/" />">SEMESTER</a></li>
+				<li class="dropdown"><a href="<c:url value="/admin/course/" />">COURSE</a></li>
+				<li class="dropdown"><a href="<c:url value="/admin/faculty/" />">FACULTY</a></li>
+				<li class="dropdown"><a href="<c:url value="/admin/category/" />">PRODUCT CATEGORY</a></li>
 				
 			</ul>
 
@@ -51,7 +51,7 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 			<sec:authorize access="isAnonymous()">
-                    <li class="dropdown"><a href="<c:url value="/login" />">LOGIN <b class="glyphicon glyphicon-play"></b></a></li>    
+                    <li class="dropdown"><a href="<c:url value="/login/" />">LOGIN <b class="glyphicon glyphicon-play"></b></a></li>    
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                     <li class="dropdown"><a href="<c:url value="/j_spring_security_logout" />" >LOGOUT <b class="glyphicon glyphicon-play"></b></a></li>    

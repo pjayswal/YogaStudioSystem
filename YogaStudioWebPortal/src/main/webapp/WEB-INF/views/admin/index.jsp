@@ -70,9 +70,6 @@
 
 			</div>
 		</div>
-		<a href="../product/add?category_id=${category.id}">
-			<button type="button" class="btn btn-success">Add Product</button>
-		</a>
 
 		<jsp:include page="footer.jsp">
 			<jsp:param value="a" name="a" />

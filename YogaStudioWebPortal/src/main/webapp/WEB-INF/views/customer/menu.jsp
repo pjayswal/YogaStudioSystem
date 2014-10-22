@@ -33,7 +33,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="<c:url value="/customer/home/" />">HOME</a></li>
-				<li class="dropdown"><a href="<c:url value="/about-us/" />">ABOUT US</a></li>
+				<li class="dropdown"><a href="<c:url value="#" />">ABOUT US</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">PROFILE</a>
 					<ul class="dropdown-menu">
@@ -53,8 +53,8 @@
 								SECTION</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="<c:url value="/shop/" />">SHOP</a></li>
-				<li class="dropdown"><a href="<c:url value="/faq/" />">FAQ</a></li>
-				<li class="dropdown"><a href="<c:url value="/contact-us/" />">CONTACT US</a></li>
+				<li class="dropdown"><a href="<c:url value="#" />">FAQ</a></li>
+				<li class="dropdown"><a href="<c:url value="#" />">CONTACT US</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
