@@ -14,3 +14,5 @@ Running the application:
 4. Set up mysql user name password in the highlighted lines here: https://github.com/pjayswal/YogaStudioSystem/blob/master/YogaStudioWebPortal/src/main/webapp/WEB-INF/spring/root-context.xml#L80-L81
  Current configuration contains username and password both as 'root', replace them with your mysql server credentials.
 5. Set up the spring configuration to start the application in a way to create the SQL Tables on start. replace the string 'update' with 'create' on line: https://github.com/pjayswal/YogaStudioSystem/blob/master/YogaStudioWebPortal/src/main/webapp/WEB-INF/spring/root-context.xml#L68
+
+6. Run YogaStudioWebPortal on Tomcat or any supported Http server.
